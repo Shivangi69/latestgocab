@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Toyland.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>B7B0352037FF55A44167AFD329081CD85BC5FA15</string>
+				<key>dateExpires</key>
+				<string>16/08/24</string>
+				<key>type</key>
+				<string>Cloud Managed Apple Distribution</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>1</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>B7B0352037FF55A44167AFD329081CD85BC5FA15</string>
+						<key>dateExpires</key>
+						<string>16/08/24</string>
+						<key>type</key>
+						<string>Cloud Managed Apple Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>FloatingPanel.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VZNDPQUZYP</string>
+						<key>name</key>
+						<string>Rohit Wadhwa (Individual - wadhwarohit777@gmail.com)</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>2.8.3</string>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>1</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>B7B0352037FF55A44167AFD329081CD85BC5FA15</string>
+						<key>dateExpires</key>
+						<string>16/08/24</string>
+						<key>type</key>
+						<string>Cloud Managed Apple Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>SwiftyGif.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>VZNDPQUZYP</string>
+						<key>name</key>
+						<string>Rohit Wadhwa (Individual - wadhwarohit777@gmail.com)</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>5.4.4</string>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>VZNDPQUZYP.mipl.Toyland</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>VZNDPQUZYP</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>Toyland.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>6961d135-5cb5-473b-959a-bcbbff763e3f</string>
+				<key>dateExpires</key>
+				<string>01/03/25</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: mipl.Toyland</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>VZNDPQUZYP</string>
+				<key>name</key>
+				<string>Rohit Wadhwa (Individual - wadhwarohit777@gmail.com)</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>
