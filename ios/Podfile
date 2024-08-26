@@ -1,0 +1,32 @@
+use_frameworks!
+platform :ios, '13.0'
+workspace 'taxi'
+def common_pods
+  pod 'FirebaseUI/Phone'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
+  pod 'Eureka'
+  pod 'ImageRow'
+pod 'Stripe' 
+pod 'Charts'
+pod 'BraintreeDropIn'
+pod 'PlacesPicker'
+pod 'GooglePlacesPicker'
+pod 'OTPFieldView'
+pod 'MaterialComponents/TextControls+FilledTextAreas'
+pod 'MaterialComponents/TextControls+FilledTextFields'
+pod 'MaterialComponents/TextControls+OutlinedTextAreas'
+pod 'MaterialComponents/TextControls+OutlinedTextFields'
+end
+
+target 'rider' do
+  project 'rider/rider.xcodeproj'
+  common_pods
+end
+
+target 'driver' do
+  project 'driver/driver.xcodeproj'
+  common_pods
+  pod 'iCarousel'
+end
