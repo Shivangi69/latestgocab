@@ -938,7 +938,7 @@
                     </segments>
                     <color key="selectedSegmentTintColor" name="ThemeYellow"/>
                 </segmentedControl>
-                <view hidden="YES" contentMode="scaleToFill" id="WMt-8c-W1r">
+                <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" id="WMt-8c-W1r">
                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
