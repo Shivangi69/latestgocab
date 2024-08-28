@@ -943,7 +943,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Write Your review Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wlh-Dt-vm4">
-                            <rect key="frame" x="10" y="25" width="156" height="40"/>
+                            <rect key="frame" x="10" y="5" width="156" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="lL9-ap-mgE"/>
                             </constraints>
@@ -951,7 +951,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQL-V4-nMa" customClass="StarRatingView" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="75" width="250" height="40"/>
+                            <rect key="frame" x="0.0" y="55" width="250" height="40"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="250" id="4Y9-dm-KYb"/>
@@ -959,7 +959,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REVIEW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jk-MA-keM">
-                            <rect key="frame" x="255" y="104" width="61.5" height="20.5"/>
+                            <rect key="frame" x="255" y="84" width="61.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
