@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fXH-cx-Xp1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fXH-cx-Xp1">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -105,7 +105,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPi-nf-KFY" customClass="CustomUIView" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                <rect key="frame" x="10" y="74" width="300" height="120"/>
+                                <rect key="frame" x="10" y="54" width="300" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOq-Ii-Zay">
                                         <rect key="frame" x="255" y="38" width="40" height="40"/>
@@ -364,7 +364,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uoq-YX-Dg0">
-                                <rect key="frame" x="0.0" y="32" width="320" height="667"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXe-ON-VTv">
@@ -378,7 +378,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="174.5" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUg-dt-EWF" userLabel="Text Cost">
-                                                <rect key="frame" x="0.0" y="15.499999999999998" width="10" height="19.5"/>
+                                                <rect key="frame" x="0.0" y="15.5" width="10" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1384,7 +1384,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="667"/>
                     <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" largeTitles="YES" id="G66-GE-h0T">
-                        <rect key="frame" x="0.0" y="20" width="320" height="92.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="92.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="ThemeYellow"/>
@@ -1421,7 +1421,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Pv-Pf-sHU">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="zcQ-iT-cLK">
                                         <rect key="frame" x="10" y="20" width="300" height="748.5"/>
@@ -1634,7 +1634,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5d-UY-Kxi">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="P9N-zV-Nxf">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="387"/>
@@ -1769,7 +1769,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="XV1-IQ-MOL">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqM-T8-ld6" customClass="CustomUIView" customModule="Go_Cabs_Rider" customModuleProvider="target">
                                         <rect key="frame" x="10" y="20" width="300" height="683"/>
@@ -1915,7 +1915,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="nE1-IQ-rfi">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lu4-bJ-fCX">
                                         <rect key="frame" x="10" y="0.0" width="300" height="871.5"/>
@@ -2176,7 +2176,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEu-j0-gDz">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7e5-hN-ad5">
                                         <rect key="frame" x="5" y="20" width="310" height="487"/>
@@ -2343,7 +2343,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qjz-6U-XHo">
-                                <rect key="frame" x="0.0" y="20" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nobody" translatesAutoresizingMaskIntoConstraints="NO" id="eXD-rx-RIa">
                                         <rect key="frame" x="40" y="20" width="105" height="105"/>
@@ -2377,7 +2377,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyf-bm-4R1">
-                                <rect key="frame" x="0.0" y="225" width="320" height="343"/>
+                                <rect key="frame" x="0.0" y="205" width="320" height="363"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GY2-5e-kfy">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="616.5"/>
@@ -2787,7 +2787,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgrou_splash" translatesAutoresizingMaskIntoConstraints="NO" id="1gb-ua-o1P">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" name="collectionViewBackground"/>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEa-fe-hJR" customClass="ColoredButton" customModule="Ridy">
@@ -2818,7 +2818,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_go_cab" translatesAutoresizingMaskIntoConstraints="NO" id="4Sd-nI-rDa">
-                                <rect key="frame" x="27" y="231.5" width="266" height="125"/>
+                                <rect key="frame" x="27" y="221.5" width="266" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4Sd-nI-rDa" secondAttribute="height" multiplier="1:1" constant="141" id="RWx-Iw-uVZ"/>
                                     <constraint firstAttribute="width" constant="266" id="kTs-Xa-c6S"/>
@@ -2865,11 +2865,11 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5l-1m-9hn">
-                                <rect key="frame" x="0.0" y="20" width="320" height="280"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eID-mT-jGo">
-                                <rect key="frame" x="10" y="68" width="300" height="32"/>
+                                <rect key="frame" x="10" y="48" width="300" height="32"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
@@ -2877,7 +2877,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 <color key="selectedSegmentTintColor" name="ThemeYellow"/>
                             </segmentedControl>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eHn-7Q-hXL">
-                                <rect key="frame" x="0.0" y="104" width="320" height="143"/>
+                                <rect key="frame" x="0.0" y="84" width="320" height="163"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hox-uk-6gz">
                                     <size key="itemSize" width="120" height="140"/>
@@ -2887,7 +2887,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" reuseIdentifier="serviceCell" id="0XW-8q-3ZV" customClass="ServicesListCell" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1.5" width="120" height="140"/>
+                                        <rect key="frame" x="0.0" y="11.5" width="120" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
@@ -3104,11 +3104,11 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgrou_splash" translatesAutoresizingMaskIntoConstraints="NO" id="gaR-b6-568">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ahi-sH-bza">
-                                <rect key="frame" x="0.0" y="20" width="320" height="427"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="447"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="1JR-Jd-KDd">
                                     <size key="itemSize" width="393" height="631"/>
@@ -3118,7 +3118,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="onboardingCell" id="1gv-su-jqZ" customClass="OnboardingCollectionCell" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-102" width="393" height="631"/>
+                                        <rect key="frame" x="0.0" y="-92" width="393" height="631"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="raf-kb-2cE">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="631"/>
@@ -3338,11 +3338,11 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-u9-ISH">
-                                <rect key="frame" x="15" y="21" width="363" height="761"/>
+                                <rect key="frame" x="15" y="1" width="363" height="781"/>
                                 <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Stop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ea8-hd-1jr">
-                                <rect key="frame" x="15" y="-29" width="363" height="45"/>
+                                <rect key="frame" x="15" y="-49" width="363" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="eLc-g0-lxu"/>
                                 </constraints>
@@ -3398,164 +3398,119 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4r-3A-1KH">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uOr-7x-XdK">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uOr-7x-XdK">
-                                        <rect key="frame" x="10" y="0.0" width="300" height="657"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-TO-cYP">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Tva-TO-cYP">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="657"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login-rafiki 2" translatesAutoresizingMaskIntoConstraints="NO" id="dDS-df-qak">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="389"/>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dSS-ma-awa">
+                                                <rect key="frame" x="0.0" y="399" width="320" height="149"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login-rafiki 2" translatesAutoresizingMaskIntoConstraints="NO" id="dDS-df-qak">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="447"/>
-                                                    </imageView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dSS-ma-awa">
-                                                        <rect key="frame" x="0.0" y="457" width="300" height="200"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ved-M9-h6m">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ved-M9-h6m">
-                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ngN-ci-Eke">
+                                                                <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ngN-ci-Eke">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
+                                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qNS-Ob-ORY">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="34"/>
                                                                         <subviews>
-                                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qNS-Ob-ORY">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="42" height="40"/>
-                                                                                <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="F" placeholder="Code" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Jj4-He-IJD">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="40"/>
-                                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                    </textField>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bkE-Nc-DzN" customClass="MDCOutlinedTextField">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="40"/>
-                                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                    </textField>
-                                                                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcP-6F-mBU">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="100" id="Ejb-Nn-ufZ"/>
-                                                                                        </constraints>
-                                                                                        <connections>
-                                                                                            <action selector="btncountrypick:" destination="5OT-fs-pRo" eventType="touchUpInside" id="kQa-Wr-knE"/>
-                                                                                        </connections>
-                                                                                    </button>
-                                                                                </subviews>
-                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <constraints>
-                                                                                    <constraint firstItem="Jj4-He-IJD" firstAttribute="top" secondItem="qNS-Ob-ORY" secondAttribute="top" id="94W-Dq-pbi"/>
-                                                                                    <constraint firstItem="bkE-Nc-DzN" firstAttribute="leading" secondItem="qNS-Ob-ORY" secondAttribute="leading" id="BNC-JF-LA7"/>
-                                                                                    <constraint firstItem="ZcP-6F-mBU" firstAttribute="leading" secondItem="qNS-Ob-ORY" secondAttribute="leading" id="TXg-ti-gMb"/>
-                                                                                    <constraint firstAttribute="height" constant="40" id="XHp-ly-miX"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="Jj4-He-IJD" secondAttribute="bottom" id="YFy-sc-dpo"/>
-                                                                                    <constraint firstItem="Jj4-He-IJD" firstAttribute="leading" secondItem="qNS-Ob-ORY" secondAttribute="leading" id="Zj6-3K-1Q0"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="ZcP-6F-mBU" secondAttribute="bottom" id="cc0-VX-YC9"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="bkE-Nc-DzN" secondAttribute="bottom" id="hkN-IJ-8Tx"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="bkE-Nc-DzN" secondAttribute="trailing" constant="10" id="ucK-zf-bql"/>
-                                                                                    <constraint firstItem="bkE-Nc-DzN" firstAttribute="top" secondItem="qNS-Ob-ORY" secondAttribute="top" id="vLD-km-DcF"/>
-                                                                                    <constraint firstItem="ZcP-6F-mBU" firstAttribute="top" secondItem="qNS-Ob-ORY" secondAttribute="top" id="zvB-Dl-P37"/>
-                                                                                </constraints>
-                                                                            </view>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Mv-bx-rYq" customClass="MDCOutlinedTextField">
-                                                                                <rect key="frame" x="50" y="0.0" width="250" height="40"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="width" constant="250" id="fgq-ah-cOw"/>
-                                                                                </constraints>
-                                                                                <color key="textColor" name="ThemeYellow"/>
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="F" placeholder="Code" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Jj4-He-IJD">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="43" height="34"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                                 <textInputTraits key="textInputTraits"/>
                                                                             </textField>
-                                                                        </subviews>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="bottom" secondItem="qNS-Ob-ORY" secondAttribute="bottom" id="1ik-Wr-yvv"/>
-                                                                            <constraint firstItem="qNS-Ob-ORY" firstAttribute="top" secondItem="ngN-ci-Eke" secondAttribute="top" id="89p-p3-6v9"/>
-                                                                            <constraint firstItem="qNS-Ob-ORY" firstAttribute="leading" secondItem="ngN-ci-Eke" secondAttribute="leading" id="BfO-Ch-zZm"/>
-                                                                        </constraints>
-                                                                    </stackView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JlQ-aR-x57">
-                                                                        <rect key="frame" x="0.0" y="55" width="300" height="145"/>
-                                                                        <subviews>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOg-VS-bea" customClass="ColoredButton" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="67.5"/>
-                                                                                <color key="backgroundColor" name="ThemeYellow"/>
-                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                                                <state key="normal" title="VERIFY PHONE NUMBER">
-                                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                </state>
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                        <integer key="value" value="6"/>
-                                                                                    </userDefinedRuntimeAttribute>
-                                                                                </userDefinedRuntimeAttributes>
+                                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bkE-Nc-DzN" customClass="MDCOutlinedTextField">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="40" id="BvK-1y-7cq"/>
+                                                                                    <constraint firstAttribute="width" constant="300" id="dtk-D5-BWA"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                                <textInputTraits key="textInputTraits"/>
+                                                                            </textField>
+                                                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcP-6F-mBU">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
                                                                                 <connections>
-                                                                                    <action selector="onCancelRequestClicked:" destination="O2R-rO-LhR" eventType="touchUpInside" id="ozH-gR-2Ch"/>
+                                                                                    <action selector="btncountrypick:" destination="5OT-fs-pRo" eventType="touchUpInside" id="kQa-Wr-knE"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By tapping &quot;Verify Phone Number&quot;, an SMS may be sent. Message &amp; date rates may apply." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkY-c2-IaD">
-                                                                                <rect key="frame" x="0.0" y="77.5" width="300" height="67.5"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                <color key="textColor" red="0.50588238240000005" green="0.51372551919999998" blue="0.50980395079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
                                                                         </subviews>
-                                                                    </stackView>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="bkE-Nc-DzN" firstAttribute="leading" secondItem="Jj4-He-IJD" secondAttribute="trailing" id="0aI-2F-sK4"/>
+                                                                            <constraint firstItem="bkE-Nc-DzN" firstAttribute="bottom" secondItem="ZcP-6F-mBU" secondAttribute="bottom" id="2PD-og-FSP"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="Jj4-He-IJD" secondAttribute="bottom" id="75o-3K-p8j"/>
+                                                                            <constraint firstItem="Jj4-He-IJD" firstAttribute="leading" secondItem="qNS-Ob-ORY" secondAttribute="leading" id="Cpn-ke-kg5"/>
+                                                                            <constraint firstItem="bkE-Nc-DzN" firstAttribute="leading" secondItem="ZcP-6F-mBU" secondAttribute="leading" id="WPl-ib-vHh"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="bkE-Nc-DzN" secondAttribute="bottom" constant="-6" id="Xcc-v3-Vjt"/>
+                                                                            <constraint firstItem="bkE-Nc-DzN" firstAttribute="top" secondItem="Jj4-He-IJD" secondAttribute="top" id="Y0V-iN-9ps"/>
+                                                                            <constraint firstItem="Jj4-He-IJD" firstAttribute="top" secondItem="qNS-Ob-ORY" secondAttribute="top" id="dXR-El-Ddm"/>
+                                                                            <constraint firstItem="bkE-Nc-DzN" firstAttribute="top" secondItem="ZcP-6F-mBU" secondAttribute="top" id="r1L-05-6Fd"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Mv-bx-rYq" customClass="MDCOutlinedTextField">
+                                                                        <rect key="frame" x="58" y="0.0" width="262" height="34"/>
+                                                                        <color key="textColor" name="ThemeYellow"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
                                                                 </subviews>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="trailing" secondItem="JlQ-aR-x57" secondAttribute="trailing" id="4zt-yC-X44"/>
-                                                                    <constraint firstItem="JlQ-aR-x57" firstAttribute="leading" secondItem="Ved-M9-h6m" secondAttribute="leading" id="73E-dh-fEk"/>
-                                                                    <constraint firstItem="ngN-ci-Eke" firstAttribute="leading" secondItem="Ved-M9-h6m" secondAttribute="leading" id="DbO-mG-qiB"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="ngN-ci-Eke" secondAttribute="trailing" id="fce-5u-XXM"/>
-                                                                    <constraint firstItem="ngN-ci-Eke" firstAttribute="top" secondItem="Ved-M9-h6m" secondAttribute="top" id="wka-hd-5gp"/>
-                                                                </constraints>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JlQ-aR-x57">
+                                                                <rect key="frame" x="0.0" y="49" width="320" height="100"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOg-VS-bea" customClass="ColoredButton" customModule="Go_Cabs_Rider" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                                                                        <color key="backgroundColor" name="ThemeYellow"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="45" id="HRv-hf-mh9"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                        <state key="normal" title="VERIFY PHONE NUMBER">
+                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="6"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="onCancelRequestClicked:" destination="O2R-rO-LhR" eventType="touchUpInside" id="ozH-gR-2Ch"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By tapping &quot;Verify Phone Number&quot;, an SMS may be sent. Message &amp; date rates may apply." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkY-c2-IaD">
+                                                                        <rect key="frame" x="0.0" y="55" width="320" height="45"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" red="0.50588238240000005" green="0.51372551919999998" blue="0.50980395079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="Ved-M9-h6m" firstAttribute="leading" secondItem="dSS-ma-awa" secondAttribute="leading" id="NPb-eC-0gS"/>
-                                                            <constraint firstItem="Ved-M9-h6m" firstAttribute="top" secondItem="dSS-ma-awa" secondAttribute="top" id="XBS-Ar-Oet"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Ved-M9-h6m" secondAttribute="trailing" id="kR9-bc-Es4"/>
-                                                            <constraint firstAttribute="height" constant="200" id="m30-ok-6fF"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Ved-M9-h6m" secondAttribute="bottom" id="qhH-24-TQU"/>
-                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="dSS-ma-awa" secondAttribute="trailing" id="9MG-c2-Sir"/>
-                                                    <constraint firstItem="dDS-df-qak" firstAttribute="top" secondItem="Tva-TO-cYP" secondAttribute="top" id="B0A-yz-csE"/>
-                                                    <constraint firstAttribute="trailing" secondItem="dDS-df-qak" secondAttribute="trailing" id="Ekb-1c-f3o"/>
-                                                    <constraint firstItem="dSS-ma-awa" firstAttribute="top" secondItem="dDS-df-qak" secondAttribute="bottom" constant="10" id="VsE-p5-eZz"/>
-                                                    <constraint firstItem="dSS-ma-awa" firstAttribute="leading" secondItem="Tva-TO-cYP" secondAttribute="leading" id="naQ-3U-4QP"/>
-                                                    <constraint firstItem="dDS-df-qak" firstAttribute="leading" secondItem="Tva-TO-cYP" secondAttribute="leading" id="qnM-Xg-hRr"/>
-                                                    <constraint firstAttribute="bottom" secondItem="dSS-ma-awa" secondAttribute="bottom" constant="1.1368683772161603e-13" id="rs4-yn-I3e"/>
-                                                </constraints>
                                             </stackView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="Tva-TO-cYP" secondAttribute="bottom" id="NPz-eo-Y4K"/>
-                                            <constraint firstItem="Tva-TO-cYP" firstAttribute="top" secondItem="uOr-7x-XdK" secondAttribute="top" id="VRl-Qh-rRt"/>
-                                            <constraint firstAttribute="trailing" secondItem="Tva-TO-cYP" secondAttribute="trailing" id="l0g-Oe-Qkd"/>
-                                            <constraint firstItem="Tva-TO-cYP" firstAttribute="leading" secondItem="uOr-7x-XdK" secondAttribute="leading" id="y8r-NQ-WTp"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="uOr-7x-XdK" firstAttribute="centerX" secondItem="I4r-3A-1KH" secondAttribute="centerX" id="1S7-0E-Jkj"/>
-                                    <constraint firstAttribute="bottom" secondItem="uOr-7x-XdK" secondAttribute="bottom" id="71M-1X-6kG"/>
-                                    <constraint firstItem="uOr-7x-XdK" firstAttribute="leading" secondItem="I4r-3A-1KH" secondAttribute="leading" constant="10" id="7iu-nZ-wah"/>
-                                    <constraint firstAttribute="trailing" secondItem="uOr-7x-XdK" secondAttribute="trailing" constant="10" id="cMV-rB-uNU"/>
-                                    <constraint firstItem="uOr-7x-XdK" firstAttribute="top" secondItem="I4r-3A-1KH" secondAttribute="top" id="lfT-XW-obG"/>
+                                    <constraint firstItem="Tva-TO-cYP" firstAttribute="top" secondItem="uOr-7x-XdK" secondAttribute="top" id="0eW-Fl-H18"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tva-TO-cYP" secondAttribute="bottom" id="Ocq-Tw-VHq"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="hlg-M3-ugd"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="pQj-RO-R2p"/>
-                            </scrollView>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fsz-VH-hxG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="I4r-3A-1KH" firstAttribute="leading" secondItem="fsz-VH-hxG" secondAttribute="leading" id="0fp-Nm-0b5"/>
-                            <constraint firstItem="I4r-3A-1KH" firstAttribute="trailing" secondItem="fsz-VH-hxG" secondAttribute="trailing" id="2dV-3t-Tda"/>
-                            <constraint firstItem="I4r-3A-1KH" firstAttribute="top" secondItem="fsz-VH-hxG" secondAttribute="top" id="Cfd-r9-vcP"/>
-                            <constraint firstItem="I4r-3A-1KH" firstAttribute="bottom" secondItem="fsz-VH-hxG" secondAttribute="bottom" id="gQb-Ik-fLt"/>
+                            <constraint firstAttribute="trailing" secondItem="uOr-7x-XdK" secondAttribute="trailing" id="8zR-yZ-hsG"/>
+                            <constraint firstItem="uOr-7x-XdK" firstAttribute="leading" secondItem="fsz-VH-hxG" secondAttribute="leading" id="JFQ-uu-m2C"/>
+                            <constraint firstItem="uOr-7x-XdK" firstAttribute="top" secondItem="fsz-VH-hxG" secondAttribute="top" id="Jcy-N6-lpG"/>
+                            <constraint firstAttribute="bottom" secondItem="uOr-7x-XdK" secondAttribute="bottom" id="Yiz-eh-DJB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="scE-VI-WVG"/>
@@ -3567,7 +3522,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSQ-gY-RrK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896" y="1135"/>
+            <point key="canvasLocation" x="894.375" y="1134.5070422535211"/>
         </scene>
         <!--Otp Verification-->
         <scene sceneID="Hn1-B1-BeQ">
@@ -3578,13 +3533,13 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aZa-P5-VtF">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login-rafiki 2" translatesAutoresizingMaskIntoConstraints="NO" id="xK0-d4-G5B">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="292.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="312.5"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="FYp-Ul-KI4">
-                                        <rect key="frame" x="0.0" y="292.5" width="320" height="211.5"/>
+                                        <rect key="frame" x="0.0" y="312.5" width="320" height="211.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Qf-UX-Qql">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
@@ -3682,7 +3637,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FdD-vP-zve" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xb2-8S-5Lw">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3700,7 +3655,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tjZ-oY-52X" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lep-fT-MJ4">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3715,7 +3670,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eLp-mU-MyW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cCt-7v-rNY">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3733,7 +3688,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9MI-3E-D4f" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G7Q-XX-QTu">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3748,7 +3703,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xzc-sf-8Pk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fO9-yl-DH3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3766,7 +3721,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LBA-fg-ufp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="baz-Rb-utl">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3784,7 +3739,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FKA-OW-d6W" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mHp-sW-0LB">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -3799,31 +3754,31 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
     </scenes>
     <designables>
         <designable name="4gk-mA-be8">
-            <size key="intrinsicContentSize" width="67" height="33"/>
+            <size key="intrinsicContentSize" width="67" height="41"/>
         </designable>
         <designable name="4qI-LT-UqT">
-            <size key="intrinsicContentSize" width="48" height="30"/>
+            <size key="intrinsicContentSize" width="48" height="38"/>
         </designable>
         <designable name="4xf-B2-cPM">
-            <size key="intrinsicContentSize" width="127" height="33"/>
+            <size key="intrinsicContentSize" width="127" height="41"/>
         </designable>
         <designable name="99u-3W-6JB">
-            <size key="intrinsicContentSize" width="42" height="33"/>
+            <size key="intrinsicContentSize" width="42" height="41"/>
         </designable>
         <designable name="9Gq-9w-3jp">
-            <size key="intrinsicContentSize" width="59" height="33"/>
+            <size key="intrinsicContentSize" width="59" height="41"/>
         </designable>
         <designable name="Cqe-60-b1p">
-            <size key="intrinsicContentSize" width="186" height="33"/>
+            <size key="intrinsicContentSize" width="186" height="41"/>
         </designable>
         <designable name="GYj-Dw-8In">
-            <size key="intrinsicContentSize" width="59" height="33"/>
+            <size key="intrinsicContentSize" width="59" height="41"/>
         </designable>
         <designable name="O3k-hU-9yw">
-            <size key="intrinsicContentSize" width="97" height="30"/>
+            <size key="intrinsicContentSize" width="97" height="38"/>
         </designable>
         <designable name="TGw-TV-i4G">
-            <size key="intrinsicContentSize" width="137" height="33"/>
+            <size key="intrinsicContentSize" width="137" height="41"/>
         </designable>
         <designable name="UAm-nM-c8E">
             <size key="intrinsicContentSize" width="45.5" height="34.5"/>
@@ -3832,31 +3787,31 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
             <size key="intrinsicContentSize" width="133" height="33"/>
         </designable>
         <designable name="YnQ-Yl-MeU">
-            <size key="intrinsicContentSize" width="55" height="33"/>
+            <size key="intrinsicContentSize" width="55" height="41"/>
         </designable>
         <designable name="ZAI-5h-uDN">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="26" height="38"/>
         </designable>
         <designable name="bs0-ma-Cfy">
             <size key="intrinsicContentSize" width="75" height="33"/>
         </designable>
         <designable name="dLp-wh-UaX">
-            <size key="intrinsicContentSize" width="62" height="30"/>
+            <size key="intrinsicContentSize" width="62" height="38"/>
         </designable>
         <designable name="fOg-VS-bea">
-            <size key="intrinsicContentSize" width="208" height="34"/>
+            <size key="intrinsicContentSize" width="208" height="42"/>
         </designable>
         <designable name="nmO-Lz-8cT">
-            <size key="intrinsicContentSize" width="153" height="33"/>
+            <size key="intrinsicContentSize" width="153" height="41"/>
         </designable>
         <designable name="p9f-uL-Npi">
-            <size key="intrinsicContentSize" width="79" height="33"/>
+            <size key="intrinsicContentSize" width="79" height="41"/>
         </designable>
         <designable name="vd8-M7-5It">
             <size key="intrinsicContentSize" width="113" height="33"/>
         </designable>
         <designable name="w6Z-5H-pYJ">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="25" height="38"/>
         </designable>
     </designables>
     <resources>
@@ -3901,7 +3856,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="whatsapp 1" width="25" height="25"/>
         <namedColor name="ThemeYellow">
-            <color red="0.99599999189376831" green="0.88999998569488525" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99607843137254903" green="0.8901960784313725" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="avatarViewBackground">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3919,7 +3874,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

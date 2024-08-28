@@ -476,7 +476,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yuw-2l-tJc" customClass="ColoredButton" customModule="Go_Cabs_Driver" customModuleProvider="target">
-                                <rect key="frame" x="8" y="789" width="398" height="41"/>
+                                <rect key="frame" x="8" y="797" width="398" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Login/Sign Up"/>
                                 <connections>
@@ -484,13 +484,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ds-I9-j3d">
-                                <rect key="frame" x="169.66666666666666" y="736" width="75" height="21"/>
+                                <rect key="frame" x="169.66666666666666" y="744" width="75" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rzd-7F-a3H">
-                                <rect key="frame" x="197" y="700" width="20" height="20"/>
+                                <rect key="frame" x="197" y="708" width="20" height="20"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright© 2024 Latitude Infotech All Rights reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sE0-Cu-9vP">
                                 <rect key="frame" x="40.333333333333343" y="838" width="333.66666666666663" height="16"/>
@@ -870,19 +870,19 @@
     </scenes>
     <designables>
         <designable name="0jw-9l-d2a">
-            <size key="intrinsicContentSize" width="41" height="38"/>
+            <size key="intrinsicContentSize" width="41" height="30"/>
         </designable>
         <designable name="5uL-fA-bxz">
-            <size key="intrinsicContentSize" width="50" height="38"/>
+            <size key="intrinsicContentSize" width="50" height="30"/>
         </designable>
         <designable name="73L-uu-mEt">
-            <size key="intrinsicContentSize" width="48" height="38"/>
+            <size key="intrinsicContentSize" width="48" height="30"/>
         </designable>
         <designable name="AmM-Hg-Zpg">
             <size key="intrinsicContentSize" width="34" height="38"/>
         </designable>
         <designable name="Yuw-2l-tJc">
-            <size key="intrinsicContentSize" width="107" height="41"/>
+            <size key="intrinsicContentSize" width="107" height="33"/>
         </designable>
     </designables>
     <resources>
@@ -905,7 +905,7 @@
         <image name="menuWallet" width="332" height="332"/>
         <image name="message" width="96" height="96"/>
         <namedColor name="ThemeYellow">
-            <color red="0.99599999189376831" green="0.88999998569488525" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99607843137254903" green="0.8901960784313725" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="typingIndicatorDot">
             <color red="0.68199998140335083" green="0.68199998140335083" blue="0.69800001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
