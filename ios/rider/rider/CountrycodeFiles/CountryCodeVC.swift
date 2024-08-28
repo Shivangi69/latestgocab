@@ -13,9 +13,10 @@ import MaterialComponents
 class CountryCodeVC: UIViewController {
     
    
+    @IBOutlet weak var codetext: MDCOutlinedTextField!
     @IBOutlet weak var labelflag: UITextField!
     
-    @IBOutlet weak var lablecountcode: MDCOutlinedTextField!
+//    @IBOutlet weak var lablecountcode: MDCOutlinedTextField!
     
 //    @IBOutlet weak var lblCountryCode: UILabel!
     
@@ -27,16 +28,13 @@ class CountryCodeVC: UIViewController {
     
     var countryCode: String?
     // MARK:- View Life Cycle
+  //  @IBOutlet weak var codeTextfeild: MDCOutlinedTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         initalSetup()
         setupCountryPicker()
         
         
-        lablecountcode.label.text = "Code"
-//        lablecountcode.placeholder = "+91"
-        lablecountcode.sizeToFit()
-//        lablecountcode.leadingView.setlea
         
         phonenumber.label.text = "Phone number"
         phonenumber.label.textColor = .yellow
@@ -44,6 +42,31 @@ class CountryCodeVC: UIViewController {
         phonenumber.placeholder = "Phone number"
         phonenumber.sizeToFit()
         
+        
+        
+        
+        codetext.label.text = "Code*"
+        codetext.placeholder = "Code"
+//
+        
+      //  codetext.text = "+91"
+        codetext.sizeToFit()
+        //codetext.isEnabled = false // Makes the text field non-editable
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(textFieldTapped))
+        codetext.addGestureRecognizer(tapGesture)
+        
+    }
+    @objc func textFieldTapped() {
+        DispatchQueue.main.async {
+            CountriesViewController.show(countriesViewController: self.countriesViewController, toVar: self)
+        }
+    }
+    @IBOutlet weak var countryCodeButton: UIButton!
+    @IBAction func openContryPicker(_ sender: Any) {
+        DispatchQueue.main.async {
+            CountriesViewController.show(countriesViewController: self.countriesViewController, toVar: self)
+        }
     }
     // Shadow for the login view
     override func viewDidLayoutSubviews() {
@@ -96,7 +119,10 @@ class CountryCodeVC: UIViewController {
         if let info = self.getCountryAndName() {
             countryCode = info.countryCode!
             self.labelflag.text = info.countryFlag!
-            self.lablecountcode.text = info.countryCode!
+            countryCodeButton.titleLabel?.text = info.countryFlag! + " " + info.countryCode!
+            codetext.text = info.countryFlag! + " " + info.countryCode!
+            
+//            self.lablecountcode.text = info.countryCode!
         }
     }
     //Method is used for getiing country data which is stored in json file
@@ -201,7 +227,8 @@ extension CountryCodeVC: CountriesViewControllerDelegate {
         if let info = self.getCountryAndName(country.countryCode) {
             countryCode = info.countryCode!
             self.labelflag.text = info.countryFlag!
-            self.lablecountcode.text = info.countryCode!
+//            self.lablecountcode.text = info.countryCode!
+            codetext.text = info.countryFlag! + " " + info.countryCode!
         }
     }
     func countriesViewController(_ countriesViewController: CountriesViewController, didUnselectCountry country: Country) {
