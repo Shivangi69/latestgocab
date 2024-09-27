@@ -248,6 +248,7 @@ PODS:
   - PlacesPicker (0.0.3):
     - GoogleMaps (~> 3.1.0)
     - GooglePlaces (~> 3.1.0)
+  - ProgressHUD (14.1.1)
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
     - PromisesObjC (= 2.4.0)
@@ -291,6 +292,7 @@ DEPENDENCIES:
   - "MaterialComponents/TextControls+OutlinedTextFields"
   - OTPFieldView
   - PlacesPicker
+  - ProgressHUD
   - Stripe
 
 SPEC REPOS:
@@ -328,6 +330,7 @@ SPEC REPOS:
     - nanopb
     - OTPFieldView
     - PlacesPicker
+    - ProgressHUD
     - PromisesObjC
     - PromisesSwift
     - RecaptchaInterop
@@ -373,6 +376,7 @@ SPEC CHECKSUMS:
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   OTPFieldView: 700a752fe62c41d1c4914c78aa500fb30d97c255
   PlacesPicker: 3748ed50243c4b786dd8404610b279c96455f0c1
+  ProgressHUD: abb9136ae23c85204236828562cb9a8ec98efb44
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
@@ -384,6 +388,6 @@ SPEC CHECKSUMS:
   StripeUICore: 31c66d62940078bd132c23a1fe9ec8746edc02a2
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: 9bfc028b83963fb8549558791362e5763341b584
+PODFILE CHECKSUM: 98d7564e2dc7b198c7bbd13e3bc163744238db17
 
 COCOAPODS: 1.15.2

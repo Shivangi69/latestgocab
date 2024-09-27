@@ -34,7 +34,7 @@ class SplashViewController: UIViewController {
                 case .success(_):
                     UserDefaults.standard.set("yes", forKey: "Firsttyme")
 
-                    self.performSegue(withIdentifier: "segueShowHost", sender: nil)
+                    self.performSegue(withIdentifier: "segueHost", sender: nil)
                     
                 case .failure(let error):
                     switch error {
@@ -101,20 +101,21 @@ class SplashViewController: UIViewController {
     }
 }
 extension SplashViewController: FUIAuthDelegate {
-    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-        if(user == nil) {
-            return
-        }
-        indicatorLoading.isHidden = false
-        textLoading.isHidden = false
-        buttonLogin.isHidden = true
-        user?.getIDTokenForcingRefresh(true) { idToken, error in
-            if let error = error {
-                print(error)
-                return;
-            }
-            
-            self.tryLogin(firebaseToken: idToken!)
-        }
-    }
+//    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+//        if(user == nil) {
+//            return
+//        }
+//        indicatorLoading.isHidden = false
+//        textLoading.isHidden = false
+//        buttonLogin.isHidden = true
+//       
+//        user?.getIDTokenForcingRefresh(true) { idToken, error in
+//            if let error = error {
+//                print(error)
+//                return;
+//            }
+//            
+//            self.tryLogin(firebaseToken: idToken!)
+//        }
+//    }
 }

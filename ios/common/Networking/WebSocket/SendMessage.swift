@@ -18,3 +18,27 @@ public class SendMessage: SocketRequest {
     
     required public init() {}
 }
+public class SupportSendMessage: SocketRequest {
+    public typealias ResponseType = ChatMessage
+    public var params: [Any]?
+
+    public init(content: String, receiverUserId: Int) {
+        self.params = [content, receiverUserId]
+    }
+    
+    required public init() {}
+    
+    public func send() {
+        SocketNetworkDispatcher.instance.dispatchnew(event: "SupportSendMessage", params: params) { result in
+            switch result {
+            case .success(let response):
+                // Handle success
+                print("Message sent successfully: \(response)")
+            case .failure(let error):
+                // Handle error
+                print("Error sending message: \(error.localizedDescription)")
+            }
+        }
+    }
+}
+

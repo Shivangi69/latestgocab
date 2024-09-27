@@ -18,6 +18,8 @@ class welcomeScreen: UIViewController {
     
 
     @IBAction func Proceedbtn(_ sender: UIButton) {
+        UserDefaults.standard.set("yes", forKey: "VeryFirsttyme")
+
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController {
            
             self.navigationController!.pushViewController(vc, animated: true)

@@ -719,9 +719,10 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
                     self.requestRefresh()
                 })
             } else {
-                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Wallet") as? WalletViewController {
+                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WalletNewViewController") as? WalletNewViewController {
                     vc.amount = Request.shared.costAfterVAT
                     vc.currency = Request.shared.currency
+                    
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }

@@ -115,6 +115,7 @@ public final class Request: Codable, Hashable {
 
 
 import Foundation
+import MessageKit
 public final class AssignedVehicle: Codable {
     
     
@@ -170,4 +171,19 @@ public final class Vehicle: Codable {
     public var make: String?
     public var model: String?
     public var vehicle_type: String?
+}
+public final class Admin: SenderType {
+    public var senderId: String {
+        return "1"
+    }
+    
+    public var displayName: String {
+        return "Admin"
+    }
+    
+    // MARK: Properties
+     
+    
+    // Initialize with any required properties
+  
 }

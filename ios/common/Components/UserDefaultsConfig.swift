@@ -12,6 +12,9 @@ public struct UserDefaultsConfig {
     @UserDefault("jwtToken", defaultValue: nil)
     public static var jwtToken: String?
     
+    @UserDefault("jwtTokenNew", defaultValue: nil)
+    public static var jwtTokenNew: String?
+    
     @UserDefault("user", defaultValue: nil)
     public static var user: [String : Any]?
     

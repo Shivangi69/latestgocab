@@ -20,7 +20,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
     @IBOutlet weak var psaved: UIButton!
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         print("Place name: \(place)")
-        print("Place address: \(place.formattedAddress)")
+        print("Place address: \(place.formattedAddress ?? "")")
 //        print("Place attributions: \(place.addressComponents)")
         
         let ann = MKPointAnnotation()
@@ -140,6 +140,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         NotificationCenter.default.addObserver(forName: Notification.Name("CallEdit"), object: nil, queue: .main) { notification in
             self.goEditFromServiceSelection()
         }
+        
         PickuPtextfeild.delegate = self
               DropTextfeild.delegate = self
        // self.navigationItem.searchController = searchController

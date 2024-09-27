@@ -151,33 +151,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
 
-//                if UserDefaults.standard.string(forKey: "Firsttyme") != nil {
-//                    // Replace `MainViewController` with your main app view controller
-//                    // or SplashViewController if that is the main screen
-//                    
-//                    let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                    let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
-//                    let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as UIViewController
-//
-//                    navigationController.viewControllers = [rootViewController]
-//                    self.window?.rootViewController = navigationController
-//                } else {
-//                    
-//                    
-//                    let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                    let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
-//                    let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as UIViewController
-//
-//                    navigationController.viewControllers = [rootViewController]
-//                    self.window?.rootViewController = navigationController
-//                }
+                if UserDefaults.standard.string(forKey: "Firsttyme") != nil {
+                    // Replace `MainViewController` with your main app view controller
+                    // or SplashViewController if that is the main screen
+                    
+                    let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+                    let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as UIViewController
 
-        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
-        let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "welcomeScreen") as UIViewController
+                    navigationController.viewControllers = [rootViewController]
+                    self.window?.rootViewController = navigationController
+                } else {
+                    
+                    if UserDefaults.standard.string(forKey: "VeryFirsttyme") != nil {
+                        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+                        let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as UIViewController
 
-        navigationController.viewControllers = [rootViewController]
-        self.window?.rootViewController = navigationController
+                        navigationController.viewControllers = [rootViewController]
+                        self.window?.rootViewController = navigationController
+
+                      
+                    }else{
+                        
+                        
+                        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+                        let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "welcomeScreen") as UIViewController
+                        
+                        navigationController.viewControllers = [rootViewController]
+                        self.window?.rootViewController = navigationController
+                        
+                        
+                                            }
+                    
+                }
+
+//        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+//        let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "welcomeScreen") as UIViewController
+//
+//        navigationController.viewControllers = [rootViewController]
+//        self.window?.rootViewController = navigationController
         return true
         
     }
@@ -200,7 +215,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             object: nil,
             userInfo: tokenDict)
         print("Firebase registration token: \(fcmToken ?? "")")
-
+        UserDefaults.standard.set(fcmToken, forKey: "devicetoken")
       //  UserDefaults.standard.set(fcmToken, forKey: "devicetoken")
     }
     
@@ -302,7 +317,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("Registration succeeded!")
         print("Token: ", token)
         
-        UserDefaults.standard.set(token, forKey: "devicetoken")
+       // UserDefaults.standard.set(token, forKey: "devicetoken")
            
         
     }

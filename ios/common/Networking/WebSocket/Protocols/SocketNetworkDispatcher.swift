@@ -11,6 +11,7 @@ import MapKit
 public struct SocketNetworkDispatcher: NetworkDispatcher {
     public func dispatch(event: String, params: [Any]?, completionHandler: @escaping (Result<Any, SocketClientError>) -> Void) {
         if let _params = params {
+            
             socket!.emitWithAck(event, with: _params).timingOut(after: 20) { response in
                 if(response.count > 1) {
                     completionHandler(.failure(SocketClientError.InvalidAckParamCount))
@@ -44,7 +45,15 @@ public struct SocketNetworkDispatcher: NetworkDispatcher {
             }
         }
     }
-    
+    public func dispatchnew(event: String, params: [Any]?, completionHandler: @escaping (Result<Any, SocketClientError>) -> Void) {
+        if let _params = params {
+            socket!.emit(event, with: _params)
+            completionHandler(.success("Success")) // Example success response
+        } else {
+            socket!.emit(event)
+            completionHandler(.success("Success")) // Example success response
+        }
+    }
     public static var instance = SocketNetworkDispatcher()
     var socket : SocketIOClient?
     var manager: SocketManager?
