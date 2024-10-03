@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,9 @@
 		08007FAB2C74A5020029A3FD /* Profileedit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08007FAA2C74A5020029A3FD /* Profileedit.swift */; };
 		081991652C63562F00838929 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 081991642C63562F00838929 /* Main.storyboard */; };
 		085305482C784D50008A51EF /* welcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085305472C784D50008A51EF /* welcomeScreen.swift */; };
+		0862C85F2CA6BE3300A167E2 /* BTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862C85E2CA6BE3300A167E2 /* BTViewController.swift */; };
+		0862C8622CA6C7BC00A167E2 /* BTTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0862C8602CA6C7BC00A167E2 /* BTTableViewCell.swift */; };
+		0862C8632CA6C7BC00A167E2 /* BTTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0862C8612CA6C7BC00A167E2 /* BTTableViewCell.xib */; };
 		08AD4BFD2C75C13600F89CA7 /* CountryCodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 08AD4BFC2C75C13600F89CA7 /* CountryCodes.json */; };
 		08AD4BFF2C75F46C00F89CA7 /* OtpVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD4BFE2C75F46C00F89CA7 /* OtpVerification.swift */; };
 		08D4EF602C2D864800F16F7B /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D4EF5F2C2D864800F16F7B /* StarRatingView.swift */; };
@@ -194,6 +197,9 @@
 		08007FAA2C74A5020029A3FD /* Profileedit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profileedit.swift; sourceTree = "<group>"; };
 		081991642C63562F00838929 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		085305472C784D50008A51EF /* welcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = welcomeScreen.swift; sourceTree = "<group>"; };
+		0862C85E2CA6BE3300A167E2 /* BTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTViewController.swift; sourceTree = "<group>"; };
+		0862C8602CA6C7BC00A167E2 /* BTTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTTableViewCell.swift; sourceTree = "<group>"; };
+		0862C8612CA6C7BC00A167E2 /* BTTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BTTableViewCell.xib; sourceTree = "<group>"; };
 		08AD4BFC2C75C13600F89CA7 /* CountryCodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CountryCodes.json; sourceTree = "<group>"; };
 		08AD4BFE2C75F46C00F89CA7 /* OtpVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpVerification.swift; sourceTree = "<group>"; };
 		08D4EF5F2C2D864800F16F7B /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
@@ -695,6 +701,9 @@
 				62B6FD761F70F68100F66611 /* NavigatorViewController.swift */,
 				8468BC4F2C492CF500CFDA9C /* PickupLocationCell.xib */,
 				84545C2F2CA69073006DB08F /* ServicebottomSheetViewController.swift */,
+				0862C85E2CA6BE3300A167E2 /* BTViewController.swift */,
+				0862C8602CA6C7BC00A167E2 /* BTTableViewCell.swift */,
+				0862C8612CA6C7BC00A167E2 /* BTTableViewCell.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -993,6 +1002,7 @@
 				08D4EF642C2D97A100F16F7B /* StarRatingStackView.xib in Resources */,
 				4CE9844F21A824CB00900570 /* PromotionsCollectionViewCell.xib in Resources */,
 				62B6FDA11F70F8FD00F66611 /* background.jpg in Resources */,
+				0862C8632CA6C7BC00A167E2 /* BTTableViewCell.xib in Resources */,
 				84C1D8562C22C86400279A46 /* GoogleService-Info.plist in Resources */,
 				844455992BF7601E0070FC6B /* ride_start.mp3 in Resources */,
 				08AD4BFD2C75C13600F89CA7 /* CountryCodes.json in Resources */,
@@ -1215,6 +1225,7 @@
 				4C215EAC238D20460013D720 /* Review.swift in Sources */,
 				4CB5FC6E23A79FD100F2D5BC /* DatePickerDialog.swift in Sources */,
 				625D29A6204ED83600F80499 /* ServicesParentViewController.swift in Sources */,
+				0862C8622CA6C7BC00A167E2 /* BTTableViewCell.swift in Sources */,
 				62B6FD861F70F6A600F66611 /* NavigationMenuViewController.swift in Sources */,
 				4CB5FC2323A79F2C00F2D5BC /* Cancel.swift in Sources */,
 				845A41952C2ECC620026EDBF /* Agency.swift in Sources */,
@@ -1281,6 +1292,7 @@
 				84545C322CA691E6006DB08F /* CarTableViewCell.swift in Sources */,
 				4CB5FC3823A79F6B00F2D5BC /* Coupon.swift in Sources */,
 				4CB5FC7F23A7A2D000F2D5BC /* ServerError.swift in Sources */,
+				0862C85F2CA6BE3300A167E2 /* BTViewController.swift in Sources */,
 				4CB5FC6623A79FD100F2D5BC /* StripeRow.swift in Sources */,
 				62B6FD721F70F66B00F66611 /* SplashViewController.swift in Sources */,
 				08E0118E2C66127000E76609 /* CustomTextField.swift in Sources */,

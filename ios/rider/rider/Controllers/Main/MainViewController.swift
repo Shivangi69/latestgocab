@@ -13,7 +13,7 @@ import PlacesPicker
 import GooglePlacesPicker
 import BottomSheet
 import GoogleMaps
-class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRequested, PlacesPickerDelegate, GMSAutocompleteViewControllerDelegate {
+class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRequested, PlacesPickerDelegate, GMSAutocompleteViewControllerDelegate, UIViewControllerTransitioningDelegate {
     @IBOutlet weak var dropsaved: UIButton!
     @IBOutlet weak var PikupView: CustomUIView!
     @IBOutlet weak var dropview: CustomUIView!
@@ -78,7 +78,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         dismiss(animated: true, completion: nil)
       }
     
-    func placePickerControllerDidCancel(controller: PlacePickerController) {
+        func placePickerControllerDidCancel(controller: PlacePickerController) {
            controller.navigationController?.dismiss(animated: true, completion: nil)
        }
        
@@ -90,7 +90,10 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
     var pointsAnnotations: [MKPointAnnotation] = []
     var arrayDriversMarkers: [MKPointAnnotation] = []
     var locationManager = CLLocationManager()
+//    
     var servicesViewController: ServicesParentViewController?
+   // var servicesViewController: BTViewController?
+
     var pinAnnotation:MKPinAnnotationView = MKPinAnnotationView()
     var FromLoc = "pickUp"
     var AddMore = false
@@ -107,6 +110,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
     @IBOutlet weak var PickuPtextfeild: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(goBackFromServiceSelection1), name: Notification.Name("goBackFromServiceSelectionNotification"), object: nil)
+
         AddmoreDesButton.isEnabled = false
         AddmoreDesButton.setTitle("", for: .normal)
         psaved.setTitle("", for: .normal)
@@ -210,6 +215,18 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         return MKOverlayRenderer(overlay: overlay)
     }
    
+    @objc func goBackFromServiceSelection1() {
+        LoadingOverlay.shared.hideOverlayView()
+        AddmoreDesButton.isEnabled = true
+        AddMore = true
+        buttonConfirmFinalDestination.isHidden = false
+        self.containerServices.isHidden = true
+        map.isUserInteractionEnabled = true
+        self.locationManager.startUpdatingLocation()
+        PikupView.isUserInteractionEnabled = true
+        dropview.isUserInteractionEnabled = true
+    }
+    
     func goBackFromServiceSelection() {
         LoadingOverlay.shared.hideOverlayView()
         leftBarButton.image = UIImage(named: "menu")
@@ -231,6 +248,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         self.locationManager.startUpdatingLocation()
         PikupView.isUserInteractionEnabled = true
         dropview.isUserInteractionEnabled = true
+        
+        
+        
 
     }
     func goEditFromServiceSelection() {
@@ -246,7 +266,36 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
 
     }
     @IBAction func edit(_ sender: Any) {
-    }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+          let bottomSheetViewController = storyboard.instantiateViewController(withIdentifier: "BTViewController") as! BTViewController
+          
+          // Set presentation style to .overCurrentContext or .overFullScreen for a bottom sheet effect
+          bottomSheetViewController.modalPresentationStyle = .custom
+          bottomSheetViewController.modalTransitionStyle = .crossDissolve // Optional for animation effect
+
+//        bottomSheetViewController.modalPresentationStyle = .custom
+//          bottomSheetViewController.transitioningDelegate = self  // Set the transitioning delegate
+          
+          // Present the view controller
+          self.present(bottomSheetViewController, animated: true, completion: nil)
+            presentBottomSheetInsideNavigationController(
+            viewController: bottomSheetViewController,
+            configuration: BottomSheetConfiguration(
+                cornerRadius: 20,
+                pullBarConfiguration: .hidden,
+                shadowConfiguration: .init(backgroundColor: UIColor.black.withAlphaComponent(0.6))
+            ),
+            canBeDismissed: {
+                // return `true` or `false` based on your business logic
+                false
+            },
+            dismissCompletion: {
+                // handle bottom sheet dismissal completion
+            }
+        )
+      
+      }
     @IBOutlet weak var AddmoreDesButton: UIButton!
 //    @IBAction func AddMoreDestinationButton(_ sender: Any) {
 ////        presentBottomSheet(
@@ -460,6 +509,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
 //        }
 //    }
 
+    
+    
     func drawRoute(waypoints: [CLLocationCoordinate2D]) {
         guard waypoints.count >= 2 else {
             print("Not enough waypoints to draw route")
@@ -517,6 +568,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
                }
     }
         
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager.stopUpdatingLocation()
         guard let position = manager.location else {
@@ -852,10 +904,19 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
             LoadingOverlay.shared.hideOverlayView()
             switch result {
             case .success(let response):
-                self.servicesViewController?.calculateFareResult = response
-                self.containerServices.isHidden = false
-                self.servicesViewController?.reload()
+//                self.servicesViewController?.calculateFareResult = response
+//                self.containerServices.isHidden = false
+//                self.servicesViewController?.reload()
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let bottomSheetViewController = storyboard.instantiateViewController(withIdentifier: "BTViewController") as! BTViewController
+                  
+                  // Set presentation style to .overCurrentContext or .overFullScreen for a bottom sheet effect
+                bottomSheetViewController.modalPresentationStyle = .overCurrentContext
+                bottomSheetViewController.modalTransitionStyle = .crossDissolve // Optional for animation effect
+                bottomSheetViewController.calculateFareResult = response
                 
+                  // Present the view controller
+                  self.present(bottomSheetViewController, animated: true, completion: nil)
             case .failure(let error):
                 self.goBackFromServiceSelection()
                 error.showAlert()
@@ -1284,3 +1345,4 @@ extension UIStackView {
         insertSubview(borderView, at: 0)
     }
 }
+
