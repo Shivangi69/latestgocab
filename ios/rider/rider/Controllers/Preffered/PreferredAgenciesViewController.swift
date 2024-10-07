@@ -34,9 +34,9 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
             switch result {
             case .success(let agencies):
                 for agency in agencies {
-                    print("Agency Name: \(agency.agencyName), Status: \(agency.status)")
+                    print("Agency Name: \(agency.agencyName), Status: \(agency.priority)")
                     self.selectedAgencies.append(agency.agencyName)
-                    self.selectedAgenciesID.append(agency.id)
+                    self.selectedAgenciesID.append(agency.agencyId)
                    
 
                 }
@@ -52,50 +52,81 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         setupEmptyState()
         setupTableView()
         setupAddAgencyButton()
-        
+        setupDoneButton()
         updateUI()
     }
-//    func getPreferredAgency(riderId: Int, token: String, completion: @escaping (Result<PreferredAgencies, Error>) -> Void) {
-//        // Construct the URL
-//        let urlString = Config.Backend  + "rider/get-agency/preference/" + "\(riderId)"
-//        guard let url = URL(string: urlString) else {
-//            print("Invalid URL")
-//            return
-//        }
-//
-//        // Create a URLRequest
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//
-//        // Set the Authorization header
-//        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-//
-//        // Perform the API request
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            // Handle errors
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            // Check response and data
-//            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,
-//                  let data = data else {
-//                print("Invalid response or no data")
-//                return
-//            }
-//
-//            // Parse the JSON response
-//            do {
-//                let preferredAgencies = try JSONDecoder().decode(PreferredAgencies.self, from: data)
-//                completion(.success(preferredAgencies))
-//            } catch let decodingError {
-//                completion(.failure(decodingError))
-//            }
-//        }
-//
-//        task.resume()  // Start the task
-//    }
+    let doneButton = UIButton()
+
+    func setupDoneButton() {
+        doneButton.frame = CGRect(x: 50, y: view.frame.height - 80, width: view.frame.width - 100, height: 50)
+        
+        
+        let attributedString = NSAttributedString(string: " Done ", attributes: [
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
+
+        doneButton.setAttributedTitle(attributedString, for: .normal)
+        doneButton.setTitleColor(UIColor(named: "ThemeBlue"), for: .normal)
+//        doneButton.backgroundColor = UIColor(named: "ThemeBlue")
+//        doneButton.layer.cornerRadius = 10
+        doneButton.addTarget(self, action: #selector(reorderAgencies), for: .touchUpInside)
+        view.addSubview(doneButton)
+    }
+    @objc func reorderAgencies() {
+        // Construct the reordered list with indices
+        var reorderedAgencies: [ReorderingRequest.AgencyPreference] = []
+        for (index, agencyId) in selectedAgenciesID.enumerated() {
+            reorderedAgencies.append(ReorderingRequest.AgencyPreference(agencyId: agencyId, priority: index + 1))
+        }
+        let user = try! Rider(from: UserDefaultsConfig.user!)
+        let token = UserDefaultsConfig.jwtToken ?? ""
+        
+        // Prepare the request data
+        let riderId = user.id ?? 0
+        let reorderingRequest = ReorderingRequest(agency_preferences: reorderedAgencies, riderId: riderId)
+        
+        
+        // Call the API
+        reorderPreferredAgencies(reorderingRequest: reorderingRequest, token: token)
+    }
+
+    func reorderPreferredAgencies(reorderingRequest: ReorderingRequest, token: String) {
+        let urlString = Config.Backend + "rider/reorder-agency/preference"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            let jsonData = try JSONEncoder().encode(reorderingRequest)
+            request.httpBody = jsonData
+        } catch {
+            print("Error encoding request data: \(error)")
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                print("Invalid response")
+                return
+            }
+
+            print("Reordering successful!")
+        }
+        
+        task.resume()
+    }
+
     
     func deletePrefAgency(agencyId: Int, riderId: Int, token: String) async throws -> DeletePrefResult {
         // Construct the URL
@@ -165,9 +196,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         
         task.resume()  // Start the task
     }
-
-    // Usage example:
-    
 
     
     
@@ -276,18 +304,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedAgencies.count
     }
-    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "agencyCell", for: indexPath)
-//        cell.textLabel?.text = selectedAgencies[indexPath.row]
-//
-//        // Add a delete button to each cell
-//        let deleteButton = UIButton(type: .close)
-//        deleteButton.addTarget(self, action: #selector(deleteAgency(_:)), for: .touchUpInside)
-//        cell.accessoryView = deleteButton
-//        cell.backgroundColor = UIColor(named: "ThemeGrey")
-//        return cell
-//    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "agencyCell", for: indexPath)
         cell.textLabel?.text = selectedAgencies[indexPath.row]
@@ -311,11 +327,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
 
     // Delete agency action
     @objc func deleteAgency(_ sender: UIButton) {
-//        if let cell = sender.superview as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
-//            selectedAgencies.remove(at: indexPath.row)
-//            selectedAgenciesID.remove(at: indexPath.row)
-//
-//            updateUI()
             let agencyId = selectedAgenciesID[sender.tag]  // Replace with actual way to get agencyId
               
             let user = try! Rider(from: UserDefaultsConfig.user!)
@@ -366,4 +377,13 @@ extension PreferredAgenciesViewController: SearchAgencyPopupDelegate {
 struct DeletePrefResult: Codable {
     let success: Bool
     let message: String
+}
+struct ReorderingRequest: Codable {
+    let agency_preferences: [AgencyPreference]
+    let riderId: Int
+
+    struct AgencyPreference: Codable {
+        let agencyId: Int
+        let priority: Int
+    }
 }

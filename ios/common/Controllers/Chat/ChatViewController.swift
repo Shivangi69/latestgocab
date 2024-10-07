@@ -26,6 +26,7 @@ class ChatViewController: MessagesViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.messageReceived), name: .messageReceived, object: nil)
         self.title = NSLocalizedString("Chat", comment: "Title of chat screen")
         messagesCollectionView.messagesDataSource = self
+        
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         self.messageInputBar.delegate = self
@@ -104,6 +105,7 @@ extension ChatViewController: MessagesDataSource {
 
                 } else {
                     ////print("Invalid mediaUrl: \(encodedDriverMedia)")
+                     avatarView.isHidden = true
                 }
             }
             
@@ -116,8 +118,7 @@ extension ChatViewController: MessagesDataSource {
         
         
     }
-    
-    
+ 
 }
 
 extension ChatViewController: InputBarAccessoryViewDelegate {

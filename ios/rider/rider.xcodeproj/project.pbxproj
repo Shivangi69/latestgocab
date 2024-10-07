@@ -827,6 +827,7 @@
 		62F12DD722EDFC3A00434A05 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				4C24E20723883AC000AB2DC3 /* DTO */,
 				62B6FD831F70F6A600F66611 /* HostViewController.swift */,
 				62B6FD841F70F6A600F66611 /* NavigationMenuViewController.swift */,
 			);
@@ -849,7 +850,6 @@
 			children = (
 				4CB5FC3C23A79F7100F2D5BC /* CodableExtensions */,
 				4C24E20823883AE400AB2DC3 /* Objects */,
-				4C24E20723883AC000AB2DC3 /* DTO */,
 			);
 			path = Models;
 			sourceTree = "<group>";
