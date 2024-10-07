@@ -48,7 +48,7 @@ class ServicesParentViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var editButon: UIButton!
     @IBAction func edit(_ sender: Any) {
         NotificationCenter.default.post(name: Notification.Name("CallEdit"), object: nil)
-
+        
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let cat = self.selectedCategory else {
@@ -63,7 +63,7 @@ class ServicesParentViewController: UIViewController, UICollectionViewDataSource
         self.collectionServices.reloadData()
         self.collectionServices.performBatchUpdates({ [weak self] in
             self?.collectionServices.reloadSections(IndexSet(integer: 0))
-            }) { completed -> Void in
+        }) { completed -> Void in
             for indexPath in self.collectionServices.indexPathsForSelectedItems ?? [] {
                 self.collectionServices.deselectItem(at: indexPath, animated: false)
             }

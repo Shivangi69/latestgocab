@@ -249,8 +249,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         PikupView.isUserInteractionEnabled = true
         dropview.isUserInteractionEnabled = true
         
-        
-        
 
     }
     func goEditFromServiceSelection() {
@@ -265,6 +263,8 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         dropview.isUserInteractionEnabled = true
 
     }
+    
+    
     @IBAction func edit(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -914,7 +914,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
                 bottomSheetViewController.modalPresentationStyle = .overCurrentContext
                 bottomSheetViewController.modalTransitionStyle = .crossDissolve // Optional for animation effect
                 bottomSheetViewController.calculateFareResult = response
-                
+                bottomSheetViewController.callback = self
                   // Present the view controller
                   self.present(bottomSheetViewController, animated: true, completion: nil)
             case .failure(let error):

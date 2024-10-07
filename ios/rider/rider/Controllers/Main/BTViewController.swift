@@ -38,25 +38,24 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
         super.viewDidLoad()
         
         print(calculateFareResult!)
-
         
-        // Assuming the button is connected via an IBOutlet
         myButton.layer.cornerRadius = 10
         myButton.clipsToBounds = true
+        
+        myButton.setTitle("SELECT GO MINIVANS", for: .normal)
+
+        myButton.isEnabled = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "BTTableViewCell", bundle: nil), forCellReuseIdentifier: "BTTableViewCell")
         
-        
-        
         custumeuiview.layer.cornerRadius = 20 // Adjust the corner radius value as needed
-          custumeuiview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] // Top-left and top-right corners
-          custumeuiview.layer.masksToBounds = true // Ensure that the corner radius is applied
-
+        custumeuiview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] // Top-left and top-right corners
+        custumeuiview.layer.masksToBounds = true // Ensure that the corner radius is applied
+        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-               custumeuiview.addGestureRecognizer(panGesture)
-        
-        
+        custumeuiview.addGestureRecognizer(panGesture)
+
     }
     
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -105,7 +104,7 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BTTableViewCell", for: indexPath) as! BTTableViewCell
-        //cell.initialize(service: (selectedCategory?.services[indexPath.row])!, distance: self.calculateFareResult.distance, duration: self.calculateFareResult.duration, currency: self.calculateFareResult.currency)
+     
         let category = calculateFareResult.categories[indexPath.section]
             let service = category.services[indexPath.row]
           
@@ -113,20 +112,19 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
         
         let actual = service.baseFare
         let offdic = service.cost
-
         let cost = service.cost
         
-        // Safely unwrap and convert the actual cost and discount cost to String
-        if let actual = service.baseFare {
-            cell.actualcost.text = String(actual) // Convert to String
-        } else {
-            cell.actualcost.text = "" // Set to an empty string if nil
-        }
         
-        if let offdic = service.cost {
-            cell.discountcost.text = String(offdic) // Convert to String
+        if let actual = service.baseFare {
+            cell.actualcost.text = "₹ \(String(format: "%.2f", actual))"
         } else {
-            cell.discountcost.text = "" // Set to an empty string if nil
+            cell.actualcost.text = ""
+        }
+
+        if let offdic = service.cost {
+            cell.discountcost.text = "₹ \(String(format: "%.2f", offdic))"
+        } else {
+            cell.discountcost.text = ""
         }
         cell.pplcount.text = String(service.maxQuantity)
         if let media = service.media, let address = media.address {
@@ -135,13 +133,11 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
          } else {
              cell.imageIcon.image = UIImage(named: "placeholder") // Default placeholder image
          }
-        
+          
 
         return cell
     }
 
-    
-    
     @IBAction func onCouponsClicked(_ sender: UIButton) {
         // Instantiate the view controller from the storyboard
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CouponsCollectionViewController") as? CouponsCollectionViewController {
@@ -160,7 +156,15 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
 
-    
+    @IBAction func ridenow(_ sender: UIButton) {
+        dismiss(animated: true) {
+            if let d = self.callback {
+                d.RideNowSelected(service: self.selectedService!)
+                
+            }
+        }
+    }
+
     @IBAction func onselectionClicked(_ sender: UIButton) {
         // Dismiss the current view controller
         dismiss(animated: true) {
@@ -169,47 +173,46 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
         
-        
-//    func goBackFromServiceSelection() {
-//        LoadingOverlay.shared.hideOverlayView()
-//        leftBarButton.image = UIImage(named: "menu")
-//        map.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        map.removeAnnotations(map.annotations)
-//        map.removeOverlays(map.overlays)
-//        AddmoreDesButton.isEnabled = false
-//        AddMore = false
-//        pointsAnnotations.removeAll()
-//        buttonAddDestination.isHidden = true
-//        buttonConfirmFinalDestination.isHidden = true
-////        buttonConfirmPickup.isHidden = false
-//        buttonFavorites.isEnabled = true
-//        self.containerServices.isHidden = true
-//        self.pinAnnotation.isHidden = false
-//        map.isUserInteractionEnabled = true
-//        FromLoc = "pickUp"
-//        self.DropTextfeild.text = ""
-//        self.locationManager.startUpdatingLocation()
-//        PikupView.isUserInteractionEnabled = true
-//        dropview.isUserInteractionEnabled = true
-//
-//    }
-
-    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return calculateFareResult.categories.description
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           let category = calculateFareResult.categories[indexPath.section]
+           selectedService = category.services[indexPath.row]
+           
+           print("Selected Service: \(selectedService!.title ?? "")")
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.backgroundColor = .lightGray
+        
+        
+            myButton.isEnabled = true
+            myButton.backgroundColor = UIColor(named: "ThemeYellow")
+            myButton.setTitleColor(.black, for: .normal)
+            myButton.setTitle("Request \(selectedService!.title ?? "") Now", for: .normal)
+
+   
+       }
+    
+    
+    
+
+    func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
+        // Reset the background color when deselecting a cell
+        if let cell = tableView.cellForRow(at: indexPath) as? BTTableViewCell {
+            cell.contentView.backgroundColor = UIColor.clear // Reset the background color
+        }
+        return indexPath
+    }
+    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // Create a UIView to hold the header
         
-        
         let category = calculateFareResult.categories[section]
-            
             // Return the category name as the header title
-          
         let headerView = UIView()
         headerView.backgroundColor = .lightbordergray // Set the background color of the section header
         // Create a UILabel for the header title

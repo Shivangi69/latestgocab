@@ -27,18 +27,24 @@ class BTTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+//        self.contentView.backgroundColor = .yellow
+        
     }
     override var isSelected: Bool {
         didSet {
-            self.contentView.alpha = isSelected ? 1 : 0.5
+            self.contentView.backgroundColor = isSelected ? UIColor(named: "ThemeYellow") : UIColor.clear
+
         }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-     
-        // Configure the view for the selected state
+             // Ensure that the color change happens during selection
+             self.contentView.backgroundColor = selected ? UIColor(named: "ThemeYellow") : UIColor.white
     }
+    
+    
+    
     
     func initialize(service:Service, distance: Int, duration: Int, currency: String) {
         self.service = service
@@ -47,12 +53,10 @@ class BTTableViewCell: UITableViewCell {
         self.currency = currency
 //        self.updatePrice()
         textTitle.text = service.title
-//        actualcost.text = service.baseFare != nil ? "\(service.baseFare!)" : nil
-//        discountcost.text = service.cost != nil ? "\(service.cost!)" : nil
-//        
+
+        discountcost.text = service.cost != nil ? "₹\(service.cost!)" : ""
+        actualcost.text = service.baseFare != nil ? "₹ \(service.baseFare!)" : ""
         
-        actualcost.text = service.baseFare != nil ? "\(service.baseFare!)" : ""
-    discountcost.text = service.cost != nil ? "\(service.cost!)" : ""
         pplcount.text = String(service.maxQuantity)
         
 
