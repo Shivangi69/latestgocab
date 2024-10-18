@@ -16,14 +16,14 @@ import SPAlert
 import SocketIO
 class ChatWithAdminViewController: MessagesViewController {
     @objc func messageReceived(notification: Notification) {
-        messages.append(notification.object as! ChatMessage)
+        messages.append(notification.object as! AdminChatMessage)
         self.messagesCollectionView.reloadData()
         self.messagesCollectionView.scrollToLastItem(animated: true)
     }
     
     var socket: SocketIOClient!
-
-    var messages: [ChatMessage] = []
+//AdminAdminChatMessage
+    var messages: [AdminChatMessage] = []
     var sender: SenderType!
     func connectSocket(token:String) {
         Messaging.messaging().token() { (fcmToken, error) in
@@ -48,6 +48,22 @@ class ChatWithAdminViewController: MessagesViewController {
 //
 //                    self.performSegue(withIdentifier: "segueHost", sender: nil)
 //
+                    
+                    SupportGetMessage(riderId: 60).execute() { result in
+                        switch result {
+                        case .success(let response):
+                          
+                            self.messages = response
+                            self.messagesCollectionView.reloadData()
+                            break;
+                            
+                        case .failure(let error):
+                            error.showAlert()
+                        }
+                        
+                    }
+                    
+                    
                 case .failure(let error):
                     switch error {
                     case .NotFound:
@@ -101,21 +117,13 @@ class ChatWithAdminViewController: MessagesViewController {
         connectSocket(token: UserDefaultsConfig.jwtTokenNew ?? "")
         
         
-//        GetMessages().execute() { result in
-//            switch result {
-//            case .success(let response):
-//                self.messages = response
-//                self.messagesCollectionView.reloadData()
-//                break;
-//                
-//            case .failure(let error):
-//                error.showAlert()
-//            }
-//            
-//        }
+       
+        
+//        let GetMessage = SupportGetMessage()
+//        GetMessage.send()
     }
     
-    func insertMessage(_ message: ChatMessage) {
+    func insertMessage(_ message: AdminChatMessage) {
         messages.append(message)
         self.messagesCollectionView.reloadData()
         self.messagesCollectionView.scrollToLastItem(animated: true)
@@ -142,7 +150,7 @@ extension ChatWithAdminViewController: MessagesDataSource {
     }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        let msg = message as! ChatMessage
+        let msg = message as! AdminChatMessage
         let url: URL
         if msg.sentBy == .Driver {
             let driver = msg.sender as! Driver
@@ -218,7 +226,7 @@ extension ChatWithAdminViewController: InputBarAccessoryViewDelegate {
 //        }
     }
     
-    private func insertMessages(_ messages: [ChatMessage]) {
+    private func insertMessages(_ messages: [AdminChatMessage]) {
         for message in messages {
             insertMessage(message)
         }

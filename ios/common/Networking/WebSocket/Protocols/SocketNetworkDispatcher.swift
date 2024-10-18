@@ -13,10 +13,11 @@ public struct SocketNetworkDispatcher: NetworkDispatcher {
         if let _params = params {
             
             socket!.emitWithAck(event, with: _params).timingOut(after: 20) { response in
-                if(response.count > 1) {
-                    completionHandler(.failure(SocketClientError.InvalidAckParamCount))
-                    return
-                }
+                print(response)
+//                if(response.count > 1) {
+//                    completionHandler(.failure(SocketClientError.InvalidAckParamCount))
+//                    return
+//                }
                 if(response.count == 0) {
                     completionHandler(.success(try! EmptyClass().asDictionary()))
                     return
@@ -25,7 +26,7 @@ public struct SocketNetworkDispatcher: NetworkDispatcher {
                     completionHandler(.failure(.RequestTimeout))
                     return
                 }
-                completionHandler(.success((response[0])))
+                completionHandler(.success((response[1])))
             }
         } else {
             socket!.emitWithAck(event).timingOut(after: 15) { response in
