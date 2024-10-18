@@ -94,8 +94,11 @@ class NavigationMenuViewController : MenuViewController {
     @IBAction func onCouponsClicked(_ sender: UIButton) {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return
+            
         }
         menuContainerViewController.contentViewControllers[0].performSegue(withIdentifier: "showCoupons", sender: nil)
+        print(menuContainerViewController.contentViewControllers)
+
         menuContainerViewController.hideSideMenu()
     }
     

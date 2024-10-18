@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MapKit
 
 class ApplyCoupon: SocketRequest {
     typealias ResponseType = ApplyCouponResult
@@ -21,3 +21,34 @@ class ApplyCoupon: SocketRequest {
 public struct ApplyCouponResult: Codable {
     var costAfterCoupon: Double
 }
+
+
+
+//class CalculateFareAfterCoupon: SocketRequest {
+//    typealias ResponseType = CalculateFareAfterCouponResult
+//    var params: [Any]?
+//    
+//    init(code: String, pointsList: [CLLocationCoordinate2D]) {
+//        
+//        self.params = [code,pointsList.map() { loc in
+//            return [
+//                "x": loc.longitude,
+//                "y": loc.latitude
+//            ]
+//        }]
+//        
+//    
+//    
+//    
+////        let dto = CalculateFareAfterCouponDTO(code: code, pointsList: pointsList)
+////        let dic = try! dto.asDictionary()
+////       
+//        print(self.params! )
+////        self.params = [dic]
+//    }
+//    
+//    
+//}
+
+
+

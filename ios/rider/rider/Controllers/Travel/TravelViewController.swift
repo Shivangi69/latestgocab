@@ -477,7 +477,8 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
 //
 //
 
-    
+    var pointsAnnotations: [MKPointAnnotation] = []
+
     func fetchData() {
         // API endpoint URL
         let id = Request.shared.driver?.id
@@ -918,7 +919,6 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
         
         let obj = notification.object as! [Any]
         playNotificationSound(soundname: "ride_finished")
-
         Request.shared.status = (obj[0] as! Bool) == true ? Request.Status.WaitingForReview : Request.Status.WaitingForPostPay
         refreshScreen(driverLocation: nil)
         
@@ -931,6 +931,7 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
     @IBAction func onSelectCouponClicked(_ sender: UIButton) {
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CouponsCollectionViewController") as? CouponsCollectionViewController
         {
+            
             vc.selectMode = true
             vc.delegate = self
             self.navigationController!.pushViewController(vc, animated: true)
@@ -938,7 +939,19 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
     }
     
     func didSelectedCoupon(_ coupon: Coupon) {
-        ApplyCoupon(code: coupon.code!).execute() { result in
+//        ApplyCoupon(code: coupon.code!).execute() { result in
+//            switch result {
+//            case .success(_):
+//                SPAlert.present(title: "Coupon Applied", preset: .done)
+//                self.requestRefresh()
+//                
+//            case .failure(let error):
+//                error.showAlert()
+//            }
+//        }
+        
+        
+        CalculateFareAfterCoupon(code: coupon.code!, locations: []).execute() { result in
             switch result {
             case .success(_):
                 SPAlert.present(title: "Coupon Applied", preset: .done)

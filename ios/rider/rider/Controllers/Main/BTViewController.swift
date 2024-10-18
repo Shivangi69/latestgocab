@@ -4,7 +4,7 @@
 //
 //  Created by Rohit wadhwa on 27/09/24.
 //  Copyright © 2024 minimal. All rights reserved.
-//
+
 
 import UIKit
 import BottomSheet
@@ -28,16 +28,11 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
     @IBOutlet weak var myButton: UIButton!
 
     // Sample data model
-    var data: [[String]] = [
-        ["Row 1", "Row 2", "Row 3"], // Section 1
-        ["Row 1", "Row 2"],          // Section 2
-        ["Row 1", "Row 2", "Row 3", "Row 4"], // Section 3
-    ]
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(calculateFareResult!)
+      
         
         myButton.layer.cornerRadius = 10
         myButton.clipsToBounds = true
@@ -49,46 +44,44 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
         tableView.delegate = self
         tableView.register(UINib(nibName: "BTTableViewCell", bundle: nil), forCellReuseIdentifier: "BTTableViewCell")
         
-        custumeuiview.layer.cornerRadius = 20 // Adjust the corner radius value as needed
-        custumeuiview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner] // Top-left and top-right corners
-        custumeuiview.layer.masksToBounds = true // Ensure that the corner radius is applied
+        
+        
+        let screenHeight = UIScreen.main.bounds.height
+          let initialY = screenHeight / 2
+        custumeuiview.frame = CGRect(x: 0, y: initialY, width: self.view.bounds.width, height: screenHeight)
+        custumeuiview.layer.cornerRadius = 20
+        custumeuiview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        custumeuiview.layer.masksToBounds = true
+        
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         custumeuiview.addGestureRecognizer(panGesture)
 
     }
     
+    
+    
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
-           guard let view = gesture.view else { return }
+        guard let view = gesture.view else { return }
 
-           let translation = gesture.translation(in: view.superview)
-           let velocity = gesture.velocity(in: view.superview)
+        let translation = gesture.translation(in: view.superview)
+        let screenHeight = UIScreen.main.bounds.height
+        let bottomSheetMinY = screenHeight / 2
+        let bottomSheetMaxY = screenHeight - view.bounds.height
 
-           switch gesture.state {
-           case .began:
-               // Optional: Do something when the gesture begins
-               break
+        switch gesture.state {
+        case .changed:
+            // Restrict the dragging within the allowed min and max positions
+            let newY = view.frame.minY + translation.y
+            if newY >= bottomSheetMaxY && newY <= bottomSheetMinY {
+                view.frame.origin.y = newY
+                gesture.setTranslation(.zero, in: view.superview)
+            }
 
-           case .changed:
-               // Move the view based on the drag
-               view.center.y += translation.y
-               gesture.setTranslation(.zero, in: view.superview)
-
-           case .ended:
-               // Determine if the bottom sheet should be dismissed or not based on the velocity
-               if velocity.y > 500 { // Adjust this threshold as needed
-                   dismiss(animated: true, completion: nil)
-               } else {
-                   // Snap back to original position if not dismissed
-                   UIView.animate(withDuration: 0.3) {
-                       view.center.y = view.superview!.bounds.height - view.bounds.height / 2
-                   }
-               }
-
-           default:
-               break
-           }
-       }
+        default:
+            break
+        }
+    }
     // MARK: - UITableViewDataSource
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -229,9 +222,9 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
 }
-
-extension UIColor {
-    static let lightbordergray = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1) // Very light gray
-}
-
-
+//
+//extension UIColor {
+//    static let lightbordergray = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1) // Very light gray
+//}
+//
+//

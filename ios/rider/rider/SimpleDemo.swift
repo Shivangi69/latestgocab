@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FittedSheets
 
 class SimpleDemo: UIViewController, Demoable {
     class var name: String { "Simple" }

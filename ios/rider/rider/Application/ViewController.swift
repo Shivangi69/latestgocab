@@ -68,7 +68,7 @@ class ViewController: UIViewController {
         //PageControl
         pageControl.numberOfPages = onboardingSlides.count
     }
-    
+        
     private func updateCurrentPage() {
         pageControl.currentPage = currentPage
         
@@ -77,15 +77,15 @@ class ViewController: UIViewController {
             for: .normal)
         if(currentPage == 3){
             nextButton.titleLabel?.textColor =  UIColor(named: "ThemeYellow")
-
             skipButton.isHidden = true
             nextButton.layer.cornerRadius = 10
             nextButton.layer.borderColor = UIColor(named: "ThemeYellow")?.cgColor
             nextButton.layer.borderWidth = 1
             
-        }else{
+        }
+        else {
+            
             nextButton.titleLabel?.textColor =  UIColor.black
-
             skipButton.isHidden = false
             nextButton.layer.cornerRadius = 10
             nextButton.layer.borderColor = UIColor.black.cgColor

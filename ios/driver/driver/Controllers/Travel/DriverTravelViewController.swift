@@ -47,8 +47,54 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
             }
         }
     }
-    
+        
+        else if identifier == "Stopages" {
+            totalStops = (Request.shared.points.count) - 2
+            
+            if (Request.shared.points.count) <= 2 {
+                buttonstopages.isHidden = true
+                print("Not enough stops. Hiding the button.")
+            } else {
+               
+                if currentStop <= totalStops {
+                    // Increment the stop count after swipe
+                    if route.count > 2 {
+                        Request.shared.log = MapsUtil.encode(items: MapsUtil.simplify(items: route, tolerance: 50))
+                    }
+                    let currentStopPoint = route.last
+                    let currentRoutePoint = Request.shared.points[currentStop] // Only send
+                    let dropLocationRequest = DropLocationRequest(
+                        points: Request.shared.points.map { point in
+                            DropLocationRequest.pointsroute(x: point.latitude, y: point.longitude)
+                        },
+                        tripId: Request.shared.id ?? 0,
+                        currentPoints: [
+                            DropLocationRequest.currentPoints(x: currentStopPoint?.latitude ?? 0.0, y: currentStopPoint?.longitude ?? 0.0)
+                               ]
+                           
+                    )
+                    saveDropLocationAPI(dropLocationRequest: dropLocationRequest)
+
+                    currentStop += 1
+                    buttonstopages.labelText = "Stop \(currentStop) of \(totalStops) | Go to Next Stop"
+                    
+                    // Optionally handle when all stops are completed
+                    if currentStop > totalStops {
+                        print("All stops completed.")
+                        // Optionally disable the button when stops are completed
+                        buttonstopages.isHidden = true
+                        buttonFinishSlide.isHidden = false
+
+                     
+                    }
+                }
+            }
+        }
+
+        
     else if identifier == "Finish" {
+        
+            
         if Request.shared.confirmationCode != nil {
             showConfirmationDialog()
         }
@@ -88,7 +134,8 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
     @IBOutlet weak var buttonCancel: UIButton!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var buttonArrived: ColoredButton!
-    
+    @IBOutlet weak var buttonstopages: SlideToActionButton!
+
     @IBOutlet weak var buttonArrivedSlider: SlideToActionButton!
     @IBOutlet weak var buttonstartSlide: SlideToActionButton!
     
@@ -97,6 +144,10 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
     
     @IBOutlet weak var buttonCancelSLide: SlideToActionButtonNew!
     
+    var currentStop = 1
+    var totalStops = Int()
+    
+
     var timer = Timer()
     var locationManager = CLLocationManager()
     var pointAnnotations: [MKPointAnnotation] = []
@@ -108,6 +159,8 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.travelCanceled), name: .cancelTravel, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(self.requestRefresh), name: .connectedAfterForeground, object: nil)
         if let cost = Request.shared.costAfterVAT {
@@ -120,7 +173,13 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
         buttonArrivedSlider.delegate = self
         buttonArrivedSlider.identifier = "Arrived"
         
-        
+        buttonstopages.delegate = self
+
+        buttonstopages.identifier = "Stopages"
+        totalStops = (Request.shared.points.count) - 2
+
+        buttonstopages.labelText = "Stop \(currentStop) of \(totalStops) | Go to Next Stop"
+
         buttonCancelSLide.delegate = self
         buttonCancelSLide.identifier = "Cancel"
         
@@ -163,15 +222,15 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
                     case .success(let response):
                         Request.shared = response
                         self.refreshScreen()
-                        
                     case .failure(let error):
                         error.showAlert()
                     }
                 }
             }
+        
         else if identifier == "Arrived" {
             LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
-            Arrived().execute() { result in
+                    Arrived().execute() { result in
                 LoadingOverlay.shared.hideOverlayView()
                 switch result {
                 case .success(let response):
@@ -183,6 +242,53 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
                 }
             }
         }
+    
+        
+            else if identifier == "Stopages" {
+                totalStops = (Request.shared.points.count) - 2
+                
+                if (Request.shared.points.count) <= 2 {
+                    buttonstopages.isHidden = true
+                    print("Not enough stops. Hiding the button.")
+                } else {
+                    
+                    if currentStop <= totalStops {
+                        // Increment the stop count after swipe
+                        if route.count > 2 {
+                            Request.shared.log = MapsUtil.encode(items: MapsUtil.simplify(items: route, tolerance: 50))
+                        }
+//                      
+                        let currentStopPoint = route.last
+                        let currentRoutePoint = Request.shared.points[currentStop] // Only send one point at a time
+
+                        let dropLocationRequest = DropLocationRequest(
+                            points: [
+                                   DropLocationRequest.pointsroute(x: currentRoutePoint.latitude, y: currentRoutePoint.longitude)
+                               ],
+                            tripId: Request.shared.id ?? 0,
+                            currentPoints: [
+                                DropLocationRequest.currentPoints(x: currentStopPoint?.latitude ?? 0.0, y: currentStopPoint?.longitude ?? 0.0)
+                                   ]
+                               
+                        )
+                        saveDropLocationAPI(dropLocationRequest: dropLocationRequest)
+
+                        currentStop += 1
+                        buttonstopages.labelText = "Stop \(currentStop) of \(totalStops) | Go to Next Stop"
+                        
+                        // Optionally handle when all stops are completed
+                        if currentStop > totalStops {
+                            print("All stops completed.")
+                            // Optionally disable the button when stops are completed
+                            buttonstopages.isHidden = true
+                            buttonFinishSlide.isHidden = false
+
+                         
+                        }
+                    }
+                }
+                
+            }
         
         else if identifier == "Finish" {
             if Request.shared.confirmationCode != nil {
@@ -195,6 +301,9 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
             finishTravel(finishService: f)
             playNotificationSound(soundname: "ride_finished")
         }
+        
+        
+        
         else if identifier == "Cancel" {
             LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             Cancel().execute() { result in
@@ -362,6 +471,7 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
         }
     }
     
+    
     @IBAction func onButtonArrivedTapped(_ sender: ColoredButton) {
         LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
         Arrived().execute() { result in
@@ -423,17 +533,18 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
             present(alert, animated: true)
             if (travel.status == .RiderCanceled ){
                 playNotificationSound(soundname: "ride_cancel")
-
+                
             }
             break;
-                
+            
         case .DriverAccepted:
             buttonFinish.isHidden = true
             buttonFinishSlide.isHidden = true
-
+            buttonstopages.isHidden = true
+            
             buttonStart.isHidden = true
             buttonstartSlide.isHidden = true
-
+            
             let ann = MKPointAnnotation()
             ann.coordinate = travel.points[0]
             ann.title =  travel.addresses[0]
@@ -450,26 +561,39 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
         case .Arrived:
             buttonStart.isHidden = false
             buttonstartSlide.isHidden = false
-
+            buttonstopages.isHidden = true
+            
             buttonArrived.isHidden = true
             buttonArrivedSlider.isHidden = true
-
+            
             
         case .Started:
             buttonMessage.isHidden = true
             buttonCall.isHidden = true
             buttonCancel.isHidden = true
+        
             buttonCancelSLide.isHidden = true
-
+            
             buttonStart.isHidden = true
             buttonstartSlide.isHidden = true
+            //            buttonstopages.isHidden = false
+            if ((Request.shared.points.count) - 2) >= 2{
+                buttonstopages.isHidden = false
+                buttonFinishSlide.isHidden = true
+            }
+        
+            else if currentStop >= ((Request.shared.points.count) - 2){
+                buttonFinishSlide.isHidden = false
+                buttonstopages.isHidden = true
+                
+            }
             
-            buttonFinishSlide.isHidden = false
-
-            buttonFinish.isHidden = false
+            
+            //          buttonFinishSlide.isHidden = false
+            //          buttonFinish.isHidden = false
             buttonArrived.isHidden = true
             buttonArrivedSlider.isHidden = true
-
+            
             if pointAnnotations.count > 0 {
                 for point in pointAnnotations {
                     map.removeAnnotation(point)
@@ -484,7 +608,8 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
             }
             if map.annotations.count > 1 {
                 map.showAnnotations(map.annotations, animated: true)
-            } else {
+            } 
+            else {
                 map.setCenter(map.annotations[0].coordinate, animated: true)
             }
             break;
@@ -693,5 +818,113 @@ print("stopNumber",stopNumber)
         }
     }
     
+    func saveDropLocationAPI(dropLocationRequest: DropLocationRequest) {
+        let user = try! Rider(from: UserDefaultsConfig.user!)
+        let token = UserDefaultsConfig.jwtToken ?? ""
+        
+        let urlString = Config.Backend + "trips/save/drop-location"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        do {
+            let jsonData = try JSONEncoder().encode(dropLocationRequest)
+            request.httpBody = jsonData
+            
+            // Debugging: Print JSON payload
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                print("Request JSON: \(jsonString)")
+            }
+            
+        } catch {
+            print("Error encoding request data: \(error)")
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Response status code: \(httpResponse.statusCode)")
+                
+                if httpResponse.statusCode != 200 {
+                    print("Invalid response, status code: \(httpResponse.statusCode)")
+                    if let data = data {
+                        // Debugging: Print response data
+                        let responseString = String(data: data, encoding: .utf8)
+                        print("Response data: \(responseString ?? "No response data")")
+                    }
+                    return
+                }
+            }
+            
+            print("Drop location saved successfully!")
+        }
+        
+        task.resume()
+    }
     
+//    func saveDropLocationAPI(dropLocationRequest: DropLocationRequest) {
+//        let user = try! Rider(from: UserDefaultsConfig.user!)
+//        let token = UserDefaultsConfig.jwtToken ?? ""
+//        
+//        let urlString = Config.Backend +  "trips/save/drop-location"
+//        guard let url = URL(string: urlString) else {
+//            print("Invalid URL")
+//            return
+//        }
+//
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//
+//        do {
+//            let jsonData = try JSONEncoder().encode(dropLocationRequest)
+//            request.httpBody = jsonData
+//        } catch {
+//            print("Error encoding request data: \(error)")
+//            return
+//        }
+//
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                print("Error: \(error)")
+//                return
+//            }
+//
+//            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+//                print("Invalid response")
+//                return
+//            }
+//
+//            print("Drop location saved successfully!")
+//        }
+//        
+//        task.resume()
+//    }
+}
+struct DropLocationRequest: Codable {
+    let points: [pointsroute]
+    let tripId: Int
+    let currentPoints: [currentPoints]
+    
+    
+    struct pointsroute: Codable {
+        let x: Double
+        let y: Double
+    }
+    struct currentPoints: Codable {
+        let x: Double
+        let y: Double
+    }
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FittedSheets
 
 class ColorDemo: SimpleDemo {
     override class var name: String { "Color Options" }

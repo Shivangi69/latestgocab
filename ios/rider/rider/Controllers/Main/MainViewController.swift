@@ -11,8 +11,12 @@ import Contacts
 import GooglePlaces
 import PlacesPicker
 import GooglePlacesPicker
-import BottomSheet
+
 import GoogleMaps
+import BottomSheet
+import BottomSheetUtils
+
+
 class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRequested, PlacesPickerDelegate, GMSAutocompleteViewControllerDelegate, UIViewControllerTransitioningDelegate {
     @IBOutlet weak var dropsaved: UIButton!
     @IBOutlet weak var PikupView: CustomUIView!
@@ -133,14 +137,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         pinAnnotation.frame = CGRect(x: (self.view.frame.width / 2) - 8, y: self.view.frame.height / 2 - 8, width: 32, height: 39)
         pinAnnotation.pinTintColor = UIColor.darkGray //UIApplication.shared.keyWindow?.tintColor
         map.addSubview(pinAnnotation)
-//        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "SuggestionsTableTableViewController") as! SuggestionsTableTableViewController
-//        locationSearchTable.callback = self
-//        searchController = UISearchController(searchResultsController: locationSearchTable)
-//        searchController?.searchResultsUpdater = locationSearchTable
-//        searchController?.hidesNavigationBarDuringPresentation = false
-//        definesPresentationContext = true
-//        //self.performSegue(withIdentifier: "showBottomSheet", sender: nil)
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(handleCallDoneNotification(_:)), name: Notification.Name("CallDone"), object: nil)
         NotificationCenter.default.addObserver(forName: Notification.Name("CallEdit"), object: nil, queue: .main) { notification in
             self.goEditFromServiceSelection()
@@ -264,22 +261,25 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
 
     }
     
+    var demos: [(UIViewController & Demoable).Type] = [
+        
+        MaxMinHeightDemo.self
+    ].sorted(by: { $0.name < $1.name })
     
-    @IBAction func edit(_ sender: Any) {
+    @IBAction func edit(_ sender: Any)
+//    {
+//        demos[0].openDemo(from: self, in: nil)
+//    }
+    {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          let bottomSheetViewController = storyboard.instantiateViewController(withIdentifier: "BTViewController") as! BTViewController
-          
-          // Set presentation style to .overCurrentContext or .overFullScreen for a bottom sheet effect
-          bottomSheetViewController.modalPresentationStyle = .custom
-          bottomSheetViewController.modalTransitionStyle = .crossDissolve // Optional for animation effect
+        let bottomSheetViewController = storyboard.instantiateViewController(withIdentifier: "BTViewController") as! BTViewController
 
-//        bottomSheetViewController.modalPresentationStyle = .custom
-//          bottomSheetViewController.transitioningDelegate = self  // Set the transitioning delegate
-          
-          // Present the view controller
-          self.present(bottomSheetViewController, animated: true, completion: nil)
-            presentBottomSheetInsideNavigationController(
+        bottomSheetViewController.modalPresentationStyle = .custom
+        bottomSheetViewController.modalTransitionStyle = .crossDissolve
+
+        // Animate the bottom sheet presentation with custom animation
+        presentBottomSheetInsideNavigationController(
             viewController: bottomSheetViewController,
             configuration: BottomSheetConfiguration(
                 cornerRadius: 20,
@@ -287,15 +287,19 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
                 shadowConfiguration: .init(backgroundColor: UIColor.black.withAlphaComponent(0.6))
             ),
             canBeDismissed: {
-                // return `true` or `false` based on your business logic
+                // Return `true` or `false` based on your business logic
                 false
             },
             dismissCompletion: {
-                // handle bottom sheet dismissal completion
+                // Handle bottom sheet dismissal completion
             }
         )
+        
       
-      }
+    }
+      
+        
+        
     @IBOutlet weak var AddmoreDesButton: UIButton!
 //    @IBAction func AddMoreDestinationButton(_ sender: Any) {
 ////        presentBottomSheet(
@@ -904,19 +908,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
             LoadingOverlay.shared.hideOverlayView()
             switch result {
             case .success(let response):
-//                self.servicesViewController?.calculateFareResult = response
-//                self.containerServices.isHidden = false
-//                self.servicesViewController?.reload()
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let bottomSheetViewController = storyboard.instantiateViewController(withIdentifier: "BTViewController") as! BTViewController
-                  
-                  // Set presentation style to .overCurrentContext or .overFullScreen for a bottom sheet effect
-                bottomSheetViewController.modalPresentationStyle = .overCurrentContext
-                bottomSheetViewController.modalTransitionStyle = .crossDissolve // Optional for animation effect
-                bottomSheetViewController.calculateFareResult = response
-                bottomSheetViewController.callback = self
-                  // Present the view controller
-                  self.present(bottomSheetViewController, animated: true, completion: nil)
+                
+                SharedData.shared.calculateFareResult = response
+                SharedData.shared.callback = self
+                SharedData.shared.MapAnotation = self.pointsAnnotations
+                self.demos[0].openDemo(from: self, in: nil )
+                
             case .failure(let error):
                 self.goBackFromServiceSelection()
                 error.showAlert()
@@ -1346,3 +1343,12 @@ extension UIStackView {
     }
 }
 
+class SharedData {
+    static let shared = SharedData()
+    
+    var calculateFareResult: CalculateFareResult?
+    var callback: ServiceRequested?
+    var MapAnotation: [MKPointAnnotation]?
+
+    private init() {} // Prevents initialization outside this class
+}

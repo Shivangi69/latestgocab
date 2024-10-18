@@ -34,6 +34,9 @@ public final class Service: Codable, Hashable, CustomStringConvertible {
     public var category: ServiceCategory?
     public var availableTimeFrom: String?
     public var availableTimeTo: String?
+    public var wheelchairAccessible: Bool = false
+    public var seatingCapacity: Int = 0
+    public var estimatedCostAfterCoupon:  Int = 0
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -102,6 +105,11 @@ public final class Service: Codable, Hashable, CustomStringConvertible {
         self.category = try? container.decode(ServiceCategory.self, forKey: .category)
         self.availableTimeFrom = try? container.decode(String.self, forKey: .availableTimeFrom)
         self.availableTimeTo = try? container.decode(String.self, forKey: .availableTimeTo)
+        self.wheelchairAccessible = (try? container.decode(Bool.self, forKey: .wheelchairAccessible)) ?? false
+
+        self.seatingCapacity = (try? container.decode(Int.self, forKey: .seatingCapacity)) ?? 0
+        self.estimatedCostAfterCoupon = (try? container.decode(Int.self, forKey: .estimatedCostAfterCoupon)) ?? 0
+
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -129,5 +137,10 @@ public final class Service: Codable, Hashable, CustomStringConvertible {
         case category
         case availableTimeFrom
         case availableTimeTo
+        case wheelchairAccessible
+        case seatingCapacity
+        case estimatedCostAfterCoupon
+
+
     }
 }

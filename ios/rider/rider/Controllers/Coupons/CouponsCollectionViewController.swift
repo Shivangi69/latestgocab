@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 
 class CouponsCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -14,7 +15,10 @@ class CouponsCollectionViewController: UICollectionViewController, UICollectionV
     var selectMode = false
     var coupons = [Coupon]()
     var delegate:CouponsViewDelegate?
-    
+    var pointsAnnotations: [MKPointAnnotation] = []
+
+    var fromwhere = String()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,11 +71,20 @@ class CouponsCollectionViewController: UICollectionViewController, UICollectionV
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if selectMode {
-            if delegate != nil {
+//            if delegate != nil {
+//                delegate?.didSelectedCoupon(coupons[indexPath.row])
+//            }
+            if fromwhere == "BTVC"{
                 delegate?.didSelectedCoupon(coupons[indexPath.row])
+                self.dismiss(animated: true, completion: nil)
             }
-            self.navigationController?.popViewController(animated: true)
+            else{
+                self.navigationController?.popViewController(animated: true)
+            }
+         
         }
+        
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FittedSheets
 
 class MaxMinHeightDemo: SimpleDemo {
     override class var name: String { "Max Min Height" }
@@ -15,7 +14,7 @@ class MaxMinHeightDemo: SimpleDemo {
     override class func openDemo(from parent: UIViewController, in view: UIView?) {
         let useInlineMode = view != nil
         
-        let controller = ColorDemo()
+        let controller = BTTTTTTTViewController()
         
         let sheet = SheetViewController(
             controller: controller,

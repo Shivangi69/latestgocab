@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FittedSheets
 
 protocol Demoable {
     static var name: String { get }

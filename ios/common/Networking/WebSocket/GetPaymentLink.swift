@@ -30,3 +30,5 @@ struct GetPaymentLinkDTO: Codable {
 struct GetPaymentLinkResult: Codable {
     var url: String
 }
+
+

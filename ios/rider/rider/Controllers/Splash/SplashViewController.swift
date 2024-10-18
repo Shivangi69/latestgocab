@@ -60,9 +60,6 @@ class SplashViewController: UIViewController {
     
     @IBAction func onLoginClicked(_ sender: UIButton) {
         
-        
-        
-        
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CountryCodeVC") as? CountryCodeVC {
                
                 self.navigationController!.pushViewController(vc, animated: true)

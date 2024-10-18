@@ -9,11 +9,17 @@
 import UIKit
 
 class welcomeScreen: UIViewController {
+    @IBOutlet weak var custumescroll: UIScrollView!
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if let backgroundImage = UIImage(named: "bggg") {
+               custumescroll.backgroundColor = UIColor(patternImage: backgroundImage)
+           }
+         
     }
     
 

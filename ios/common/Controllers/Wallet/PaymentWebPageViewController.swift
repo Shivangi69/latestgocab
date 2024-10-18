@@ -108,6 +108,7 @@
 //}
 import UIKit
 import WebKit
+import SPAlert
 
 public class PaymentWebPageViewController: UIViewController, WKNavigationDelegate {
     private let webView = WKWebView(frame: .zero)
@@ -158,8 +159,12 @@ public class PaymentWebPageViewController: UIViewController, WKNavigationDelegat
                         
                         if let success = jsonResponse?["success"] as? Bool, success {
                             print("Payment successful!")
-                            strongSelf.delegate?.paid(token: strongSelf.tokenstr, transactonID: strongSelf.transactionID)
+                            self?.dismiss(animated: true)
+                            SPAlert.present(title: NSLocalizedString("Payment Successful", comment: ""), preset: .done)
+                            //strongSelf.delegate?.paid(token: strongSelf.tokenstr, transactonID: strongSelf.transactionID)
                         } else {
+                            SPAlert.present(title: NSLocalizedString("Payment Failed", comment: ""), preset: .done)
+
                             print("Payment failed.")
                         }
                     }

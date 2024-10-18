@@ -9,14 +9,7 @@ import ProgressHUD
 class Enterphonenumber: UIViewController {
     var EulaTextStr = String()
     var mobileTextStr = String()
-//    @IBOutlet weak var Country: MDCOutlinedTextField!
-//    
-//    @IBOutlet weak var phonenumber: MDCOutlinedTextField!
-//    
-//    @IBOutlet weak var lblFlag: UITextField!
-//    @IBOutlet weak var lblCountryCode: UILabel!
-//    var countriesViewController = CountriesViewController()
-//    
+
     @IBOutlet weak var VerifySource: ColoredButton!
     @IBOutlet weak var whatsaooButton: UIButton!
     @IBOutlet weak var SMSbutton: UIButton!
@@ -28,8 +21,6 @@ class Enterphonenumber: UIViewController {
     
     var verificationID: String?
 
-    
-    
     func sentOTP(){
         ProgressHUD.animate("Loading")
         let phoneNumber = mobileTextStr
@@ -97,13 +88,13 @@ class Enterphonenumber: UIViewController {
     }
     
     override func viewDidLoad() {
-//        whatsaooButton.setTitle("", for: .normal)
-//        SMSbutton.setTitle("", for: .normal)
+        whatsaooButton.setTitle("", for: .normal)
+        SMSbutton.setTitle("", for: .normal)
 
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
 
-        self.title = "Verify Phone".uppercased()
+//        self.title = "Verify Phone".uppercased()
         self.navigationItem.backBarButtonItem?.title = ""
         self.navigationItem.backButtonTitle = ""
         

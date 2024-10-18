@@ -30,7 +30,9 @@ public extension SocketRequest {
         DispatchQueue.main.async {
             dispatcher.dispatch(event: self.event, params: self.params) { result in
                 switch result {
-                case .success(let data):
+                    
+                 case .success(let data):
+                    print(data)
                     if let obj = data as? [String: Any], obj["status"] != nil, obj["message"] != nil {
                         if let error = try? ServerError(from: obj) {
                             completionHandler(.failure(error))
