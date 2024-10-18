@@ -27,7 +27,7 @@ public class SupportGetMessage: SocketRequest {
         self.params = [riderId]
     }
 }
-
+ 
 //public class SupportGetMessage: SocketRequest {
 //    public typealias ResponseType = ChatMessage
 //    public var params: [Any]?

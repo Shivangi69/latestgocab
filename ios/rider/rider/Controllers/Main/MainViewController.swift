@@ -773,10 +773,14 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         UserDefaults.standard.set(locs.first?.add, forKey: "LOCA")
         print("Loca2",locs.last?.add ?? "")
         UserDefaults.standard.set(locs.last?.add, forKey: "LOCB")
+        guard let couponcode =  UserDefaults.standard.string(forKey:  "couponcode") else {
+            return
+            
+        }
 
         let feedbackGenerator = UISelectionFeedbackGenerator()
         feedbackGenerator.selectionChanged()
-        RequestService(obj: RequestDTO(locations: locs, services: [OrderedService(serviceId: service.id!, quantity: 1)])).execute() { result in
+        RequestService(obj: RequestDTO(locations: locs, services: [OrderedService(serviceId: service.id!, quantity: 1)]  ,couponCode : couponcode)).execute() { result in
             LoadingOverlay.shared.hideOverlayView()
             switch result {
             case .success(_):
@@ -798,8 +802,15 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         let locs = pointsAnnotations.map() { annotation in
             return LocationWithName(loc: annotation.coordinate, add: annotation.title!)
         }
+        guard let couponcode =  UserDefaults.standard.string(forKey:  "couponcode") else {
+            return
+            
+        }
+
+        
+        
         LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
-        RequestService(obj: RequestDTO(locations: locs, services: [OrderedService(serviceId: service.id!, quantity: 1)], intervalMinutes: minutesFromNow)).execute() { result in
+        RequestService(obj: RequestDTO(locations: locs, services: [OrderedService(serviceId: service.id!, quantity: 1)], intervalMinutes: minutesFromNow , couponCode : couponcode)).execute() { result in
             LoadingOverlay.shared.hideOverlayView()
             switch result {
             case .success(_):

@@ -182,7 +182,11 @@ class NavigationMenuViewController : MenuViewController {
         let splashViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
 
         // Reset the root view controller of the window to the splash view controller
-        window.rootViewController = splashViewController
+        let navigationController = UINavigationController(rootViewController: splashViewController)
+
+        window.rootViewController = navigationController
+
+//        window.rootViewController = splashViewController
 
         // Add a transition animation (optional)
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)

@@ -18,11 +18,11 @@ class SplashViewController: UIViewController {
     @IBOutlet weak var indicatorLoading: UIActivityIndicatorView!
     @IBOutlet weak var textLoading: UILabel!
     @IBOutlet weak var buttonLogin: UIButton!
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         
     }
+    
     func connectSocket(token:String) {
-        
         
         Messaging.messaging().token() { (fcmToken, error) in
             if let error = error {
@@ -35,7 +35,6 @@ class SplashViewController: UIViewController {
                 switch result {
                 case .success(_):
                     UserDefaults.standard.set("yes", forKey: "Firsttyme")
-
                     self.performSegue(withIdentifier: "segueHost", sender: nil)
                     
                 case .failure(let error):
@@ -61,22 +60,17 @@ class SplashViewController: UIViewController {
     }
     
     @IBAction func onLoginClicked(_ sender: UIButton) {
-        
-        
-        
+
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CountryCodeVC") as? CountryCodeVC {
+
+                self.navigationController!.pushViewController(vc, animated: true)
+            }
+
+//        let vc = ChatWithAdminViewController()
+//        vc.sender = Admin()
+//        self.navigationController!.pushViewController(vc, animated: true)
 //
-//            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CountryCodeVC") as? CountryCodeVC {
-//
-//                self.navigationController!.pushViewController(vc, animated: true)
-//            }
-//
-        
-        
-        let vc = ChatWithAdminViewController()
-        vc.sender = Admin()
-        self.navigationController!.pushViewController(vc, animated: true)
-        
-        
+
         
 //        let auth = FUIAuth.defaultAuthUI()
 //        auth?.delegate = self

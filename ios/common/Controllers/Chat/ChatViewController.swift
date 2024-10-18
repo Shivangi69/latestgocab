@@ -12,19 +12,20 @@ import Kingfisher
 import InputBarAccessoryView
 
 class ChatViewController: MessagesViewController {
+    
     @objc func messageReceived(notification: Notification) {
         messages.append(notification.object as! ChatMessage)
         self.messagesCollectionView.reloadData()
         self.messagesCollectionView.scrollToLastItem(animated: true)
     }
-    
+  
     var messages: [ChatMessage] = []
     var sender: SenderType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.messageReceived), name: .messageReceived, object: nil)
-        self.title = NSLocalizedString("Chat", comment: "Title of chat screen")
+//        self.title = NSLocalizedString("Chat", comment: "Title of chat screen")
         messagesCollectionView.messagesDataSource = self
         
         messagesCollectionView.messagesLayoutDelegate = self
@@ -115,10 +116,7 @@ extension ChatViewController: MessagesDataSource {
             //avatarView.image = UIImage(named: "nobody")
             //avatarView.isHidden = true
         }
-        
-        
     }
- 
 }
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
@@ -143,7 +141,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             switch result {
             case .success(let response):
                 self.messageInputBar.sendButton.stopAnimating()
-                self.messageInputBar.inputTextView.placeholder = "Aa"
+                self.messageInputBar.inputTextView.placeholder = "Type Message"
                 self.insertMessage(response)
                 self.messagesCollectionView.scrollToLastItem(animated: true)
                 

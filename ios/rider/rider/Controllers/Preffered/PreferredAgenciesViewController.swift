@@ -27,9 +27,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         let user = try! Rider(from: UserDefaultsConfig.user!)
         let token = UserDefaultsConfig.jwtToken ?? ""
         
-        
-        
-        
         getPreferredAgency(riderId: user.id ?? 0, token: token) { result in
             switch result {
             case .success(let agencies):

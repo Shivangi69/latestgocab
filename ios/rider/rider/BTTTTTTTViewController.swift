@@ -84,6 +84,11 @@ override func viewDidLoad() {
                     currency: calculateFareAfterCouponResult.currency
                 )
                 
+                
+                UserDefaults.standard.set(coupon.code, forKey: "couponcode")
+    
+                print(coupon.code , "dfdfvfdvfdv")
+                
                 SPAlert.present(title: "Coupon Applied", preset: .done)
                 
                 // Refresh the table view to display the updated costs
@@ -127,43 +132,6 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
         return category.services.count
 }
 
-//func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//    
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "BTTableViewCell", for: indexPath) as! BTTableViewCell
-// 
-//    let category = calculateFareResult.categories[indexPath.section]
-//        let service = category.services[indexPath.row]
-//      
-//    cell.textTitle.text = service.title
-//    
-//    let actual = service.baseFare
-//    let offdic = service.cost
-//    let cost = service.cost
-//    
-//    
-//    if let actual = service.baseFare {
-//        cell.actualcost.text = "₹ \(String(format: "%.2f", actual))"
-//    } else {
-//        cell.actualcost.text = ""
-//    }
-//
-//    if let offdic = service.cost {
-//        cell.discountcost.text = "₹ \(String(format: "%.2f", offdic))"
-//    } else {
-//        cell.discountcost.text = ""
-//    }
-//    cell.pplcount.text = String(service.maxQuantity)
-//    if let media = service.media, let address = media.address {
-//         let url = URL(string: Config.Backend + address)
-//         cell.imageIcon.kf.setImage(with: url)
-//     } else {
-//         cell.imageIcon.image = UIImage(named: "placeholder") // Default placeholder image
-//     }
-//      
-//
-//    return cell
-//}
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BTTableViewCell", for: indexPath) as! BTTableViewCell
 
@@ -239,6 +207,7 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
     dismiss(animated: true) {
         // Post a notification to trigger goBackFromServiceSelection() after the view is dismissed
         NotificationCenter.default.post(name: Notification.Name("goBackFromServiceSelectionNotification"), object: nil)
+        UserDefaults.standard.removeObject(forKey: "couponcode")
     }
 }
     

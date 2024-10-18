@@ -13,6 +13,8 @@ struct RequestDTO: Codable {
     var locations: LocationWithNames
     var services: OrderedServices
     var intervalMinutes: Int = 0
+    var couponCode: String = ""
+
 }
 
 struct OrderedService: Codable {

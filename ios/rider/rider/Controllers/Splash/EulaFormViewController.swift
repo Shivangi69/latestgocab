@@ -17,7 +17,7 @@ var EulaTextStr = String()
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
 
-//        self.title = "Eula Terms".uppercased()
+//      self.title = "Eula Terms".uppercased()
         self.navigationItem.backBarButtonItem?.title = ""
         self.navigationItem.backButtonTitle = ""
         

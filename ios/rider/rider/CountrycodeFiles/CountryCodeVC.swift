@@ -31,11 +31,11 @@ class CountryCodeVC: UIViewController {
     var countryCode: String?
     // MARK:- View Life Cycle
   //  @IBOutlet weak var codeTextfeild: MDCOutlinedTextField!
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         initalSetup()
         setupCountryPicker()
-
+        
         phonenumber.label.text = "Phone number"
         phonenumber.label.textColor = .yellow
 
@@ -44,7 +44,7 @@ class CountryCodeVC: UIViewController {
         
         codetext.label.text = "Code*"
         codetext.placeholder = "Code"
-//
+                    
         navigationController?.setNavigationBarHidden(false, animated: false)
 
         self.title = "LOGIN"

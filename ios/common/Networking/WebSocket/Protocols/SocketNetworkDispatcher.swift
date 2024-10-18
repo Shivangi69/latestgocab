@@ -14,10 +14,10 @@ public struct SocketNetworkDispatcher: NetworkDispatcher {
             
             socket!.emitWithAck(event, with: _params).timingOut(after: 20) { response in
                 print(response)
-//                if(response.count > 1) {
-//                    completionHandler(.failure(SocketClientError.InvalidAckParamCount))
-//                    return
-//                }
+                if(response.count > 1) {
+                    completionHandler(.failure(SocketClientError.InvalidAckParamCount))
+                    return
+                }
                 if(response.count == 0) {
                     completionHandler(.success(try! EmptyClass().asDictionary()))
                     return
@@ -26,7 +26,7 @@ public struct SocketNetworkDispatcher: NetworkDispatcher {
                     completionHandler(.failure(.RequestTimeout))
                     return
                 }
-                completionHandler(.success((response[1])))
+                completionHandler(.success((response[0])))
             }
         } else {
             socket!.emitWithAck(event).timingOut(after: 15) { response in
@@ -109,6 +109,9 @@ public struct SocketNetworkDispatcher: NetworkDispatcher {
         }
         socket!.on("messageReceived") { data, ack in
             NotificationCenter.default.post(name: .messageReceived, object: try! ChatMessage(from: data[0]))
+        }
+        socket!.on("supportMessageReceived") { data, ack in
+            NotificationCenter.default.post(name: .supportMessageReceived, object: try! AdminChatMessage(from: data[0]))
         }
         socket!.on("driverInfoChanged") { data, ack in
             UserDefaultsConfig.user = try! (Driver(from: data[0] as Any).asDictionary())
@@ -201,6 +204,8 @@ public extension Notification.Name {
     static let travelInfoReceived = Notification.Name("travelInfoReceived")
     static let serviceFinished = Notification.Name("serviceFinished")
     static let messageReceived = Notification.Name("messageReceived")
+    static let supportMessageReceived = Notification.Name("supportMessageReceived")
+
     static let driverInfoChanged = Notification.Name("driverInfoChanged")
     static let cancelTravel = Notification.Name("cancelTravel")
     static let paid = Notification.Name("paid")

@@ -17,8 +17,10 @@ class Profileedit: UIViewController,UITextFieldDelegate {
   
     @IBOutlet weak var verifyButtonICON: UIImageView!
     @IBOutlet weak var Name: MDCOutlinedTextField!
+    @IBOutlet weak var lname: MDCOutlinedTextField!
+
     var msgbox = DevPopUp()
-var varifiedEmail = String()
+    var varifiedEmail = String()
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var Email: MDCOutlinedTextField!
     @IBOutlet weak var verifyButttton: UIButton!
@@ -60,7 +62,8 @@ var varifiedEmail = String()
         // Present the action sheet
         self.present(actionSheet, animated: true, completion: nil)
     }
-    func openCamera() {
+    
+    func openCamera(){
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -265,9 +268,14 @@ var varifiedEmail = String()
 
         self.title = "Edit profile".uppercased()
         
-        Name.label.text = "Name*"
-        Name.placeholder = "Name"
+        Name.label.text = "First Name*"
+        Name.placeholder = "First Name"
         Name.sizeToFit()
+        
+        lname.label.text = "Last Name"
+        lname.placeholder = "Last Name"
+        lname.sizeToFit()
+
         uploadButton.setTitle("", for: .normal)
         Email.label.text = "Email*"
         Email.placeholder = "Email"
@@ -281,9 +289,13 @@ var varifiedEmail = String()
         profileImage.layer.cornerRadius = profileImage.frame.size.height/2
         profileImage.layer.masksToBounds = true
         Name.delegate = self
+        lname.delegate = self
+
         Email.delegate = self
         Uploadid.delegate = self
-        Name.text = (user.firstName ?? "") + " " + (user.lastName ?? "")
+        Name.text = (user.firstName ?? "")
+        lname.text =  (user.lastName ?? "")
+
         Email.text = (user.email ?? "")
 //        Uploadid.text = user.id
         

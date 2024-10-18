@@ -81,7 +81,8 @@ class ViewController: UIViewController {
             nextButton.layer.cornerRadius = 10
             nextButton.layer.borderColor = UIColor(named: "ThemeYellow")?.cgColor
             nextButton.layer.borderWidth = 1
-            
+            nextButton.contentHorizontalAlignment = .center // Center the text
+
         }
         else {
             

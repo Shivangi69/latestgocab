@@ -57,6 +57,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<string>No</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>

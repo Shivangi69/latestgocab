@@ -13,7 +13,6 @@ public final class Request: Codable, Hashable {
     }
     
     public static var shared = Request()
-    
     // MARK: Properties
     public var addresses: [String] = []
     public var points: [CLLocationCoordinate2D] = []
@@ -43,10 +42,8 @@ public final class Request: Codable, Hashable {
     public var service: Service?
     public var confirmationCode: Int?
     public var imageUrl: String?
-
     public var  vehicle: Vehicle?
     public var  waypoints:[CLLocationCoordinate2D]?
-   
     
     public enum Status: String, Codable {
         case Requested = "Requested"
@@ -117,8 +114,7 @@ public final class Request: Codable, Hashable {
 import Foundation
 import MessageKit
 public final class AssignedVehicle: Codable {
-    
-    
+
     public var color: String?
     public var created_at: String?
     public var expiration_date: String?
@@ -140,8 +136,6 @@ public final class AssignedVehicle: Codable {
     
 }
 public final class DriverMedia: Codable {
-    
-    
     public var id: Int?
     public var url: String?
     public var mediaType: String?

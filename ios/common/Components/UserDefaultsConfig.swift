@@ -4,9 +4,10 @@
 //
 //  Created by Manly Man on 11/22/19.
 //  Copyright © 2019 minimal. All rights reserved.
-//
+
 
 import Foundation
+
 
 public struct UserDefaultsConfig {
     @UserDefault("jwtToken", defaultValue: nil)

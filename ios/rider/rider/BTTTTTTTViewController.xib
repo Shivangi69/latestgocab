@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -135,7 +135,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="dBF-j4-1eY" secondAttribute="top" id="YIT-6F-hJX"/>
                 <constraint firstItem="dBF-j4-1eY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="grQ-gU-NIX"/>
             </constraints>
-            <point key="canvasLocation" x="547" y="-163"/>
+            <point key="canvasLocation" x="179" y="-289"/>
         </view>
     </objects>
     <designables>
