@@ -44,3 +44,44 @@ public enum ClientType: String, Codable {
     case Rider = "r"
 }
 typealias ChatMessages = [ChatMessage]
+
+
+
+
+
+
+public class AdminChatMessage: Codable, MessageType {
+    let id: Int?
+    let sentAt: Double?
+    let content: String?
+    let sentBy: AdminClientType?
+    let state: String?
+    
+    public var sender: SenderType { get {
+        if(self.sentBy == .Driver) {
+            return Request.shared.driver!
+        } else {
+            return Request.shared.rider!
+        }
+        }
+    }
+    
+    public var messageId: String { get {
+        return String(self.id!)
+        }
+    }
+    
+    public var sentDate: Date { get {
+        return Date(timeIntervalSince1970: sentAt! / 1000)
+        }}
+    
+    public var kind: MessageKind { get {
+        return MessageKind.text(self.content!)
+        }
+    }
+}
+public enum AdminClientType: String, Codable {
+    case Driver = "admin"
+    case Rider = "rider"
+}
+typealias AdminChatMessages = [AdminChatMessage]

@@ -22,6 +22,8 @@ class SplashViewController: UIViewController {
         
     }
     func connectSocket(token:String) {
+        
+        
         Messaging.messaging().token() { (fcmToken, error) in
             if let error = error {
                 print("Error fetching remote instance ID: \(error)")
@@ -60,10 +62,20 @@ class SplashViewController: UIViewController {
     
     @IBAction func onLoginClicked(_ sender: UIButton) {
         
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CountryCodeVC") as? CountryCodeVC {
-               
-                self.navigationController!.pushViewController(vc, animated: true)
-            }
+        
+        
+//
+//            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CountryCodeVC") as? CountryCodeVC {
+//
+//                self.navigationController!.pushViewController(vc, animated: true)
+//            }
+//
+        
+        
+        let vc = ChatWithAdminViewController()
+        vc.sender = Admin()
+        self.navigationController!.pushViewController(vc, animated: true)
+        
         
         
 //        let auth = FUIAuth.defaultAuthUI()
