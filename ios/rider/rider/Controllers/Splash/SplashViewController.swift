@@ -60,17 +60,22 @@ class SplashViewController: UIViewController {
     }
     
     @IBAction func onLoginClicked(_ sender: UIButton) {
+        
+        
+        
 
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CountryCodeVC") as? CountryCodeVC {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CountryCodeVC") as? CountryCodeVC {
 
                 self.navigationController!.pushViewController(vc, animated: true)
             }
 
+        
+        
 //        let vc = ChatWithAdminViewController()
 //        vc.sender = Admin()
 //        self.navigationController!.pushViewController(vc, animated: true)
-//
-
+//        
+        
         
 //        let auth = FUIAuth.defaultAuthUI()
 //        auth?.delegate = self
