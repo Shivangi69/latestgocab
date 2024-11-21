@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fXH-cx-Xp1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fXH-cx-Xp1">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,7 +16,7 @@
             <objects>
                 <collectionViewController title="Promotions" id="atc-sE-38y" customClass="PromotionsCollectionViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6Cy-6j-DBa">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" sectionInsetReference="safeArea" id="mEP-IQ-Ld6">
@@ -41,7 +41,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="Transactions" title="Transactions" id="Sq5-WZ-Mz0" customClass="TransactionsCollectionViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="uNB-uI-jYa">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" sectionInsetReference="safeArea" id="K0B-NE-lrr">
@@ -66,7 +66,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="CouponsCollectionViewController" title="Coupons" useStoryboardIdentifierAsRestorationIdentifier="YES" id="g48-4N-XvH" customClass="CouponsCollectionViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="HM1-nB-kRe">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" sectionInsetReference="safeArea" id="JQ7-2t-zVx">
@@ -254,10 +254,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="mHj-Xs-Z6c">
-                                <rect key="frame" x="8" y="614" width="304" height="41"/>
+                                <rect key="frame" x="8" y="588" width="304" height="33"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGw-TV-i4G" userLabel="Confirm Pickup" customClass="ColoredButton" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="33"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.89411764709999997" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="Confirm Location">
@@ -268,7 +268,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xf-B2-cPM" userLabel="Add Destination" customClass="ColoredButton" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                        <rect key="frame" x="103.66666666666666" y="0.0" width="96.666666666666657" height="41"/>
+                                        <rect key="frame" x="103.66666666666666" y="0.0" width="96.666666666666657" height="33"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.89411764709999997" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="Add Destination">
@@ -279,7 +279,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gk-mA-be8" customClass="ColoredButton" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                        <rect key="frame" x="207.33333333333334" y="0.0" width="96.666666666666657" height="41"/>
+                                        <rect key="frame" x="207.33333333333334" y="0.0" width="96.666666666666657" height="33"/>
                                         <color key="backgroundColor" name="ThemeYellow"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <state key="normal" title="Proceed">
@@ -292,7 +292,7 @@
                                 </subviews>
                             </stackView>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcl-I2-75V">
-                                <rect key="frame" x="0.0" y="367" width="320" height="300"/>
+                                <rect key="frame" x="0.0" y="333" width="320" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="rhd-B1-a2Q"/>
                                 </constraints>
@@ -365,15 +365,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uoq-YX-Dg0">
-                                <rect key="frame" x="0.0" y="45.666666666666686" width="320" height="667"/>
+                                <rect key="frame" x="0.0" y="28.666666666666686" width="320" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXe-ON-VTv">
-                                <rect key="frame" x="0.0" y="380.66666666666674" width="320" height="286.33333333333326"/>
+                                <rect key="frame" x="0.0" y="346.66666666666674" width="320" height="286.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="TSR-pJ-6VJ">
-                                <rect key="frame" x="5" y="380.66666666666669" width="320" height="50"/>
+                                <rect key="frame" x="5" y="346.66666666666669" width="320" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="LT9-JP-Woz">
                                         <rect key="frame" x="0.0" y="0.0" width="174.66666666666666" height="50"/>
@@ -435,7 +435,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="U8K-Df-Kdy">
-                                <rect key="frame" x="10" y="461.66666666666674" width="300" height="125"/>
+                                <rect key="frame" x="10" y="427.66666666666669" width="300" height="125.00000000000006"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="nzy-zG-rRd">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
@@ -551,7 +551,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="32"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle.fill" catalog="system" id="LyC-c1-jU4">
-                                                        <rect key="frame" x="0.0" y="0.99999999999999822" width="24" height="8.6666666666666679"/>
+                                                        <rect key="frame" x="0.0" y="0.66666666666666607" width="24" height="8.6666666666666679"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
@@ -573,7 +573,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.circle.fill" catalog="system" id="3Le-Sy-6kh">
-                                                        <rect key="frame" x="0.0" y="23" width="24" height="8.6666666666666679"/>
+                                                        <rect key="frame" x="0.0" y="22.666666666666664" width="24" height="8.6666666666666679"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
@@ -613,7 +613,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ETF-kS-l2T">
-                                <rect key="frame" x="8" y="619" width="304" height="40"/>
+                                <rect key="frame" x="8" y="585" width="304" height="40"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b8b-3X-t57">
                                         <rect key="frame" x="0.0" y="0.0" width="304" height="40"/>
@@ -676,7 +676,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyR-Hl-0bI">
-                                <rect key="frame" x="10" y="430.66666666666669" width="300" height="31"/>
+                                <rect key="frame" x="10" y="396.66666666666669" width="300" height="31"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="zTh-ta-Agz"/>
@@ -686,7 +686,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fwJ-jg-HBb">
-                                <rect key="frame" x="0.0" y="429.66666666666669" width="320" height="1"/>
+                                <rect key="frame" x="0.0" y="395.66666666666669" width="320" height="1"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="nhr-yj-q5R"/>
@@ -944,7 +944,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Write Your review Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wlh-Dt-vm4">
-                            <rect key="frame" x="10" y="5" width="156" height="40"/>
+                            <rect key="frame" x="10" y="52" width="156" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="lL9-ap-mgE"/>
                             </constraints>
@@ -952,7 +952,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQL-V4-nMa" customClass="StarRatingView" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="55" width="250" height="40"/>
+                            <rect key="frame" x="0.0" y="102" width="250" height="40"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="250" id="4Y9-dm-KYb"/>
@@ -960,7 +960,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REVIEW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jk-MA-keM">
-                            <rect key="frame" x="254.99999999999997" y="84" width="61.666666666666657" height="20.666666666666671"/>
+                            <rect key="frame" x="254.99999999999997" y="131" width="61.666666666666657" height="20.666666666666657"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -1074,20 +1074,20 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBA-GK-dPe" customClass="LottieAnimationView" customModule="Lottie">
-                                <rect key="frame" x="50" y="147" width="220" height="220"/>
+                                <rect key="frame" x="50" y="123.66666666666669" width="220" height="220"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rBA-GK-dPe" secondAttribute="height" multiplier="1:1" id="tE6-kJ-UYb"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIF-2z-h7T">
-                                <rect key="frame" x="25" y="387" width="270" height="0.0"/>
+                                <rect key="frame" x="25" y="363.66666666666669" width="270" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnQ-Yl-MeU" customClass="ColoredButton" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                <rect key="frame" x="50" y="407" width="220" height="45"/>
+                                <rect key="frame" x="50" y="383.66666666666669" width="220" height="45"/>
                                 <color key="backgroundColor" name="ThemeYellow"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="ray-yt-Dfw"/>
@@ -1140,7 +1140,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="TripHistory" title="Trip History" id="p2I-iQ-HlV" customClass="TripHistoryCollectionViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MCe-rc-ohe">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" sectionInsetReference="safeArea" id="hKf-Wz-0HZ">
@@ -1165,7 +1165,7 @@
             <objects>
                 <viewController title="About" id="BH5-mw-fUk" customClass="AboutViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uw2-5A-P3k">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="g1f-7t-9d9"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1180,11 +1180,11 @@
             <objects>
                 <viewController id="gOV-El-djk" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oKG-c3-C4Q">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="u0Y-XG-DSZ">
-                                <rect key="frame" x="45" y="56.999999999999993" width="300" height="125.33333333333331"/>
+                                <rect key="frame" x="45" y="9.9999999999999929" width="300" height="125.33333333333331"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Hd5-Hx-x0H">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
@@ -1275,7 +1275,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="32.333333333333336"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle.fill" catalog="system" id="VVD-Fb-qPC">
-                                                        <rect key="frame" x="0.0" y="0.99999999999999822" width="24" height="8.6666666666666679"/>
+                                                        <rect key="frame" x="0.0" y="0.66666666666666607" width="24" height="8.6666666666666679"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
@@ -1297,7 +1297,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.circle.fill" catalog="system" id="eNe-dJ-aES">
-                                                        <rect key="frame" x="0.0" y="23" width="24" height="9"/>
+                                                        <rect key="frame" x="0.0" y="22.666666666666664" width="24" height="9"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
@@ -1345,7 +1345,7 @@
                                 </constraints>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1aZ-Rs-1nS" customClass="MDCOutlinedTextField">
-                                <rect key="frame" x="10" y="207.33333333333334" width="370" height="60.000000000000028"/>
+                                <rect key="frame" x="10" y="160.33333333333334" width="370" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Mso-ex-AHl"/>
                                 </constraints>
@@ -1353,7 +1353,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpo-2C-kUk" customClass="ColoredButton" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                <rect key="frame" x="10" y="277.33333333333331" width="370" height="50"/>
+                                <rect key="frame" x="10" y="230.33333333333334" width="370" height="50.000000000000028"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="OYU-8i-34s"/>
                                 </constraints>
@@ -1389,7 +1389,7 @@
             <objects>
                 <collectionViewController title="Favorites" id="55n-U1-7of" customClass="FavoritesViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="qh9-wk-n6t">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" sectionInsetReference="safeArea" id="b0H-Se-C5Q">
@@ -1410,7 +1410,7 @@
                                             <rect key="frame" x="8" y="0.0" width="342" height="140"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.slash.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="F8D-bP-3E4">
-                                                    <rect key="frame" x="10" y="10.999999999999998" width="20" height="22.666666666666664"/>
+                                                    <rect key="frame" x="10" y="10.666666666666666" width="20" height="22.666666666666671"/>
                                                     <color key="tintColor" name="ThemeYellow"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="O0C-NI-Ldm"/>
@@ -1554,7 +1554,7 @@
             <objects>
                 <viewController title="Edit Profile" id="Z2R-XF-e5Z" customClass="RiderEditProfileViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r4B-Ck-ACP">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="UBb-lX-Z3U"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1699,7 +1699,10 @@
                                                                 </constraints>
                                                                 <color key="tintColor" name="ThemeYellow"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="RadioOnB"/>
+                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="fIo-V2-cZy" eventType="touchUpInside" id="09x-7G-FCJ"/>
+                                                                </connections>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sms 1" translatesAutoresizingMaskIntoConstraints="NO" id="Kfi-be-l5R">
                                                                 <rect key="frame" x="38" y="0.0" width="20" height="30"/>
@@ -1729,7 +1732,10 @@
                                                                     <constraint firstAttribute="height" constant="30" id="aut-vF-w1m"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="RadioOffB"/>
+                                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="fIo-V2-cZy" eventType="touchUpInside" id="6mS-pd-10Y"/>
+                                                                </connections>
                                                             </button>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whatsapp 1" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-OY-Npw">
                                                                 <rect key="frame" x="36.999999999999972" y="0.0" width="20" height="30"/>
@@ -1818,9 +1824,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="eXd-sm-7AO"/>
                     <connections>
-                        <outlet property="SMSbutton" destination="N12-3t-EnJ" id="7f2-v6-jEy"/>
                         <outlet property="VerifySource" destination="GYj-Dw-8In" id="NTe-bb-fq3"/>
-                        <outlet property="whatsaooButton" destination="5Z8-ne-moG" id="Zeg-td-Bhk"/>
+                        <outlet property="smsButton" destination="N12-3t-EnJ" id="mWC-p7-toH"/>
+                        <outlet property="whatsappButton" destination="5Z8-ne-moG" id="lMT-U4-kw0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNz-Ry-Obh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2129,7 +2135,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ty-F1-TFU" customClass="ColoredButton" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                            <rect key="frame" x="10" y="124" width="144.66666666666666" height="35"/>
+                            <rect key="frame" x="10" y="90" width="144.66666666666666" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="4Ph-Sb-E9q"/>
                             </constraints>
@@ -2150,7 +2156,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JX-Nz-Brp" customClass="ColoredButton" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                            <rect key="frame" x="165.66666666666663" y="124" width="144.33333333333337" height="35"/>
+                            <rect key="frame" x="165.66666666666663" y="90" width="144.33333333333337" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="rSw-OC-WbO"/>
                             </constraints>
@@ -2263,7 +2269,7 @@ Cg
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDc-e2-8z8">
                                 <rect key="frame" x="30" y="775.66666666666663" width="330" height="34.333333333333371"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="incomingAudioMessageTint"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="CONTINUE"/>
                                 <connections>
@@ -3339,7 +3345,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5l-1m-9hn">
-                                <rect key="frame" x="0.0" y="47" width="320" height="253"/>
+                                <rect key="frame" x="0.0" y="47" width="320" height="219"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eID-mT-jGo">
@@ -3351,7 +3357,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 <color key="selectedSegmentTintColor" name="ThemeYellow"/>
                             </segmentedControl>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eHn-7Q-hXL">
-                                <rect key="frame" x="0.0" y="131" width="320" height="116"/>
+                                <rect key="frame" x="0.0" y="131" width="320" height="82"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hox-uk-6gz">
                                     <size key="itemSize" width="120" height="140"/>
@@ -3361,7 +3367,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" reuseIdentifier="serviceCell" id="0XW-8q-3ZV" customClass="ServicesListCell" customModule="Go_Cabs_Rider" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-12" width="120" height="140"/>
+                                        <rect key="frame" x="0.0" y="-29" width="120" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
@@ -3439,7 +3445,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 </cells>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="msn-vo-rC9">
-                                <rect key="frame" x="4" y="247" width="312" height="45"/>
+                                <rect key="frame" x="4" y="213" width="312" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bs0-ma-Cfy" customClass="ColoredButton" customModule="Ridy">
                                         <rect key="frame" x="0.0" y="0.0" width="152" height="45"/>
@@ -3697,7 +3703,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ahi-sH-bza">
-                                <rect key="frame" x="0.0" y="47" width="390" height="642"/>
+                                <rect key="frame" x="0.0" y="47" width="390" height="642.33333333333337"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="1JR-Jd-KDd">
                                     <size key="itemSize" width="393" height="631"/>
@@ -3762,7 +3768,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 </connections>
                             </collectionView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="rYv-wD-cMh">
-                                <rect key="frame" x="128.33333333333337" y="689" width="133.66666666666663" height="26"/>
+                                <rect key="frame" x="149.66666666666666" y="689.33333333333337" width="90.666666666666657" height="25.666666666666629"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </pageControl>
@@ -3857,7 +3863,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.circle.fill" catalog="system" id="nNu-i0-Fdq">
-                    <rect key="frame" x="0.0" y="-0.6666666666666714" width="24" height="22"/>
+                    <rect key="frame" x="0.0" y="-7.1054273576010019e-15" width="24" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
@@ -3892,7 +3898,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle.fill" catalog="system" id="eyI-Xv-JyK">
-                    <rect key="frame" x="0.0" y="-0.6666666666666714" width="24" height="22"/>
+                    <rect key="frame" x="0.0" y="-7.1054273576010019e-15" width="24" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
@@ -4255,13 +4261,13 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="41"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Enter the 6-digit code we sent to" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftm-fM-Axt">
-                                                        <rect key="frame" x="0.0" y="0.0" width="390" height="20.666666666666668"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="390" height="41"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+91746573563" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0d-Oi-d6U">
-                                                        <rect key="frame" x="0.0" y="20.666666666666742" width="390" height="20.333333333333329"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0d-Oi-d6U">
+                                                        <rect key="frame" x="0.0" y="41" width="390" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="underPageBackgroundColor"/>
                                                         <nil key="highlightedColor"/>
@@ -4334,6 +4340,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                     </view>
                     <navigationItem key="navigationItem" id="SPi-Xm-boF"/>
                     <connections>
+                        <outlet property="label" destination="U0d-Oi-d6U" id="46f-Dc-9Wh"/>
                         <outlet property="otpTextFieldView" destination="BRs-Bc-fDF" id="PgX-w0-3QY"/>
                         <segue destination="Qxb-Tn-bnO" kind="show" identifier="segueHost" id="FvW-lt-OYB"/>
                     </connections>
@@ -4496,7 +4503,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="32.333333333333336"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle.fill" catalog="system" id="ONM-l1-1pR">
-                                                                <rect key="frame" x="0.0" y="0.99999999999999822" width="24" height="8.6666666666666679"/>
+                                                                <rect key="frame" x="0.0" y="0.66666666666666607" width="24" height="8.6666666666666679"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -4518,7 +4525,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.up.circle.fill" catalog="system" id="JAA-EA-g5M">
-                                                                <rect key="frame" x="0.0" y="23" width="24" height="9"/>
+                                                                <rect key="frame" x="0.0" y="22.666666666666664" width="24" height="9"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -4851,80 +4858,6 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
             <point key="canvasLocation" x="6737" y="-424"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="4Ty-F1-TFU">
-            <size key="intrinsicContentSize" width="68" height="34.333333333333336"/>
-        </designable>
-        <designable name="4gk-mA-be8">
-            <size key="intrinsicContentSize" width="67" height="41"/>
-        </designable>
-        <designable name="4qI-LT-UqT">
-            <size key="intrinsicContentSize" width="48" height="38"/>
-        </designable>
-        <designable name="4xf-B2-cPM">
-            <size key="intrinsicContentSize" width="127" height="41"/>
-        </designable>
-        <designable name="7JX-Nz-Brp">
-            <size key="intrinsicContentSize" width="76.666666666666671" height="34.333333333333336"/>
-        </designable>
-        <designable name="99u-3W-6JB">
-            <size key="intrinsicContentSize" width="42" height="41"/>
-        </designable>
-        <designable name="9Gq-9w-3jp">
-            <size key="intrinsicContentSize" width="59" height="41"/>
-        </designable>
-        <designable name="Cqe-60-b1p">
-            <size key="intrinsicContentSize" width="186" height="41"/>
-        </designable>
-        <designable name="GYj-Dw-8In">
-            <size key="intrinsicContentSize" width="59" height="41"/>
-        </designable>
-        <designable name="O3k-hU-9yw">
-            <size key="intrinsicContentSize" width="97" height="38"/>
-        </designable>
-        <designable name="TGw-TV-i4G">
-            <size key="intrinsicContentSize" width="137" height="41"/>
-        </designable>
-        <designable name="UAm-nM-c8E">
-            <size key="intrinsicContentSize" width="45.666666666666664" height="34.333333333333336"/>
-        </designable>
-        <designable name="UEa-fe-hJR">
-            <size key="intrinsicContentSize" width="133" height="33"/>
-        </designable>
-        <designable name="YFI-rV-Aey">
-            <size key="intrinsicContentSize" width="186" height="41"/>
-        </designable>
-        <designable name="YnQ-Yl-MeU">
-            <size key="intrinsicContentSize" width="55" height="41"/>
-        </designable>
-        <designable name="ZAI-5h-uDN">
-            <size key="intrinsicContentSize" width="26" height="38"/>
-        </designable>
-        <designable name="bs0-ma-Cfy">
-            <size key="intrinsicContentSize" width="75" height="33"/>
-        </designable>
-        <designable name="dLp-wh-UaX">
-            <size key="intrinsicContentSize" width="62" height="38"/>
-        </designable>
-        <designable name="fOg-VS-bea">
-            <size key="intrinsicContentSize" width="208" height="42"/>
-        </designable>
-        <designable name="mCw-t6-96C">
-            <size key="intrinsicContentSize" width="97" height="34.333333333333336"/>
-        </designable>
-        <designable name="p9f-uL-Npi">
-            <size key="intrinsicContentSize" width="79" height="41"/>
-        </designable>
-        <designable name="vd8-M7-5It">
-            <size key="intrinsicContentSize" width="113" height="33"/>
-        </designable>
-        <designable name="w6Z-5H-pYJ">
-            <size key="intrinsicContentSize" width="25" height="38"/>
-        </designable>
-        <designable name="zpo-2C-kUk">
-            <size key="intrinsicContentSize" width="97" height="34.333333333333336"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="FvW-lt-OYB"/>
     </inferredMetricsTieBreakers>
@@ -4940,8 +4873,6 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
         <image name="Login-rafiki 2" width="430" height="447"/>
         <image name="Nobody" width="70" height="70"/>
         <image name="Promotions" width="128" height="107"/>
-        <image name="RadioOffB" width="24" height="24"/>
-        <image name="RadioOnB" width="24" height="24"/>
         <image name="Saved Locations" width="128" height="118"/>
         <image name="Transactions" width="128" height="140"/>
         <image name="Trip History" width="128" height="150"/>
@@ -4959,7 +4890,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
         <image name="coupon" width="30" height="17"/>
         <image name="coupons 1" width="24" height="24"/>
         <image name="edit" width="22" height="22"/>
-        <image name="icloud.and.arrow.down" catalog="system" width="128" height="111"/>
+        <image name="icloud.and.arrow.down" catalog="system" width="128" height="120"/>
         <image name="icons8-cancel-100" width="100" height="100"/>
         <image name="icons8-verified-96" width="96" height="96"/>
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>
@@ -4977,13 +4908,16 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="whatsapp 1" width="25" height="25"/>
         <namedColor name="ThemeYellow">
-            <color red="0.99607843137254903" green="0.8901960784313725" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99599999189376831" green="0.88999998569488525" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="avatarViewBackground">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="collectionViewBackground">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="incomingAudioMessageTint">
+            <color red="0.0" green="0.4779999852180481" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="label">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4995,7 +4929,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
             <color red="0.68199998140335083" green="0.68199998140335083" blue="0.69800001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

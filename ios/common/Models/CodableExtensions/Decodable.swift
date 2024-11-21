@@ -19,6 +19,7 @@ public extension Decodable {
         self = try decoder.decode(Self.self, from: data)
     }
 }
+
 public extension Encodable {
     func asDictionary() throws -> [String: Any] {
         let data = try JSONEncoder().encode(self)

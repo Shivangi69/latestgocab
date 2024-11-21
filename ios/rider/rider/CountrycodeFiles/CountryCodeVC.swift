@@ -73,12 +73,13 @@ class CountryCodeVC: UIViewController {
     }
     // Shadow for the login view
     override func viewDidLayoutSubviews() {
-//        viewLogin.layer.masksToBounds = false
-//        viewLogin.layer.shadowColor = UIColor.gray.cgColor
-//        viewLogin.layer.shadowOffset = CGSize(width: 0, height: 5)
-//        viewLogin.layer.shadowOpacity = 0.35
-//        viewLogin.layer.shadowPath = UIBezierPath(roundedRect: viewLogin.bounds, cornerRadius: viewLogin.layer.cornerRadius).cgPath
+//     viewLogin.layer.masksToBounds = false
+//  viewLogin.layer.shadowColor = UIColor.gray.cgColor
+//  viewLogin.layer.shadowOffset = CGSize(width: 0, height: 5)
+//  viewLogin.layer.shadowOpacity = 0.35
+//  viewLogin.layer.shadowPath = UIBezierPath(roundedRect: viewLogin.bounds, cornerRadius: viewLogin.layer.cornerRadius).cgPath
     }
+    
     
     func initalSetup(){
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBord))
@@ -96,6 +97,7 @@ class CountryCodeVC: UIViewController {
     }
     // MARK:- Keyboard delegate Methods
     /// method will be call when keyboard will appear
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -103,6 +105,7 @@ class CountryCodeVC: UIViewController {
             }
         }
     }
+    
     @objc func dismissKeyBord(){
         self.view.endEditing(true)
     }
@@ -141,7 +144,11 @@ class CountryCodeVC: UIViewController {
         
         let phoneNumber = (countryCode ?? "") +  (self.phonenumber.text ?? "")
         let phoneNumbeer = phoneNumber.replacingOccurrences(of: "+", with: "")
+        
+        
+        UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
 
+        
         let parameters: [String: Any] = [
             "mobileNumber": phoneNumbeer
         ]

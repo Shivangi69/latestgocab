@@ -9,18 +9,25 @@ import ProgressHUD
 class Enterphonenumber: UIViewController {
     var EulaTextStr = String()
     var mobileTextStr = String()
-
+  
     @IBOutlet weak var VerifySource: ColoredButton!
-    @IBOutlet weak var whatsaooButton: UIButton!
-    @IBOutlet weak var SMSbutton: UIButton!
-    //    var countryCode: String?
+    @IBOutlet weak var whatsappButton: UIButton!
+    @IBOutlet weak var smsButton: UIButton!
+    private var selectedOption: String?
     @IBAction func verifyAction(_ sender: Any) {
-        
-        makePostRequestforverify()
+        if   selectedOption == "SMS"{
+            makePostRequestforverify()
+        }
+        else{
+            self.view.showToast(message: "Please select SMS to proceed!")
+        }
     }
     
     var verificationID: String?
-
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        // Update selection based on which button is tapped
+        updateSelection(selectedButton: sender)
+    }
     func sentOTP(){
         ProgressHUD.animate("Loading")
         let phoneNumber = mobileTextStr
@@ -43,6 +50,9 @@ class Enterphonenumber: UIViewController {
             
         }
     }
+    
+    
+    
     func makePostRequestforverify() {
         let url = URL(string: Config.Backend + "rider")!
         var request = URLRequest(url: url)
@@ -88,29 +98,79 @@ class Enterphonenumber: UIViewController {
     }
     
     override func viewDidLoad() {
-        whatsaooButton.setTitle("", for: .normal)
-        SMSbutton.setTitle("", for: .normal)
+        whatsappButton.setTitle("", for: .normal)
+        smsButton.setTitle("", for: .normal)
 
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
+        updateSelection(selectedButton: smsButton)
 
-//        self.title = "Verify Phone".uppercased()
         self.navigationItem.backBarButtonItem?.title = ""
         self.navigationItem.backButtonTitle = ""
         
-        //        initalSetup()
+
         
-//        Country.label.text = "Country"
-//        Country.placeholder = "+91"
-//        Country.sizeToFit()
-//        
-//        
-//        phonenumber.label.text = "Phone number"
-//        phonenumber.textColor = .yellow
-//        
-//        phonenumber.placeholder = "Phone number"
-//        phonenumber.sizeToFit()
-//        
+    }
+    private func updateSelection(selectedButton: UIButton) {
+        // Reset all buttons
+        resetButtonState()
+
+        // Update UI for the selected button
+        selectedButton.setImage(UIImage(named: "radioon"), for: .normal)
         
+        // Update the selected option
+        if selectedButton == smsButton {
+            selectedOption = "SMS"
+            
+            
+        } else if selectedButton == whatsappButton {
+            selectedOption = "WhatsApp"
+            self.view.showToast(message: "Please select SMS to proceed!")
+
+        }
+        
+        print("Selected option: \(selectedOption ?? "")")
+    }
+    
+    private func resetButtonState() {
+        // Reset both buttons to unselected state
+        smsButton.setImage(UIImage(named: "radiooff"), for: .normal)
+        whatsappButton.setImage(UIImage(named: "radiooff"), for: .normal)
+    }
+}
+
+
+import UIKit
+
+extension UIView {
+    func showToast(message: String, duration: Double = 2.0) {
+        let toastLabel = UILabel()
+        toastLabel.text = message
+        toastLabel.textColor = .white
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        toastLabel.textAlignment = .center
+        toastLabel.font = UIFont.systemFont(ofSize: 14)
+        toastLabel.numberOfLines = 0
+        toastLabel.layer.cornerRadius = 10
+        toastLabel.clipsToBounds = true
+
+        // Calculate size and position
+        let textSize = toastLabel.sizeThatFits(CGSize(width: self.frame.size.width - 40, height: CGFloat.greatestFiniteMagnitude))
+        let labelWidth = min(textSize.width + 20, self.frame.size.width - 40)
+        let labelHeight = textSize.height + 10
+
+        toastLabel.frame = CGRect(x: (self.frame.size.width - labelWidth) / 2,
+                                  y: self.frame.size.height - 100,
+                                  width: labelWidth,
+                                  height: labelHeight)
+
+        self.addSubview(toastLabel)
+
+        // Animation for fade-out and removal
+        UIView.animate(withDuration: 1.0, delay: duration, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }) { _ in
+            toastLabel.removeFromSuperview()
+        }
     }
 }

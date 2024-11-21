@@ -25,7 +25,7 @@ var EulaTextStr = String()
                      custumescroll.backgroundColor = UIColor(patternImage: backgroundImage)
                  }
         // Do any additional setup after loading the view.
-        EulaText.text = EulaTextStr + EulaTextStr + EulaTextStr +  EulaTextStr
+        EulaText.text = EulaTextStr
     }
     
     @IBAction func Continue(_ sender: Any) {

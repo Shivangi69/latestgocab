@@ -11,8 +11,10 @@ import OTPFieldView
 import FirebaseAuth
 import FirebaseMessaging
 import SPAlert
+
 class OtpVerification: UIViewController , UITextFieldDelegate{
    
+    @IBOutlet var label: UILabel!
     @IBOutlet var otpTextFieldView: OTPFieldView!
     var PhoneNumber : String = ""
     var verificationID: String?
@@ -22,7 +24,13 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
+        // Retrieve the saved phone number from UserDefaults
+        if let savedPhoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") {
+            self.label.text = savedPhoneNumber
+        }
 
+        
+        
         self.title = "Otp verification".uppercased()
         setupOtpView()  // Make sure this line is present
         setupGestureRecognizer() // To dismiss keyboard when tapping outside
@@ -140,6 +148,7 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let phoneNumber = PhoneNumber.replacingOccurrences(of: "+", with: "")
+
         
         let parameters: [String: Any] = [
             "mobileNumber": phoneNumber,
@@ -168,7 +177,6 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                 if let success = jsonResponse.success, success {
                     // Store the user data in the UserManager
                     
-                    
                     if (jsonResponse.data?.user?.status == "pending approval" ){
                         if let token = jsonResponse.token {
                             print("Token received: \(token)")
@@ -187,7 +195,8 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                             self.GotoProfile(token : token)
                         }
                       
-                    }else{
+                    }
+                    else{
                         
                         
                         if let user = jsonResponse.data?.user {
@@ -216,6 +225,8 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
             }
         }.resume()
     }
+  
+    
     func GotoProfile(token : String){
         DispatchQueue.main.async {
             if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Profileedit") as? Profileedit {
@@ -226,6 +237,8 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
             
         }
     }
+    
+    
     func setupOtpView(){
             self.otpTextFieldView.fieldsCount = 6
             self.otpTextFieldView.fieldBorderWidth = 2

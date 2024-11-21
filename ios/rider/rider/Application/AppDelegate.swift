@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.swift
 //  Rider
 //
@@ -13,7 +13,6 @@ import Braintree
 import SocketIO
 import FirebaseAuthUI
 import BraintreeDropIn
-
 import GooglePlaces
 
 @UIApplicationMain
