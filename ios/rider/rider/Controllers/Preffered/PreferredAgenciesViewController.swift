@@ -40,7 +40,7 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
                 DispatchQueue.main.async {
                                self.tableView.reloadData()
                                self.updateUI()
-                           }
+                }
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
             }
@@ -200,6 +200,8 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
     func setupEmptyState() {
         emptyStateLabel.text = "You don't have any agencies selected :("
         emptyStateLabel.textAlignment = .center
+        emptyStateLabel.font = UIFont.boldSystemFont(ofSize: 25) // Set font size to 20 and bold
+
         emptyStateLabel.frame = CGRect(x: 0, y: 80, width: view.frame.width, height: 50)
         view.addSubview(emptyStateLabel)
         

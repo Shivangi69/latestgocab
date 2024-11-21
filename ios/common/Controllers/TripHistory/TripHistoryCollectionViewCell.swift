@@ -45,6 +45,8 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(menuiconTapped))
                 menuicon.isUserInteractionEnabled = true
                 menuicon.addGestureRecognizer(tapGesture)
+        
+        
     }
     @objc private func menuiconTapped() {
            showMenu()
@@ -57,15 +59,41 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
            
            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
            
+          
+          
+          let hideAction = UIAlertAction(title: "Hide", style: .destructive) { _ in
+                // Show confirmation alert
+                let confirmationAlert = UIAlertController(
+                    title: "Message",
+                    message: "Are you sure you want to hide travel? This action is not reversible; however, the travel info is still available for the operator.",
+                    preferredStyle: .alert
+                )
+                
+                let confirmAction = UIAlertAction(title: "OK", style: .destructive) { _ in
+                    // Call delete function
+                    self.deleteAction?()
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                
+                confirmationAlert.addAction(cancelAction)
+                confirmationAlert.addAction(confirmAction)
+                
+                viewController.present(confirmationAlert, animated: true, completion: nil)
+            }
+            alertController.addAction(hideAction)
+            
+          
            let complainAction = UIAlertAction(title: "Complain", style: .default) { _ in
                self.complainAction?()
            }
            alertController.addAction(complainAction)
            
-           let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
-               self.deleteAction?()
-           }
-           alertController.addAction(deleteAction)
+//           let deleteAction = UIAlertAction(title: "Hide", style: .destructive) { _ in
+//               
+//               self.deleteAction?()
+//           }
+//           alertController.addAction(deleteAction)
            
            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
            alertController.addAction(cancelAction)

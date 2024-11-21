@@ -6,15 +6,22 @@
 //  Copyright © 2024 minimal. All rights reserved.
 //
 
-import UIKit
 import OTPFieldView
 import FirebaseAuth
 import FirebaseMessaging
 import SPAlert
 
 class OtpVerification: UIViewController , UITextFieldDelegate{
-   
+    
+    @IBOutlet var timerLabel: UILabel!
+    @IBOutlet var resendButton: UIButton!
+    
+    var timer: Timer?
+       var totalTime = 119 // 1:59 in seconds
+       
     @IBOutlet var label: UILabel!
+    @IBOutlet var hidelabel: UILabel!
+
     @IBOutlet var otpTextFieldView: OTPFieldView!
     var PhoneNumber : String = ""
     var verificationID: String?
@@ -27,6 +34,7 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
         // Retrieve the saved phone number from UserDefaults
         if let savedPhoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") {
             self.label.text = savedPhoneNumber
+            
         }
 
         
@@ -37,10 +45,59 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+        
+        
+        setupResendCode()
+              startTimer()
     }
     deinit {
            NotificationCenter.default.removeObserver(self)
        }
+    
+    func setupResendCode() {
+          resendButton.isEnabled = false
+          resendButton.alpha = 0.5 // Dim the button to indicate it's disabled
+      }
+      
+      func startTimer() {
+          timerLabel.text = "Resend code in " + timeFormatted(totalTime)
+          timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+      }
+      
+      @objc func updateTimer() {
+          if totalTime > 0 {
+              totalTime -= 1
+              timerLabel.text = timeFormatted(totalTime)
+          } else {
+              // Timer ends
+              timer?.invalidate()
+              timer = nil
+              enableResendCode()
+          }
+      }
+      
+      func enableResendCode() {
+          resendButton.isEnabled = true
+          resendButton.alpha = 1.0 // Reset button appearance
+          timerLabel.text = "Resend code"
+      }
+      
+      func timeFormatted(_ totalSeconds: Int) -> String {
+          let minutes = totalSeconds / 60
+          let seconds = totalSeconds % 60
+          return String(format: "%d:%02d", minutes, seconds)
+      }
+      
+      // Resend code action
+      @IBAction func resendCodePressed(_ sender: UIButton) {
+          print("Resend code tapped")
+          totalTime = 119 // Reset timer to 1:59
+          setupResendCode()
+          startTimer()
+          let token = UserDefaults.standard.string(forKey: "authToken") ?? "defaultToken"
+         makePostRequestforverify(token: token)
+          // Add API call or logic to resend the code here
+      }
 
        func setupGestureRecognizer() {
            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -65,34 +122,38 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
         
     func verify(){
         
-                guard let verificationID = verificationID else { return }
-                let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: verificationCode)
+        guard let verificationID = verificationID else { return }
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: verificationCode)
         
         Auth.auth().signIn(with: credential) { (authResult, error) in
-                    if let error = error {
-                        print("Error: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    authResult?.user.getIDToken(completion: { token, error in
-                          if let error = error {
-                              print("Error getting ID token: \(error.localizedDescription)")
-                              return
-                          }
-                          
-                          if let token = token {
-                              print("Auth token: \(token)")
-                              // Use the token as needed
-                              print("User signed in successfully",authResult ?? "")
-                              // Handle successful sign-in, navigate to the next screen
-                              
-                              
-                              self.makePostRequestforverify(token: token)
-                          }
-                      })
-                   
-                }
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
             }
+            
+            authResult?.user.getIDToken(completion: { token, error in
+                if let error = error {
+                    print("Error getting ID token: \(error.localizedDescription)")
+                    return
+                }
+                
+                if let token = token {
+                    print("Auth token: \(token)")
+                    // Use the token as needed
+                    UserDefaults.standard.set(token, forKey: "authToken")
+                    
+                    print("User signed in successfully",authResult ?? "")
+                    
+                    self.view.showToast(message: "Welcome to Gocab!")
+                    // Handle successful sign-in, navigate to the next screen
+                    
+                    
+                    self.makePostRequestforverify(token: token)
+                }
+            })
+            
+        }
+    }
     
     func connectSocket(token:String) {
         Messaging.messaging().token() { (fcmToken, error) in

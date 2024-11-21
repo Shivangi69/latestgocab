@@ -68,31 +68,120 @@ class ViewController: UIViewController {
         //PageControl
         pageControl.numberOfPages = onboardingSlides.count
     }
-        
+    
     private func updateCurrentPage() {
         pageControl.currentPage = currentPage
         
-        nextButton.setTitle(
-            currentPage == onboardingSlides.count - 1 ? "Get Started" : "Next" ,
-            for: .normal)
-        if(currentPage == 3){
-            nextButton.titleLabel?.textColor =  UIColor(named: "ThemeYellow")
-            skipButton.isHidden = true
-            nextButton.layer.cornerRadius = 10
-            nextButton.layer.borderColor = UIColor(named: "ThemeYellow")?.cgColor
-            nextButton.layer.borderWidth = 1
-            nextButton.contentHorizontalAlignment = .center // Center the text
-
-        }
-        else {
+        // Check if it's the last page
+        if currentPage == onboardingSlides.count - 1 {
+            // Style the "Get Started" button
+            nextButton.isHidden = false // Ensure button is visible
+            nextButton.setTitle("Get Started", for: .normal)
+            nextButton.setTitleColor(UIColor(named: "ThemeYellow"), for: .normal) // Yellow text color
+            nextButton.backgroundColor = .clear // Transparent background
+            nextButton.layer.borderColor = UIColor(named: "ThemeYellow")?.cgColor // Yellow border
+            nextButton.layer.borderWidth = 2
+            nextButton.layer.cornerRadius = 10 // Rounded button
             
-            nextButton.titleLabel?.textColor =  UIColor.black
-            skipButton.isHidden = false
-            nextButton.layer.cornerRadius = 10
-            nextButton.layer.borderColor = UIColor.black.cgColor
+            // Hide the skip button
+            skipButton.isHidden = true
+            
+            // Center the button and adjust its size
+            nextButton.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+                nextButton.widthAnchor.constraint(equalToConstant: 100),
+                nextButton.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        } else {
+            // Style the "Next" button for other pages
+            nextButton.isHidden = false // Ensure button is visible
+            nextButton.setTitle("Next", for: .normal)
+            nextButton.setTitleColor(UIColor.black, for: .normal) // Black text color
+            nextButton.backgroundColor = .clear // Transparent background
+            nextButton.layer.borderColor = UIColor.black.cgColor // Black border
             nextButton.layer.borderWidth = 1
+            nextButton.layer.cornerRadius = 10 // Slightly rounded corners
+            
+            // Show the skip button
+            skipButton.isHidden = false
         }
     }
+
+    
+    
+    
+    
+//    private func updateCurrentPage() {
+//        pageControl.currentPage = currentPage
+//        
+//        // Check if it's the last page
+//        if currentPage == onboardingSlides.count - 1 {
+//            // Style the "Get Started" button
+//            nextButton.isHidden = false // Ensure button is visible
+//            nextButton.setTitle("Get Started", for: .normal)
+//            nextButton.setTitleColor(UIColor.white, for: .normal) // White text color
+//            nextButton.backgroundColor = UIColor(named: "ThemeYellow") // Yellow background
+//            skipButton.isHidden = true // Hide the skip button
+//            
+//            nextButton.layer.cornerRadius = 10
+//            nextButton.layer.borderWidth = 0 // Remove border for cleaner look
+//            nextButton.contentHorizontalAlignment = .center // Center text inside button
+//
+//            // Center the button in the view
+//            nextButton.translatesAutoresizingMaskIntoConstraints = false
+//            NSLayoutConstraint.activate([
+//                nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//                nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+//                nextButton.widthAnchor.constraint(equalToConstant: 200),
+//                nextButton.heightAnchor.constraint(equalToConstant: 50)
+//            ])
+//        } else {
+//            // Style the "Next" button
+//            nextButton.isHidden = false // Ensure button is visible
+//            nextButton.setTitle("Next", for: .normal)
+//            nextButton.setTitleColor(UIColor.black, for: .normal) // Black text color
+//            nextButton.backgroundColor = UIColor.clear // Transparent background
+//            skipButton.isHidden = false // Show the skip button
+//            
+//            nextButton.layer.cornerRadius = 10
+//            nextButton.layer.borderColor = UIColor.black.cgColor // Black border
+//            nextButton.layer.borderWidth = 1
+//            nextButton.contentHorizontalAlignment = .center // Center text inside button
+//        }
+//    }
+
+
+    
+    
+    
+    
+//
+//    private func updateCurrentPage() {
+//        pageControl.currentPage = currentPage
+//        
+//        nextButton.setTitle(
+//            currentPage == onboardingSlides.count - 1 ? "Get Started" : "Next" ,
+//            for: .normal)
+//        if(currentPage == 3){
+//            nextButton.titleLabel?.textColor =  UIColor(named: "ThemeYellow")
+//            skipButton.isHidden = true
+//            nextButton.layer.cornerRadius = 10
+//            nextButton.layer.borderColor = UIColor(named: "ThemeYellow")?.cgColor
+//            nextButton.layer.borderWidth = 1
+//            nextButton.contentHorizontalAlignment = .center // Center the text
+//
+//        }
+//        else {
+//            
+//            nextButton.titleLabel?.textColor =  UIColor.black
+//            skipButton.isHidden = false
+//            nextButton.layer.cornerRadius = 10
+//            nextButton.layer.borderColor = UIColor.black.cgColor
+//            nextButton.layer.borderWidth = 1
+//        }
+//    }
     
     //MARK: - UIButton Action
     @IBAction func nextButtonTapped(_ sender: UIButton) {

@@ -243,6 +243,11 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
         cell.distance.text = "(" + formattedDistance + ")"
         cell.tripStatusvalue.text = travel.status!.rawValue.splitBefore(separator: { $0.isUppercase }).map { String($0) }.joined(separator: " ")
 
+        if travel.status?.rawValue ?? "" == "Finished" { // Assuming `.finish` is an enum case
+            cell.tripStatusvalue.textColor = UIColor.green // Set to green for finished status
+        } else {
+            cell.tripStatusvalue.textColor = UIColor.red // Set to red for all other statuses
+        }
         let localeLanguage = Locale.current.languageCode ?? "en"
         let pointsQuery = travel.points.enumerated().map { (index, point) in
             return "markers=color:red|label:\(index + 1)|\(point.latitude),\(point.longitude)"

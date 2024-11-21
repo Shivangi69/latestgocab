@@ -19,7 +19,7 @@ class Enterphonenumber: UIViewController {
             makePostRequestforverify()
         }
         else{
-            self.view.showToast(message: "Please select SMS to proceed!")
+            self.view.showToast(message: "WhatsApp OTP not available right now. Please Choose SMS")
         }
     }
     
@@ -125,7 +125,7 @@ class Enterphonenumber: UIViewController {
             
         } else if selectedButton == whatsappButton {
             selectedOption = "WhatsApp"
-            self.view.showToast(message: "Please select SMS to proceed!")
+            self.view.showToast(message: "WhatsApp OTP not available right now. Please Choose SMS")
 
         }
         
