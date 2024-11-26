@@ -215,13 +215,9 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
         
         if let startTimestamp = travel.startTimestamp {
             cell.startTimeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(startTimestamp / 1000)))
-            
-            
         }
         if let finishTimestamp = travel.finishTimestamp {
             cell.finishTimeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(finishTimestamp / 1000)))
-            
-            
         }
         cell.Amountlbl.text = MyLocale.formattedCurrency(amount: travel.costAfterVAT ?? 0, currency: travel.currency!)
         cell.idLabel.text =  "#" +  (travel.id.map { String($0) } ?? "")
@@ -271,15 +267,16 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
                         print("Failed to get address")
                     }
                 }
-            }else{
+            }
+            else {
+                
                 cell.destinationLabel.text = travel.addresses[0]
-
+                
             }
             
-            
-            
-            
-        } else {
+        }
+        
+        else {
             print("No waypoints available")
         }
 

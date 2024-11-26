@@ -334,7 +334,7 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
             
             let riderId = user.id ?? 0
             Task {
-                    do {
+                do {
                         // Call the delete API
                         let deleteResult = try await deletePrefAgency(agencyId: agencyId, riderId: riderId, token: token)
                         
@@ -355,9 +355,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
                         print("Error: \(error.localizedDescription)")
                     }
                 }
-            
-            
-            
       //  }
     }
     

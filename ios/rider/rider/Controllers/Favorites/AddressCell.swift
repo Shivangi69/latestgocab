@@ -20,8 +20,51 @@ class AddressCell: UICollectionViewCell {
     }
     
     @IBAction func onDeleteClicked(_ sender: Any) {
-        delegate?.delete(address: address!)
+    
+        // Create the confirmation alert
+        let confirmationAlert = UIAlertController(
+            title: "Delete Address",
+            message: "Are you sure you want to delete this address? This action cannot be undone.",
+            preferredStyle: .alert
+        )
+        
+        // "OK" action to confirm deletion
+        let confirmAction = UIAlertAction(title: "OK", style: .destructive) { _ in
+            // Perform the delete action
+            if let address = self.address {
+                self.delegate?.delete(address: address)
+            }
+        }
+        
+        // "Cancel" action to dismiss the alert
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        // Add actions to the alert
+        confirmationAlert.addAction(confirmAction)
+        confirmationAlert.addAction(cancelAction)
+        
+        // Present the alert
+        if let viewController = sender as? UIViewController {
+            viewController.present(confirmationAlert, animated: true, completion: nil)
+        } else if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let rootVC = windowScene.windows.first?.rootViewController {
+            rootVC.present(confirmationAlert, animated: true, completion: nil)
+        }
     }
+
+    
+    
+//    @IBAction func onDeleteClicked(_ sender: Any) {
+//        // Create the confirmation alert
+//        
+//    }
+   
+    
+    
+    
+    
+    
+    
     
 }
 protocol FavoriteAddressDialogDelegate: AnyObject {
