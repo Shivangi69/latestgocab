@@ -52,6 +52,7 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshList(self)
+       
     }
     
     @IBAction func onAddFavoriteClicked(_ sender: Any) {

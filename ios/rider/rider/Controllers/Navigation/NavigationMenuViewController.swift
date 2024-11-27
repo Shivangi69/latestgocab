@@ -53,6 +53,8 @@ class NavigationMenuViewController : MenuViewController {
         labelName.text = "\(user.firstName == nil ? "" : user.firstName!) \(user.lastName == nil ? "" : user.lastName!)"
         labelCredit.text = "\(user.mobileNumber!)"
     }
+    
+    
     @IBAction func PrefferedAggenc(_ sender: Any) {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return
@@ -62,6 +64,21 @@ class NavigationMenuViewController : MenuViewController {
             menuContainerViewController.hideSideMenu()
         }
     }
+    
+    
+    
+    
+    @IBAction func onpaymentClicked(_ sender: Any) {
+        guard let menuContainerViewController = self.menuContainerViewController else {
+            return
+        }
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentmethodViewController") as? PaymentmethodViewController {
+            (menuContainerViewController.contentViewControllers[0] as! UINavigationController).pushViewController(vc, animated: true)
+            menuContainerViewController.hideSideMenu()
+        }
+    }
+    
+    
     
     @IBAction func onTravelsClicked(_ sender: UIButton) {
         guard let menuContainerViewController = self.menuContainerViewController else {

@@ -51,6 +51,7 @@
 		08DD47CF2C22EA8400DF87DF /* notification.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 08DD47CE2C22EA8400DF87DF /* notification.mp3 */; };
 		08DD47D32C24041500DF87DF /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DD47D22C24041500DF87DF /* CustomUIView.swift */; };
 		08E0118E2C66127000E76609 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0118D2C66127000E76609 /* CustomTextField.swift */; };
+		183EACF12CF5ACD000C119CC /* PaymentmethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183EACF02CF5ACD000C119CC /* PaymentmethodViewController.swift */; };
 		4C215E9C238D17950013D720 /* AddCoupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C215E9B238D17950013D720 /* AddCoupon.swift */; };
 		4C215E9E238D1BA70013D720 /* GetCoupons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C215E9D238D1BA70013D720 /* GetCoupons.swift */; };
 		4C215EA0238D1BEC0013D720 /* ApplyCoupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C215E9F238D1BEC0013D720 /* ApplyCoupon.swift */; };
@@ -258,6 +259,7 @@
 		08DD47CE2C22EA8400DF87DF /* notification.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = notification.mp3; sourceTree = "<group>"; };
 		08DD47D22C24041500DF87DF /* CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
 		08E0118D2C66127000E76609 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		183EACF02CF5ACD000C119CC /* PaymentmethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentmethodViewController.swift; sourceTree = "<group>"; };
 		4C215E9B238D17950013D720 /* AddCoupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoupon.swift; sourceTree = "<group>"; };
 		4C215E9D238D1BA70013D720 /* GetCoupons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoupons.swift; sourceTree = "<group>"; };
 		4C215E9F238D1BEC0013D720 /* ApplyCoupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCoupon.swift; sourceTree = "<group>"; };
@@ -492,6 +494,14 @@
 				512ABDAA5C939C66CB2308D5 /* Pods_rider.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		183EACED2CF5AC4700C119CC /* payment */ = {
+			isa = PBXGroup;
+			children = (
+				183EACF02CF5ACD000C119CC /* PaymentmethodViewController.swift */,
+			);
+			path = payment;
 			sourceTree = "<group>";
 		};
 		4C215E99238D16500013D720 /* HTTP */ = {
@@ -736,6 +746,7 @@
 		624D3C2F1F1B33F600811758 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				183EACED2CF5AC4700C119CC /* payment */,
 				8491F8332CA423AD00E8DDF8 /* Preffered */,
 				62DB4575232A436700B7722E /* Finish */,
 				62F12DD722EDFC3A00434A05 /* Navigation */,
@@ -1273,6 +1284,7 @@
 				622CCBBB219D734F003A4CCE /* CouponsCollectionViewController.swift in Sources */,
 				4CB5FC4C23A79FC700F2D5BC /* MenuTransitioningDelegate.swift in Sources */,
 				0810F5EE2CBFBB6B00A24820 /* SheetViewController.swift in Sources */,
+				183EACF12CF5ACD000C119CC /* PaymentmethodViewController.swift in Sources */,
 				4CB5FC2823A79F2C00F2D5BC /* WriteComplaint.swift in Sources */,
 				62972936223B92EC0084E2BB /* LookingViewController.swift in Sources */,
 				4CB5FC7B23A7A2D000F2D5BC /* PaymentGateway.swift in Sources */,

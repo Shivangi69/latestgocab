@@ -24,7 +24,6 @@ struct PreferredAgency: Codable {
     let agencyName: String
     let priority: Int = 0
     
-    
 //    let id: Int
 //    let agencyName: String
 //    let status: String

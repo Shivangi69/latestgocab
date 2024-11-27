@@ -11,6 +11,8 @@ import UIKit
 class AddressCell: UICollectionViewCell {
     @IBOutlet weak var textTitle: UILabel!
     var address:Address?
+//    @IBOutlet weak var deleteButton: UIButton! // Outlet for the delete button
+
     weak var delegate:FavoriteAddressDialogDelegate?
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var textAddress: UILabel!
@@ -18,7 +20,19 @@ class AddressCell: UICollectionViewCell {
     @IBAction func onEditClicked(_ sender: Any) {
         delegate?.update(address: address!)
     }
-    
+    override func awakeFromNib() {
+            super.awakeFromNib()
+//            setupUI()
+        }
+
+//    func setupUI() {
+//           // Set the cross image for the delete button
+////           deleteButton.setImage(UIImage(named: "cross_icon"), for: .normal)
+//
+//           // Optional: Adjust image content mode or insets if necessary
+//           deleteButton.imageView?.contentMode = .scaleAspectFit
+//           deleteButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//       }
     @IBAction func onDeleteClicked(_ sender: Any) {
     
         // Create the confirmation alert
