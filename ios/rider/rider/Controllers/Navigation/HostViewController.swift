@@ -13,7 +13,6 @@ class HostViewController : MenuContainerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let screenSize: CGRect = UIScreen.main.bounds
         self.transitionOptions = TransitionOptions(duration: 0.4, visibleContentWidth: screenSize.width / 3)
         
@@ -25,6 +24,7 @@ class HostViewController : MenuContainerViewController {
         
         // Select initial content controller. It's needed even if the first view controller should be selected.
         self.selectContentViewController(contentViewControllers.first!)
+        
     }
 
     override func didReceiveMemoryWarning() {

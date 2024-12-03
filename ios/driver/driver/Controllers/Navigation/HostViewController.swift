@@ -36,12 +36,8 @@ class HostViewController : MenuContainerViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        /*
-         Options to customize menu transition animation.
-         */
         var options = TransitionOptions()
         
-        // Animation duration
         options.duration = size.width < size.height ? 0.4 : 0.6
         
         // Part of item content remaining visible on right when menu is shown

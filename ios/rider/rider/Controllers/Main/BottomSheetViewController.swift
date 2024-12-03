@@ -349,7 +349,7 @@ class BottomSheetViewController: UIViewController, UITableViewDelegate, UITableV
         if indexPath.row == 0 {
             // Pickup Location Cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "PickupLocationCell", for: indexPath) as! PickupLocationCell
-            cell.pickupLocationTextField.text = pickupLocation == nil ? "Set Pickup Location" : pickupLocationstr  // Replace with actual address or description
+            cell.pickupLocationTextField.text = pickupLocation == nil ? "Set Pickup Location" : pickupLocationstr
             cell.pickupLocationTextField.delegate = self
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openAutocompleteForPickupLocation))
             cell.pickupLocationTextField.isUserInteractionEnabled = true

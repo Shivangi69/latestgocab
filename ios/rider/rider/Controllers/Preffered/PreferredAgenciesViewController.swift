@@ -34,7 +34,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
                     print("Agency Name: \(agency.agencyName), Status: \(agency.priority)")
                     self.selectedAgencies.append(agency.agencyName)
                     self.selectedAgenciesID.append(agency.agencyId)
-                   
 
                 }
                 DispatchQueue.main.async {
@@ -49,25 +48,74 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         setupEmptyState()
         setupTableView()
         setupAddAgencyButton()
+        if selectedAgencies.isEmpty {
+            setupSkiButton()
+            
+        }
+//        else  {
+//            setupDoneButton()
+//        }
+        
+        
         setupDoneButton()
+       
         updateUI()
+       
     }
     let doneButton = UIButton()
+    let Skipbutton = UIButton()
+    let messageLabel = UILabel()
 
+    func setupSkiButton() {
+        // Configure the Skip button
+        Skipbutton.frame = CGRect(
+            x: 50,
+            y: view.frame.height - 150, // Positioned higher than the label
+            width: view.frame.width - 100,
+            height: 50
+        )
+        let attributedString = NSAttributedString(string: " Skip ", attributes: [
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
+        Skipbutton.setAttributedTitle(attributedString, for: .normal)
+        Skipbutton.setTitleColor(.black, for: .normal)
+
+
+        view.addSubview(Skipbutton)
+        
+        messageLabel.frame = CGRect(
+            x: 20,
+            y: Skipbutton.frame.maxY + 20, // Positioned below the Skip button with some spacing
+            width: view.frame.width - 40,
+            height: 60
+        )
+        messageLabel.text = "Pick 3 preferred agencies. Drivers from your selected agencies will be contacted first in the defined order and then from the rest."
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        messageLabel.textColor = .gray
+        messageLabel.numberOfLines = 5
+        messageLabel.lineBreakMode = .byWordWrapping
+        view.addSubview(messageLabel)
+    }
+
+
+    
     func setupDoneButton() {
         doneButton.frame = CGRect(x: 50, y: view.frame.height - 80, width: view.frame.width - 100, height: 50)
-        
-        
         let attributedString = NSAttributedString(string: " Done ", attributes: [
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ])
 
         doneButton.setAttributedTitle(attributedString, for: .normal)
         doneButton.setTitleColor(UIColor(named: "ThemeBlue"), for: .normal)
+        messageLabel.isHidden = true
 //        doneButton.backgroundColor = UIColor(named: "ThemeBlue")
 //        doneButton.layer.cornerRadius = 10
         doneButton.addTarget(self, action: #selector(reorderAgencies), for: .touchUpInside)
         view.addSubview(doneButton)
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
+                        self.navigationController!.pushViewController(vc, animated: true)
+                }
     }
     @objc func reorderAgencies() {
         // Construct the reordered list with indices
@@ -160,7 +208,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
             return
         }
 
-        // Create a URLRequest
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -182,10 +229,13 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
                 return
             }
             
-            // Parse the JSON response
+            
+            
             do {
                 let preferredAgencyResponse = try JSONDecoder().decode(PreferredAgencyResponse.self, from: data)
                 completion(.success(preferredAgencyResponse.data.preferredAgencies))
+                
+                
             } catch let decodingError {
                 completion(.failure(decodingError))
             }
@@ -197,6 +247,7 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
     
     
     // Setup empty state view
+    
     func setupEmptyState() {
         emptyStateLabel.text = "You don't have any agencies selected :("
         emptyStateLabel.textAlignment = .center
@@ -216,8 +267,9 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         noOfselectedlabel.frame = CGRect(x: view.frame.width/2 + 10, y: 80, width: view.frame.width/2, height: 50)
         noOfselectedlabel.isHidden = true
         view.addSubview(noOfselectedlabel)
-        
     }
+    
+    
     
     // Setup table view to show selected agencies
     func setupTableView() {
@@ -229,7 +281,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         tableView.backgroundColor = UIColor(named: "ThemeGrey")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "agencyCell")
         self.tableView.isEditing = true
-
         view.addSubview(tableView)
     }
     
@@ -237,7 +288,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
     func setupAddAgencyButton() {
         addAgencyButton.frame = CGRect(x: 50, y:tableView.frame.origin.y +  tableView.frame.size.height + 30, width: view.frame.width - 100, height: 50)
 //        addAgencyButton.setTitle("Add Agency", for: .normal)
-        
         let attributedString = NSAttributedString(string: " + Add ", attributes: [
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ])
@@ -253,13 +303,21 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
     func updateUI() {
         if selectedAgencies.isEmpty {
             tableView.isHidden = true
+            Skipbutton.isHidden = false
+            messageLabel.isHidden = false
+            doneButton.isHidden = true
             emptyStateLabel.isHidden = false
             tableView.frame.size.height =  CGFloat(selectedAgencies.count * 60)
             selectedLabel.isHidden = true
             noOfselectedlabel.isHidden = true
 
-        } else {
+        }
+        else {
             tableView.isHidden = false
+            Skipbutton.isHidden = true
+            messageLabel.isHidden = true
+//            messageLabel.isHidden = true
+            doneButton.isHidden = false
             emptyStateLabel.isHidden = true
             tableView.frame.size.height =  CGFloat(selectedAgencies.count * 60)
             selectedLabel.isHidden = true
@@ -268,10 +326,13 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
 
         }
         addAgencyButton.frame.origin.y =  tableView.frame.origin.y +  tableView.frame.size.height + 30
-        if (selectedAgencies.count >= 3){
+        if (selectedAgencies.count >= 3)   {
+            
             addAgencyButton.isHidden = true
+            
         }
-        else{  addAgencyButton.isHidden = false
+        else {
+            addAgencyButton.isHidden = false
         }
         tableView.reloadData()
     }
@@ -303,60 +364,162 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedAgencies.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "agencyCell", for: indexPath)
         cell.textLabel?.text = selectedAgencies[indexPath.row]
         cell.backgroundColor = UIColor(named: "ThemeGrey")
 
-        // Configure delete button
         let deleteButton = UIButton(type: .system)
-        deleteButton.setTitle("❌", for: .normal) // Use an emoji or an image for the delete icon
-        deleteButton.titleLabel?.font = UIFont.systemFont(ofSize: 20) // Adjust size as needed
+        deleteButton.setTitle("❌", for: .normal)
+        deleteButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         deleteButton.tag = indexPath.row // Set tag to identify the cell
         deleteButton.addTarget(self, action: #selector(deleteAgency(_:)), for: .touchUpInside)
 
-        // Add delete button to the right of the cell
         deleteButton.frame = CGRect(x: cell.bounds.width - 150, y: 0, width: 60, height: cell.bounds.height)
         deleteButton.autoresizingMask = [.flexibleLeftMargin, .flexibleHeight]
         
         cell.contentView.addSubview(deleteButton)
-        
         return cell
     }
 
-    // Delete agency action
     @objc func deleteAgency(_ sender: UIButton) {
-            let agencyId = selectedAgenciesID[sender.tag]  // Replace with actual way to get agencyId
-              
-            let user = try! Rider(from: UserDefaultsConfig.user!)
-            let token = UserDefaultsConfig.jwtToken ?? ""
-           
-            
-            let riderId = user.id ?? 0
-            Task {
-                do {
-                        // Call the delete API
-                        let deleteResult = try await deletePrefAgency(agencyId: agencyId, riderId: riderId, token: token)
-                        
-                        // Check if the deletion was successful
-                        if deleteResult.success {
-                            // Remove the deleted agency from the local list
-                            DispatchQueue.main.async {
-                                self.selectedAgencies.remove(at: sender.tag)
-                                self.selectedAgenciesID.remove(at: sender.tag)
-                                self.tableView.reloadData()
-                                self.updateUI()
-                            }
-                            print("Agency deleted successfully: \(deleteResult.message)")
-                        } else {
-                            print("Failed to delete agency: \(deleteResult.message)")
-                        }
-                    } catch {
-                        print("Error: \(error.localizedDescription)")
+        let agencyId = selectedAgenciesID[sender.tag]  // Replace with actual way to get agencyId
+        
+        let user = try! Rider(from: UserDefaultsConfig.user!)
+        let token = UserDefaultsConfig.jwtToken ?? ""
+        
+        
+        let riderId = user.id ?? 0
+        Task {
+            do {
+                // Call the delete API
+                let deleteResult = try await deletePrefAgency(agencyId: agencyId, riderId: riderId, token: token)
+                
+                // Check if the deletion was successful
+                if deleteResult.success {
+                    // Remove the deleted agency from the local list
+                    DispatchQueue.main.async {
+                        self.selectedAgencies.remove(at: sender.tag)
+                        self.selectedAgenciesID.remove(at: sender.tag)
+                        self.tableView.reloadData()
+                        self.updateUI()
+                    }
+                    print("Agency deleted successfully: \(deleteResult.message)")
+                } else {
+                    print("Failed to delete agency: \(deleteResult.message)")
+                }
+            } catch {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
+        
+    }
+    
+    @objc func showDeleteConfirmation(_ sender: UIButton) {
+        let index = sender.tag
+        let agency = selectedAgencies[index]
+
+        let alert = UIAlertController(
+            title: "Remove Agency",
+            message: "Are you sure you want to remove \(agency) from the list?",
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { [weak self] _ in
+            self?.deleteAgencyFromServer(at: index) // Call server-side delete
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        if let viewController = self.parent {
+            viewController.present(alert, animated: true, completion: nil)
+        }
+    }
+
+    func deleteAgencyFromServer(at index: Int) {
+        let agencyId = selectedAgenciesID[index]
+        let user = try! Rider(from: UserDefaultsConfig.user!)
+        let token = UserDefaultsConfig.jwtToken ?? ""
+        let riderId = user.id ?? 0
+
+        Task {
+            do {
+                // Call the delete API
+                let deleteResult = try await deletePrefAgency(agencyId: agencyId, riderId: riderId, token: token)
+
+                if deleteResult.success {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.deleteAgency(at: index) // Use the local delete function
+                    }
+                    print("Agency deleted successfully: \(deleteResult.message)")
+                } else {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.showErrorAlert(message: deleteResult.message)
                     }
                 }
-      //  }
+            } catch {
+                DispatchQueue.main.async { [weak self] in
+                    self?.showErrorAlert(message: error.localizedDescription)
+                }
+                print("Error: \(error.localizedDescription)")
+            }
+        }
     }
+
+    func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        if let viewController = self.parent {
+            viewController.present(alert, animated: true, completion: nil)
+        }
+    }
+
+
+    func deleteAgency(at index: Int) {
+        selectedAgencies.remove(at: index)
+        selectedAgenciesID.remove(at: index)
+        tableView.reloadData()
+        updateUI()
+    }
+    
+    // Delete agency action
+//    @objc func deleteAgency(_ sender: UIButton) {
+//            let agencyId = selectedAgenciesID[sender.tag]  // Replace with actual way to get agencyId
+//              
+//            let user = try! Rider(from: UserDefaultsConfig.user!)
+//            let token = UserDefaultsConfig.jwtToken ?? ""
+//           
+//            
+//            let riderId = user.id ?? 0
+//            Task {
+//                do {
+//                        // Call the delete API
+//                    let deleteResult = try await deletePrefAgency(agencyId: agencyId, riderId: riderId, token: token)
+//                        
+//                        // Check if the deletion was successful
+//                        if deleteResult.success {
+//                            // Remove the deleted agency from the local list
+//                            DispatchQueue.main.async {
+//                                self.selectedAgencies.remove(at: sender.tag)
+//                                self.selectedAgenciesID.remove(at: sender.tag)
+//                                self.tableView.reloadData()
+//                                self.updateUI()
+//                            }
+//                            
+//                            print("Agency deleted successfully: \(deleteResult.message)")
+//                            
+//                        } else {
+//                            
+//                            print("Failed to delete agency: \(deleteResult.message)")
+//                        }
+//                    }
+//                catch {
+//                        print("Error: \(error.localizedDescription)")
+//                    }
+//                }
+//      //  }
+//    }
     
 }
 extension PreferredAgenciesViewController: SearchAgencyPopupDelegate {

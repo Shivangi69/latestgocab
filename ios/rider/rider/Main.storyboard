@@ -96,7 +96,7 @@
         <!--Go Cabs-->
         <scene sceneID="T5a-z9-I7u">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Dee-gZ-TbI" customClass="MainViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" modalPresentationStyle="fullScreen" id="Dee-gZ-TbI" customClass="MainViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="93Y-mY-aXb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1696,6 +1696,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="VerifyOtp:" destination="EM2-os-SsJ" eventType="touchUpInside" id="H15-Dn-Mx3"/>
+                                    <action selector="verifybutton:" destination="Mda-GY-0q6" eventType="touchUpInside" id="2of-mp-2N7"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sMM-w1-OdA" customClass="CustomUIView" customModule="Go_Cabs_Rider" customModuleProvider="target">
@@ -5363,7 +5364,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
         <image name="unnamed (1)" width="300" height="295"/>
         <image name="whatsapp 1" width="25" height="25"/>
         <namedColor name="ThemeYellow">
-            <color red="0.99599999189376831" green="0.88999998569488525" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99607843137254903" green="0.8901960784313725" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="avatarViewBackground">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

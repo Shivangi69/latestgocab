@@ -15,12 +15,11 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var finishTimeLabel: UILabel!
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var driverImage: UIImageView!
-    
     @IBOutlet weak var carNumber: UILabel!
     @IBOutlet weak var menuicon: UIImageView!
     @IBOutlet weak var tripStatusvalue: UILabel!
-    
     @IBAction func GetInvoiceAction(_ sender: Any) {
+        
     }
     @IBOutlet weak var cartype: UILabel!
     @IBOutlet weak var AgencyName: UILabel!
@@ -30,11 +29,9 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var Amountlbl: UILabel!
     @IBOutlet weak var idLabel: UILabel!
     
-    
     var complainAction: (() -> Void)?
-       var deleteAction: (() -> Void)?
+    var deleteAction: (() -> Void)?
        
-    
     
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -46,15 +46,64 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
     }
     
     //MARK: Properties
-    
+    private let addButton = UIButton(type: .system)
+
     var addresses = [Address]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        setupAddButton()
+
         self.refreshList(self)
-       
+
     }
+    func setupAddButton() {
+         // Configure button properties
+         addButton.setTitle("Add New Address", for: .normal)
+         addButton.setTitleColor(.systemBlue, for: .normal)
+         addButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+         addButton.addTarget(self, action: #selector(onAddFavoriteClicked(_:)), for: .touchUpInside)
+         
+         // Add button to the view
+         view.addSubview(addButton)
+         
+         // Set up Auto Layout constraints
+         addButton.translatesAutoresizingMaskIntoConstraints = false
+         NSLayoutConstraint.activate([
+             addButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
+             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+             addButton.heightAnchor.constraint(equalToConstant: 40),
+         ])
+     }
     
+//    @IBAction func onAddFavoriteClicked2(_ sender: Any) {
+//        let vc = FavoriteAddressDialogViewController(nibName: "FavoriteAddressDialogViewController", bundle: nil)
+//        vc.preferredContentSize = CGSize(width: 1000,height: 400)
+//        let dialog = UIAlertController(title: NSLocalizedString("Favorite Address", comment: "Favorites Add Dialog Title"), message: "", preferredStyle: .alert)
+//        dialog.setValue(vc, forKey: "contentViewController")
+//        dialog.addAction(UIAlertAction(title: NSLocalizedString("Done", comment: ""), style: .default) { action in
+//            if let title = vc.textTitle.text, title.isEmpty {
+//                SPAlert.present(title: NSLocalizedString("Title is required", comment: ""), preset: .exclamation)
+//                return
+//            }
+//            let address = Address()
+//            address.title = vc.textTitle.text
+//            address.address = vc.textAddress.text
+//            address.location = vc.map.camera.centerCoordinate
+//            UpsertAddress(address: address).execute() { result in
+//                switch result {
+//                case .success(_):
+//                    self.refreshList(self)
+//                    
+//                case .failure(let error):
+//                    error.showAlert()
+//                }
+//            }
+//        })
+//        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        self.present(dialog, animated: true)
+//        
+//    }
     @IBAction func onAddFavoriteClicked(_ sender: Any) {
         let vc = FavoriteAddressDialogViewController(nibName: "FavoriteAddressDialogViewController", bundle: nil)
         vc.preferredContentSize = CGSize(width: 1000,height: 400)
@@ -81,7 +130,6 @@ class FavoritesViewController: UICollectionViewController, UICollectionViewDeleg
         })
         dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(dialog, animated: true)
-        
         
     }
     @IBAction func refreshList(_ sender: Any) {

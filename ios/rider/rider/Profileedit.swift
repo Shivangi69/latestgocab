@@ -528,7 +528,7 @@ extension Profileedit: OTPFieldViewDelegate {
         return false
     }
     
-    func shouldBecomeFirstResponderForOTP(otpTextFieldIndex index: Int) -> Bool {
+    func shouldBecomeFirstResponderForOTP(otpTextFieldIndex index: Int) -> Bool {   
         return true
         
     }

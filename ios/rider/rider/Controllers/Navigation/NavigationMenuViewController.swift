@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 import Kingfisher
 
 class NavigationMenuViewController : MenuViewController {
@@ -22,6 +21,7 @@ class NavigationMenuViewController : MenuViewController {
     override var prefersStatusBarHidden: Bool {
         return false
     }
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,8 +66,6 @@ class NavigationMenuViewController : MenuViewController {
     }
     
     
-    
-    
     @IBAction func onpaymentClicked(_ sender: Any) {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return
@@ -77,7 +75,6 @@ class NavigationMenuViewController : MenuViewController {
             menuContainerViewController.hideSideMenu()
         }
     }
-    
     
     
     @IBAction func onTravelsClicked(_ sender: UIButton) {
