@@ -35,7 +35,7 @@ public final class Service: Codable, Hashable, CustomStringConvertible {
     public var availableTimeFrom: String?
     public var availableTimeTo: String?
     public var wheelchairAccessible: Bool = false
-    public var seatingCapacity: Int = 0
+    public var seatingCapacity: Int?
     public var estimatedCostAfterCoupon:  Int = 0
 
     public func hash(into hasher: inout Hasher) {

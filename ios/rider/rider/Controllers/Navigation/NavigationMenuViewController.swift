@@ -99,7 +99,7 @@ class NavigationMenuViewController : MenuViewController {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return
         }
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Wallet") as? WalletViewController {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WalletViewController") as? WalletViewController {
             (menuContainerViewController.contentViewControllers[0] as! UINavigationController).pushViewController(vc, animated: true)
             menuContainerViewController.hideSideMenu()
         }

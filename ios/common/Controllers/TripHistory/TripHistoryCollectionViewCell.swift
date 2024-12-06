@@ -18,9 +18,7 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var carNumber: UILabel!
     @IBOutlet weak var menuicon: UIImageView!
     @IBOutlet weak var tripStatusvalue: UILabel!
-    @IBAction func GetInvoiceAction(_ sender: Any) {
-        
-    }
+  
     @IBOutlet weak var cartype: UILabel!
     @IBOutlet weak var AgencyName: UILabel!
     @IBOutlet weak var driverName: UILabel!
@@ -32,7 +30,58 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
     var complainAction: (() -> Void)?
     var deleteAction: (() -> Void)?
        
+    @IBAction func GetInvoiceAction(_ sender: Any) {
+         
+     
+        
+        
+        
+    }
     
+    
+    func getPreferredAgency(riderId: Int, token: String, completion: @escaping (Result<[PreferredAgency], Error>) -> Void) {
+        // Construct the URL
+        let urlString = Config.Backend  + "trips/invoice/" + "\(riderId)"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        // Set the Authorization header
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+        // Perform the API request
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            // Handle errors
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            // Check response and data
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200,
+                  let data = data else {
+                print("Invalid response or no data")
+                return
+            }
+            
+            
+            
+            do {
+                let preferredAgencyResponse = try JSONDecoder().decode(PreferredAgencyResponse.self, from: data)
+                completion(.success(preferredAgencyResponse.data.preferredAgencies))
+                
+                
+            } catch let decodingError {
+                completion(.failure(decodingError))
+            }
+        }
+        
+        task.resume()  // Start the task
+    }
     override func layoutSubviews() {
         super.layoutSubviews()
         background.layer.borderColor = UIColor.darkGray.cgColor

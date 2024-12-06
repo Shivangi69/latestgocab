@@ -939,7 +939,7 @@
                     </segments>
                     <color key="selectedSegmentTintColor" name="ThemeYellow"/>
                 </segmentedControl>
-                <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" id="WMt-8c-W1r">
+                <view hidden="YES" contentMode="scaleToFill" id="WMt-8c-W1r">
                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -1178,7 +1178,7 @@
         <!--Wallet-->
         <scene sceneID="Z3S-wS-NCr">
             <objects>
-                <viewController id="gOV-El-djk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalletViewController" id="gOV-El-djk" customClass="WalletViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oKG-c3-C4Q">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1565,6 +1565,12 @@
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B3T-iM-pbM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="aKG-zg-TZ3">
+                    <rect key="frame" x="0.0" y="0.0" width="75" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                </button>
             </objects>
             <point key="canvasLocation" x="4912.3076923076924" y="1286.0189573459716"/>
         </scene>
@@ -1602,7 +1608,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MYK-Vh-3A1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5045" y="381"/>
+            <point key="canvasLocation" x="4912" y="411"/>
         </scene>
         <!--Paymentmethod View Controller-->
         <scene sceneID="MGW-mu-d07">
@@ -3139,7 +3145,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                 <rect key="frame" x="0.0" y="252" width="390" height="592"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="GY2-5e-kfy">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="616.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="570"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noP-jE-cmr">
                                                 <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
@@ -3295,8 +3301,8 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                     <constraint firstItem="Yjq-8Y-4VO" firstAttribute="leading" secondItem="XUs-WZ-rxa" secondAttribute="trailing" constant="16" id="ryU-Cm-E1n"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O01-3L-E4e">
-                                                <rect key="frame" x="0.0" y="275" width="390" height="50"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O01-3L-E4e">
+                                                <rect key="frame" x="0.0" y="272.66666666666663" width="390" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wallet'" translatesAutoresizingMaskIntoConstraints="NO" id="cX1-t7-gU5">
                                                         <rect key="frame" x="20" y="13" width="24" height="24"/>
@@ -3326,7 +3332,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fk-Kk-Q5j">
-                                                <rect key="frame" x="0.0" y="330" width="390" height="50"/>
+                                                <rect key="frame" x="0.0" y="275" width="390" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5o-6b-HKZ">
                                                         <rect key="frame" x="60" y="8" width="73" height="34"/>
@@ -3356,8 +3362,8 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="R5o-6b-HKZ" secondAttribute="trailing" constant="20" symbolic="YES" id="tuu-HK-2Ie"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8K-uu-MYm">
-                                                <rect key="frame" x="0.0" y="385" width="390" height="50"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8K-uu-MYm">
+                                                <rect key="frame" x="0.0" y="327.66666666666663" width="390" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQM-YS-pNa">
                                                         <rect key="frame" x="60" y="8" width="103" height="34"/>
@@ -3388,7 +3394,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbY-2d-f50">
-                                                <rect key="frame" x="0.0" y="440" width="390" height="50"/>
+                                                <rect key="frame" x="0.0" y="330" width="390" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Edit Profile" translatesAutoresizingMaskIntoConstraints="NO" id="r2m-Ic-ySt">
                                                         <rect key="frame" x="20" y="13" width="24" height="24"/>
@@ -3418,7 +3424,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yW-aD-Yxv">
-                                                <rect key="frame" x="0.0" y="495" width="390" height="11.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="385" width="390" height="75"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SXu-Q5-XI6">
                                                         <rect key="frame" x="0.0" y="0.0" width="390" height="0.66666666666666663"/>
@@ -3428,10 +3434,10 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HFe-eh-Fvu">
-                                                        <rect key="frame" x="0.0" y="5.6666666666666288" width="390" height="6"/>
+                                                        <rect key="frame" x="0.0" y="5.6666666666666288" width="390" height="69.333333333333329"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Support" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIT-tH-vAU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="390" height="6"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="390" height="69.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -3452,7 +3458,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUD-VW-sK7">
-                                                <rect key="frame" x="0.0" y="511.66666666666663" width="390" height="50"/>
+                                                <rect key="frame" x="0.0" y="465" width="390" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="About" translatesAutoresizingMaskIntoConstraints="NO" id="Cz7-Wi-Z7s">
                                                         <rect key="frame" x="20" y="13" width="24" height="24"/>
@@ -3482,7 +3488,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRu-Ij-bWh">
-                                                <rect key="frame" x="0.0" y="566.66666666666663" width="390" height="50"/>
+                                                <rect key="frame" x="0.0" y="520" width="390" height="50"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Exit" translatesAutoresizingMaskIntoConstraints="NO" id="3XK-2Q-ZQF">
                                                         <rect key="frame" x="20" y="13" width="24" height="24"/>
@@ -3516,7 +3522,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="1yW-aD-Yxv" secondAttribute="trailing" id="4bU-gS-gyT"/>
                                             <constraint firstItem="1yW-aD-Yxv" firstAttribute="leading" secondItem="GY2-5e-kfy" secondAttribute="leading" id="hvY-MR-4Sj"/>
-                                            <constraint firstAttribute="height" constant="616.5" id="reG-ry-ynK"/>
+                                            <constraint firstAttribute="height" constant="570" id="reG-ry-ynK"/>
                                             <constraint firstItem="DUD-VW-sK7" firstAttribute="top" secondItem="1yW-aD-Yxv" secondAttribute="bottom" constant="5" id="u7M-RB-pbi"/>
                                         </constraints>
                                     </stackView>
@@ -4745,7 +4751,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
         <!--Wallet New View Controller-->
         <scene sceneID="Oj4-cO-sdt">
             <objects>
-                <viewController storyboardIdentifier="WalletNewViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="boD-r8-Idh" customClass="WalletNewViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="boD-r8-Idh" customClass="WalletNewViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="auZ-VP-fee">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

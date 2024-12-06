@@ -114,22 +114,31 @@ import UIKit
 import SPAlert
 import Kingfisher
 
-class RiderEditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+import MaterialComponents
+
+class RiderEditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var downloading = false
     var rider: Rider!
 
+    let menuview = MenuViewController()
     // UI Elements
     let scrollView = UIScrollView()
     let contentView = UIView()
     let profileImageView = UIImageView()
-    let mobileNumberLabel = UILabel()
-    let emailTextField = UITextField()
-    let firstNameTextField = UITextField()
-    let lastNameTextField = UITextField()
-    let genderSegmentedControl = UISegmentedControl(items: ["Male", "Female", "Unspecified"])
-    let addressTextField = UITextField()
-    let saveButton = UIButton(type: .system)
+    let emailTextField = MDCOutlinedTextField()
 
+    let mobileNumberLabel = MDCOutlinedTextField()
+    let firstNameTextField = MDCOutlinedTextField()
+    let lastNameTextField = MDCOutlinedTextField()
+    let genderNameTextField = MDCOutlinedTextField()
+
+    let addressTextField = MDCOutlinedTextField()
+    let saveButton = UIButton(type: .system)
+    let logoutButton = UIButton(type: .system)
+    let deleteAccountButton = UIButton(type: .system)
+
+    let genderSegmentedControl = UISegmentedControl(items: ["Male", "Female", "Unspecified"])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -142,13 +151,12 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
 
     func setupUI() {
         view.backgroundColor = .white
-        title = "Edit Profile"
+        title = "Your Account"
 
         // Setup ScrollView and ContentView
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
 
-        // Profile Image View
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = 50
         profileImageView.layer.masksToBounds = true
@@ -156,52 +164,165 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectProfileImage)))
         contentView.addSubview(profileImageView)
 
-        // Mobile Number Label
-        mobileNumberLabel.text = NSLocalizedString("Mobile Number", comment: "Profile Mobile Number field title")
+        
+        mobileNumberLabel.label.text = NSLocalizedString("Mobile Number", comment: "Profile Mobile Number field title")
+        mobileNumberLabel.placeholder = "Enter your mobile number"
+        mobileNumberLabel.leadingView = UIImageView(image: UIImage(systemName: "phone")?.withTintColor(.systemFill))
+        mobileNumberLabel.tintColor = .gray // Ensure icon color is always gray
+
+        mobileNumberLabel.leadingViewMode = .always
+        mobileNumberLabel.setOutlineColor(.gray, for: .normal)
+        mobileNumberLabel.setNormalLabelColor(.gray, for: .normal)
+        mobileNumberLabel.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(mobileNumberLabel)
 
-        // Email TextField
-        emailTextField.placeholder = NSLocalizedString("E-Mail", comment: "Profile Email field title")
-        emailTextField.borderStyle = .roundedRect
+        emailTextField.label.text = NSLocalizedString("E-Mail", comment: "Profile Email field title")
+        emailTextField.placeholder = "Enter your email"
+        emailTextField.leadingView = UIImageView(image: UIImage(systemName: "envelope"))
+        emailTextField.leadingViewMode = .always
+        emailTextField.sizeToFit()
+
+        // Styling
+        emailTextField.tintColor = .gray
+
+        emailTextField.setOutlineColor(.gray, for: .normal)
+        emailTextField.setNormalLabelColor(.gray, for: .normal)
+        emailTextField.font = UIFont.systemFont(ofSize: 14)
+
         contentView.addSubview(emailTextField)
 
-        // First Name TextField
-        firstNameTextField.placeholder = NSLocalizedString("First Name", comment: "Profile First Name Field")
-        firstNameTextField.borderStyle = .roundedRect
+        // Configure First Name TextField
+        firstNameTextField.label.text = NSLocalizedString("First Name", comment: "Profile First Name field")
+        firstNameTextField.tintColor = .gray // Ensure icon color is always gray
+        firstNameTextField.placeholder = "Enter your first name"
+        firstNameTextField.leadingView = UIImageView(image: UIImage(systemName: "person"))
+        firstNameTextField.leadingViewMode = .always
+        firstNameTextField.setOutlineColor(.gray, for: .normal)
+        firstNameTextField.setNormalLabelColor(.gray, for: .normal)
+        firstNameTextField.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(firstNameTextField)
 
-        // Last Name TextField
-        lastNameTextField.placeholder = NSLocalizedString("Last Name", comment: "Profile Last Name field")
-        lastNameTextField.borderStyle = .roundedRect
+        // Configure Last Name TextField
+        lastNameTextField.label.text = NSLocalizedString("Last Name", comment: "Profile Last Name field")
+        lastNameTextField.placeholder = "Enter your last name"
+        lastNameTextField.leadingView = UIImageView(image: UIImage(systemName: "person"))
+        lastNameTextField.leadingViewMode = .always
+        lastNameTextField.tintColor = .gray // Ensure icon color is always gray
+
+        lastNameTextField.setNormalLabelColor(.gray, for: .normal)
+        lastNameTextField.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(lastNameTextField)
 
-        // Gender Segmented Control
-        genderSegmentedControl.selectedSegmentIndex = 0
-        contentView.addSubview(genderSegmentedControl)
+        addressTextField.label.text = NSLocalizedString("Address", comment: "Profile Address field")
+        addressTextField.placeholder = "Enter your address"
+        addressTextField.leadingView = UIImageView(image: UIImage(systemName: "house"))
+        addressTextField.leadingViewMode = .always
+        addressTextField.setOutlineColor(.gray, for: .normal)
+        addressTextField.tintColor = .gray // Ensure icon color is always gray
 
-        // Address TextField
-        addressTextField.placeholder = NSLocalizedString("Address", comment: "Profile Address field title")
-        addressTextField.borderStyle = .roundedRect
+        addressTextField.setNormalLabelColor(.gray, for: .normal)
+        addressTextField.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(addressTextField)
+        
+        
+        
+//        // First Name TextField
+//        firstNameTextField.placeholder = NSLocalizedString("First Name", comment: "Profile First Name Field")
+//        firstNameTextField.borderStyle = .roundedRect
+//        contentView.addSubview(firstNameTextField)
 
-        // Save Button
-        saveButton.setTitle(NSLocalizedString("Save", comment: "Save button title"), for: .normal)
-        saveButton.addTarget(self, action: #selector(onSaveProfileClicked), for: .touchUpInside)
-        contentView.addSubview(saveButton)
+//        // Last Name TextField
+//        lastNameTextField.placeholder = NSLocalizedString("Last Name", comment: "Profile Last Name field")
+//        lastNameTextField.borderStyle = .roundedRect
+//        contentView.addSubview(lastNameTextField)
+
+        // Gender Segmented Control
+//        genderSegmentedControl.selectedSegmentIndex = 0
+//        contentView.addSubview(genderSegmentedControl)
+
+        genderNameTextField.label.text = NSLocalizedString("Gender", comment: "Profile Gender field")
+        genderNameTextField.tintColor = .gray // Ensure icon color is always gray
+        genderNameTextField.placeholder = "Enter Gender"
+        genderNameTextField.leadingView = UIImageView(image: UIImage(systemName: "female.circle"))
+        genderNameTextField.leadingViewMode = .always
+        genderNameTextField.setOutlineColor(.gray, for: .normal)
+        genderNameTextField.setNormalLabelColor(.gray, for: .normal)
+        genderNameTextField.font = UIFont.systemFont(ofSize: 14)
+        contentView.addSubview(genderNameTextField)
+        logoutButton.setTitle(NSLocalizedString("Logout", comment: "Logout button title"), for: .normal)
+        logoutButton.setTitleColor(.blue, for: .normal)
+        logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        logoutButton.addTarget(self, action: #selector(resetAppAndNavigateToSplash), for: .touchUpInside)
+
+
+        deleteAccountButton.setTitle(NSLocalizedString("Delete My Account", comment: "Delete my account button title"), for: .normal)
+        deleteAccountButton.setTitleColor(.red, for: .normal)
+        deleteAccountButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+//    deleteAccountButton.addTarget(self, action: #selector(deleteAccountButtonTapped), for: .touchUpInside)
+
+        // Adding the buttons to the content view
+        contentView.addSubview(logoutButton)
+        contentView.addSubview(deleteAccountButton)
+//
+//        saveButton.setTitle(NSLocalizedString("Save", comment: "Save button title"), for: .normal)
+//        saveButton.addTarget(self, action: #selector(onSaveProfileClicked), for: .touchUpInside)
+//        contentView.addSubview(saveButton)
     }
+    @objc func resetAppAndNavigateToSplash() {
+        print("Logout button tapped")
+        
+        // Clear user defaults
+        if let bundle = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundle)
+            UserDefaults.standard.synchronize()
+        }
+
+        // Hide the side menu (if applicable)
+        menuview.menuContainerViewController?.hideSideMenu()
+
+        // Get the active window
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return
+        }
+
+        // Instantiate the splash view controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let splashViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
+
+        // Reset the root view controller
+        let navigationController = UINavigationController(rootViewController: splashViewController)
+        window.rootViewController = navigationController
+
+        // Add a transition animation (optional)
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: nil) { _ in
+            window.makeKeyAndVisible()
+        }
+    }
+
 
     func layoutUI() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        mobileNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        genderSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        addressTextField.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
+           contentView.translatesAutoresizingMaskIntoConstraints = false
+           profileImageView.translatesAutoresizingMaskIntoConstraints = false
+           mobileNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+           emailTextField.translatesAutoresizingMaskIntoConstraints = false
+           firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
+           lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
+          genderNameTextField.translatesAutoresizingMaskIntoConstraints = false
+           addressTextField.translatesAutoresizingMaskIntoConstraints = false
+//           saveButton.translatesAutoresizingMaskIntoConstraints = false
 
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        deleteAccountButton.translatesAutoresizingMaskIntoConstraints = false
+
+        let nameStackView = UIStackView(arrangedSubviews: [firstNameTextField, lastNameTextField])
+        
+         nameStackView.axis = .horizontal
+         nameStackView.spacing = 10
+         nameStackView.distribution = .fillEqually
+         nameStackView.translatesAutoresizingMaskIntoConstraints = false
+         contentView.addSubview(nameStackView)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -227,25 +348,38 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
             emailTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             emailTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
-            firstNameTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
-            firstNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            firstNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            // Horizontal Name StackView
+                   nameStackView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
+                   nameStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+                   nameStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
-            lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 20),
-            lastNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            lastNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+//            firstNameTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
+//            firstNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+//            firstNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+//
+//            lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 20),
+//            lastNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+//            lastNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
-            genderSegmentedControl.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 20),
-            genderSegmentedControl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            genderSegmentedControl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-
-            addressTextField.topAnchor.constraint(equalTo: genderSegmentedControl.bottomAnchor, constant: 20),
+            genderNameTextField.topAnchor.constraint(equalTo: nameStackView.bottomAnchor, constant: 20),
+            genderNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            genderNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            addressTextField.topAnchor.constraint(equalTo: genderNameTextField.bottomAnchor, constant: 20),
             addressTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             addressTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-
-            saveButton.topAnchor.constraint(equalTo: addressTextField.bottomAnchor, constant: 20),
-            saveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+          
+            logoutButton.topAnchor.constraint(equalTo: addressTextField.bottomAnchor, constant: 20),
+            logoutButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+       
+               
+            deleteAccountButton.topAnchor.constraint(equalTo: logoutButton.bottomAnchor, constant: 15),
+            deleteAccountButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+         
+               
+            
+//            saveButton.topAnchor.constraint(equalTo: addressTextField.bottomAnchor, constant: 20),
+//            saveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+//            saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
     }
 
@@ -254,10 +388,16 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
             let url = URL(string: Config.Backend + address.replacingOccurrences(of: " ", with: "%20"))
             profileImageView.kf.setImage(with: url)
         }
-        mobileNumberLabel.text = NSLocalizedString("Mobile Number: ", comment: "Profile Mobile Number field title") + String(rider.mobileNumber!)
+        
+        
+        if let mobileNumber = rider.mobileNumber {
+            mobileNumberLabel.text = String(mobileNumber) // For standard UILabel or MDCOutlinedTextField
+        }
         emailTextField.text = rider.email
         firstNameTextField.text = rider.firstName
         lastNameTextField.text = rider.lastName
+        genderNameTextField.text = rider.gender
+
         if let gender = rider.gender?.capitalizingFirstLetter() {
             genderSegmentedControl.selectedSegmentIndex = ["Male", "Female", "Unspecified"].firstIndex(of: gender) ?? 0
         }
@@ -784,15 +924,15 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
 //    }
 //
 //    @objc func deleteAccountButtonTapped() {
-////        DeleteProfile().execute { result in
-////            switch result {
-////            case .success(_):
-////                UserDefaultsConfig.user = nil
-////                (UIApplication.shared.delegate as? AppDelegate)?.changeRootViewController(LoginViewController())
-////            case .failure(let error):
-////                print(error)
-////                SPAlert.present(title: "Error", message: error.localizedDescription, preset: .error)
-////            }
-////        }
+//        DeleteProfile().execute { result in
+//            switch result {
+//            case .success(_):
+//                UserDefaultsConfig.user = nil
+//                (UIApplication.shared.delegate as? AppDelegate)?.changeRootViewController(LoginViewController())
+//            case .failure(let error):
+//                print(error)
+//                SPAlert.present(title: "Error", message: error.localizedDescription, preset: .error)
+//            }
+//        }
 //    }
 //}

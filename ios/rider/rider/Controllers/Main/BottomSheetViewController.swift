@@ -434,19 +434,19 @@ class BottomSheetViewController: UIViewController, UITableViewDelegate, UITableV
                 let dlg = UIAlertController(title: NSLocalizedString("Saved locations", comment: "Favorites Picker Title"), message: NSLocalizedString("Chose the location from below picker", comment: "Favorites Picker Description"), preferredStyle: .alert)
                 dlg.setValue(vc, forKey: "contentViewController")
                 dlg.addAction(UIAlertAction(title: "Done", style: .default){ action in
-
-
-
+                    
+                    
+                    
                     let ann = MKPointAnnotation()
                     ann.coordinate = response[pickerView.selectedRow(inComponent: 0)].location!
                     ann.title = response[pickerView.selectedRow(inComponent: 0)].address!
-
-
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if index == 0 {
                         // Update pickup location
                         self.pickupLocation =  ann.coordinate
@@ -456,14 +456,14 @@ class BottomSheetViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     else if index == self.dropLocations.count + 1 {
                         self.dropLocationsStr.add(ann.title  ?? "")
-
-
-
+                        
+                        
+                        
                         self.pointsAnnotations.append(ann)
                         let newDropLocation = CLLocationCoordinate2D(latitude: ann.coordinate.latitude, longitude: ann.coordinate.longitude) // Replace with actual location
                         self.dropLocations.append(newDropLocation)
                         NotificationCenter.default.post(name: Notification.Name("Increaseheight"), object: nil)
-                            }
+                    }
                     else {
                         // Update drop location
                         let dropLocationIndex = index
@@ -473,18 +473,10 @@ class BottomSheetViewController: UIViewController, UITableViewDelegate, UITableV
                         self.dropLocationsStr.insert( ann.title ?? "", at: dropLocationIndex-1)
                         self.pointsAnnotations.remove(at: dropLocationIndex)
                         self.pointsAnnotations.insert(ann, at: dropLocationIndex)
-
-
+                        
+                        
                     }
                     self.tableView.reloadData()
-
-
-
-
-
-
-
-
                 })
                 dlg.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.present(dlg, animated: true)

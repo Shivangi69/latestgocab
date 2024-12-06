@@ -51,14 +51,19 @@ class BTTableViewCell: UITableViewCell {
         self.distance = Double(distance)
         self.duration = Double(duration)
         self.currency = currency
+        
+
+
+
 //        self.updatePrice()
         textTitle.text = service.title
 
-        discountcost.text = service.cost != nil ? "₹\(service.cost!)" : ""
+        pplcount.text = service.seatingCapacity != nil ? "₹\(service.seatingCapacity!)" : ""
         actualcost.text = service.baseFare != nil ? "₹ \(service.baseFare!)" : ""
         
-        pplcount.text = String(service.maxQuantity)
         
+//        discountcost.text = String(service.seatingCapacity)
+
 
 //        imageIcon.image = service.media
         if let media = service.media, let address = media.address {

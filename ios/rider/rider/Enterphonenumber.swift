@@ -13,6 +13,15 @@ class Enterphonenumber: UIViewController {
     @IBOutlet weak var VerifySource: ColoredButton!
     @IBOutlet weak var whatsappButton: UIButton!
     @IBOutlet weak var smsButton: UIButton!
+    
+    
+    
+    
+// MARK: - CodeAI Output
+    // *** PLEASE SUBSCRIBE TO GAIN CodeAI ACCESS! ***
+/// To subscribe, open CodeAI MacOS app and tap SUBSCRIBE
+    
+    
     private var selectedOption: String?
     @IBAction func verifyAction(_ sender: Any) {
         if   selectedOption == "SMS"{

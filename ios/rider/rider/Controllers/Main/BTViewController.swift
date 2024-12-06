@@ -114,12 +114,21 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.actualcost.text = ""
         }
 
+        print(service , " serviceprint%%%")
         if let offdic = service.cost {
             cell.discountcost.text = "₹ \(String(format: "%.2f", offdic))"
         } else {
             cell.discountcost.text = ""
         }
-        cell.pplcount.text = String(service.maxQuantity)
+        
+
+        if let pltcnt = service.seatingCapacity {
+            cell.discountcost.text = String(pltcnt)
+        } else {
+            cell.discountcost.text = ""
+        }
+
+        
         if let media = service.media, let address = media.address {
              let url = URL(string: Config.Backend + address)
              cell.imageIcon.kf.setImage(with: url)
