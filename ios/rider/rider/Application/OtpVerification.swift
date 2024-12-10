@@ -10,14 +10,16 @@ import OTPFieldView
 import FirebaseAuth
 import FirebaseMessaging
 import SPAlert
+import ProgressHUD
 
 class OtpVerification: UIViewController , UITextFieldDelegate{
     
     @IBOutlet var timerLabel: UILabel!
     @IBOutlet var resendButton: UIButton!
     
+    let countrycodevc =   CountryCodeVC()
     var timer: Timer?
-       var totalTime = 119 // 1:59 in seconds
+       var totalTime = 3 // 1:59 in seconds
        
     @IBOutlet var label: UILabel!
     @IBOutlet var hidelabel: UILabel!
@@ -45,8 +47,6 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
-        
-        
         setupResendCode()
               startTimer()
     }
@@ -54,6 +54,31 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
            NotificationCenter.default.removeObserver(self)
        }
     
+    func showAlertMessage(_ message : String){
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
+    func sentOTP() {
+        let phoneNumber = UserDefaults.standard.string(forKey: "phoneNumber")
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber ?? "nil", uiDelegate: nil) { (verificationID, error) in
+            if let error = error {
+                ProgressHUD.dismiss()
+                self.showAlertMessage("Failure: \(error.localizedDescription)")
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            
+            self.verificationID = verificationID
+            print("Verification code sent to \(phoneNumber)")
+            ProgressHUD.dismiss()
+            
+            // Show success message
+            self.showAlertMessage("OTP sent successfully to \(phoneNumber)")
+        }
+    }
+
     func setupResendCode() {
           resendButton.isEnabled = false
           resendButton.alpha = 0.5 // Dim the button to indicate it's disabled
@@ -64,23 +89,34 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
           timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
       }
       
-      @objc func updateTimer() {
-          if totalTime > 0 {
-              totalTime -= 1
-              timerLabel.text = timeFormatted(totalTime)
-          } else {
-              // Timer ends
-              timer?.invalidate()
-              timer = nil
-              enableResendCode()
-          }
-      }
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+
+    @objc func updateTimer() {
+        if totalTime > 0 {
+            totalTime -= 1
+            timerLabel.text = timeFormatted(totalTime)
+            print("Timer updated: \(timerLabel.text ?? "")") // Debug print
+        } else {
+            stopTimer() // Stop the timer when it's finished
+            enableResendCode() // Enable the resend code button
+        }
+    }
+
+
       
-      func enableResendCode() {
-          resendButton.isEnabled = true
-          resendButton.alpha = 1.0 // Reset button appearance
-          timerLabel.text = "Resend code"
-      }
+    func enableResendCode() {
+        resendButton.isEnabled = true
+        resendButton.alpha = 1.0 // Reset button appearance
+        timerLabel.text = "Resend code"
+        timerLabel.textColor = .blue
+        hidelabel.isHidden = true
+        timerLabel.textAlignment = .center
+        
+    }
+
       
       func timeFormatted(_ totalSeconds: Int) -> String {
           let minutes = totalSeconds / 60
@@ -88,16 +124,26 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
           return String(format: "%d:%02d", minutes, seconds)
       }
       
-      // Resend code action
-      @IBAction func resendCodePressed(_ sender: UIButton) {
-          print("Resend code tapped")
-          totalTime = 119 // Reset timer to 1:59
-          setupResendCode()
-          startTimer()
-          let token = UserDefaults.standard.string(forKey: "authToken") ?? "defaultToken"
-         makePostRequestforverify(token: token)
-          // Add API call or logic to resend the code here
-      }
+    @IBAction func resendCodePressed(_ sender: Any) {
+        print("Resend code tapped")
+
+        // Reset timer to 1:59
+        totalTime = 119
+        setupResendCode() // Setup resend button to be disabled initially
+        startTimer() // Start the countdown timer
+
+        // Fetch auth token from UserDefaults (or use a default token if not found)
+        let token = UserDefaults.standard.string(forKey: "authToken") ?? "defaultToken"
+        makePostRequestforverify(token: token) // Make post request to verify the token
+        
+        sentOTP()
+        hidelabel.isHidden = false
+        timerLabel.isHidden = false
+        resendButton.isHidden = true
+     
+        
+    }
+
 
        func setupGestureRecognizer() {
            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -147,8 +193,11 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                     self.view.showToast(message: "Welcome to Gocab!")
                     // Handle successful sign-in, navigate to the next screen
                     
-                    
                     self.makePostRequestforverify(token: token)
+                    self.stopTimer()
+                    // Temporarily hide the navigation bar when pushing MainViewController
+                   
+             
                 }
             })
             
@@ -168,13 +217,10 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                 case .success(_):
                     UserDefaults.standard.set("yes", forKey: "Firsttyme")
 
-                    
-//                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
-//
-//                        self.navigationController!.pushViewController(vc, animated: true)
-//                    }
-                
-                    self.performSegue(withIdentifier: "segueHost", sender: nil)
+                    DispatchQueue.main.async {
+                                      self.navigationController?.setNavigationBarHidden(true, animated: false)
+                                      self.performSegue(withIdentifier: "segueHost", sender: nil)
+                                  }
                     
                 case .failure(let error):
                     switch error {
@@ -311,7 +357,6 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
             self.otpTextFieldView.separatorSpace = 8
             self.otpTextFieldView.shouldAllowIntermediateEditing = false
             self.otpTextFieldView.delegate = self
-        
             self.otpTextFieldView.initializeUI()
         }
     

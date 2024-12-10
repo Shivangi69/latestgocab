@@ -109,12 +109,18 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
     @IBOutlet weak var containerServices: UIView!
     @IBOutlet weak var leftBarButton: UIBarButtonItem!
     @IBOutlet weak var buttonFavorites: UIBarButtonItem!
-    
     @IBOutlet weak var DropTextfeild: UITextField!
     @IBOutlet weak var PickuPtextfeild: UITextField!
+    let screen2 = OtpVerification()
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(goBackFromServiceSelection1), name: Notification.Name("goBackFromServiceSelectionNotification"), object: nil)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+
+//
+//        navigationController?.pushViewController(screen2, animated: true)
+//        screen2.hidesBottomBarWhenPushed = true
 
         AddmoreDesButton.isEnabled = false
         AddmoreDesButton.setTitle("", for: .normal)
@@ -162,6 +168,22 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
             }
         }
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: true)
+//    }
+
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: true)
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: true)
+//    }
+
+    
     @objc func handleCallDoneNotification(_ notification: Notification) {
 //        pointsAnnotations.removeAll()
 //        drawRoute(waypoints: [])

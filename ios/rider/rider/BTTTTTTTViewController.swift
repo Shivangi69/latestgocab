@@ -162,8 +162,9 @@ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> 
         }
 
         // Update other fields (image, etc.)
-        cell.pplcount.text = String(service.maxQuantity)
-        
+        cell.pplcount.text = service.seatingCapacity != nil ? "\(service.seatingCapacity!)" : ""
+//        pplcount.text = service.seatingCapacity != nil ? "₹\(service.seatingCapacity!)" : ""
+
         if let media = service.media, let address = media.address {
             let url = URL(string: Config.Backend + address)
             cell.imageIcon.kf.setImage(with: url)

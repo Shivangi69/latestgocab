@@ -435,8 +435,6 @@ class BottomSheetViewController: UIViewController, UITableViewDelegate, UITableV
                 dlg.setValue(vc, forKey: "contentViewController")
                 dlg.addAction(UIAlertAction(title: "Done", style: .default){ action in
                     
-                    
-                    
                     let ann = MKPointAnnotation()
                     ann.coordinate = response[pickerView.selectedRow(inComponent: 0)].location!
                     ann.title = response[pickerView.selectedRow(inComponent: 0)].address!

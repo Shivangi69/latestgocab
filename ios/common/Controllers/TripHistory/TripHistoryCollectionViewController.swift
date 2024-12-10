@@ -19,6 +19,8 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         let nibCell = UINib(nibName: cellIdentifier, bundle: nil)
         collectionView?.register(nibCell, forCellWithReuseIdentifier: cellIdentifier)
         self.refreshList(self)
@@ -229,7 +231,6 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
         distanceFormatter.unitStyle = .abbreviated
         distanceFormatter.units = .metric // Set units to metric
 
-      
         let distanceInMeters = Double(travel.distanceReal ?? 0)
         let formattedDistance = distanceFormatter.string(fromDistance: distanceInMeters)
 
@@ -239,6 +240,8 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
         cell.distance.text = "(" + formattedDistance + ")"
         cell.tripStatusvalue.text = travel.status!.rawValue.splitBefore(separator: { $0.isUppercase }).map { String($0) }.joined(separator: " ")
 
+     
+        
         if travel.status?.rawValue ?? "" == "Finished" { // Assuming `.finish` is an enum case
             cell.tripStatusvalue.textColor = UIColor.green // Set to green for finished status
         } else {
@@ -251,7 +254,9 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
 
         var mapUrl = "https://maps.googleapis.com/maps/api/staticmap?size=500x400&language=\(localeLanguage)&\(pointsQuery )&key=AIzaSyCW_G5rejKDXuhXYN8sITHhPRdX9_zbK5A"
 
+          
         
+         
         if let waypoints = travel.waypoints {
             let polylinePath = waypoints.map { "\($0.latitude),\($0.longitude)" }.joined(separator: "|")
             print(polylinePath)

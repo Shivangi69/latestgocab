@@ -8,9 +8,7 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
     @IBOutlet weak var Agency_image: UIImageView!
     @IBOutlet weak var AgencyNameText: UILabel!
     @IBOutlet weak var CarNameAndNum: UILabel!
-    
     @IBOutlet weak var Agency_View: UIView!
-    
     @IBOutlet weak var Agency_Address: UILabel!
     @IBOutlet weak var Agency_Year: UILabel!
     
@@ -629,11 +627,6 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
         }
         
         
-        
-        
-        
-        
-        
         switch travel.status! {
         case .RiderCanceled, .DriverCanceled:
             let alert = UIAlertController(title: NSLocalizedString("Message", comment: ""), message: NSLocalizedString("Service Has Been Canceled.", comment: ""), preferredStyle: .alert)
@@ -673,7 +666,6 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
         case .Started:
             buttonCall.isHidden = true
             buttonCallSlide.isHidden = true
-
             buttonMessage.isHidden = true
             buttonCancel.isHidden = true
             buttonCancelSlide.isHidden = true
@@ -719,7 +711,8 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Alright!", comment: ""), style: .default) { action in
                     self.requestRefresh()
                 })
-            } else {
+            }
+            else {
                 if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WalletNewViewController") as? WalletNewViewController {
                     vc.amount = Request.shared.costAfterVAT
                     vc.currency = Request.shared.currency

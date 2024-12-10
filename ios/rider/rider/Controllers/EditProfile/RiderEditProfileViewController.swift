@@ -153,7 +153,6 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         view.backgroundColor = .white
         title = "Your Account"
 
-        // Setup ScrollView and ContentView
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
 
@@ -208,9 +207,9 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         lastNameTextField.leadingView = UIImageView(image: UIImage(systemName: "person"))
         lastNameTextField.leadingViewMode = .always
         lastNameTextField.tintColor = .gray // Ensure icon color is always gray
-
         lastNameTextField.setNormalLabelColor(.gray, for: .normal)
         lastNameTextField.font = UIFont.systemFont(ofSize: 14)
+        
         contentView.addSubview(lastNameTextField)
 
         addressTextField.label.text = NSLocalizedString("Address", comment: "Profile Address field")
@@ -340,18 +339,20 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
             profileImageView.heightAnchor.constraint(equalToConstant: 100),
 
+            
+            
             mobileNumberLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 20),
             mobileNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             mobileNumberLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-
+            
             emailTextField.topAnchor.constraint(equalTo: mobileNumberLabel.bottomAnchor, constant: 20),
             emailTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             emailTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
             // Horizontal Name StackView
-                   nameStackView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
-                   nameStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-                   nameStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            nameStackView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
+            nameStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            nameStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
 //            firstNameTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
 //            firstNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -384,15 +385,17 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
     }
 
     func populateData() {
+        
         if let address = rider.media?.address {
             let url = URL(string: Config.Backend + address.replacingOccurrences(of: " ", with: "%20"))
             profileImageView.kf.setImage(with: url)
+            
         }
-        
         
         if let mobileNumber = rider.mobileNumber {
             mobileNumberLabel.text = String(mobileNumber) // For standard UILabel or MDCOutlinedTextField
         }
+        
         emailTextField.text = rider.email
         firstNameTextField.text = rider.firstName
         lastNameTextField.text = rider.lastName
@@ -435,7 +438,7 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         if let image = info[.originalImage] as? UIImage {
             profileImageView.image = image
             let data = image.jpegData(compressionQuality: 0.7)
-            // Upload the image
+
             UpdateProfileImage(data: data!).execute() { result in
                 switch result {
                 case .success(let response):

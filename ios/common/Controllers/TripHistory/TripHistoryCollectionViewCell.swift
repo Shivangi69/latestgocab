@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 
 class TripHistoryCollectionViewCell: UICollectionViewCell {
@@ -29,16 +30,221 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
     
     var complainAction: (() -> Void)?
     var deleteAction: (() -> Void)?
-       
+    let user = try! Rider(from: UserDefaultsConfig.user!)
+    let token = UserDefaultsConfig.jwtToken ?? ""
+   
+
     @IBAction func GetInvoiceAction(_ sender: Any) {
-         
-     
+        let tripId = 12345 // Replace with the actual trip ID you want to download the invoice for
+        let token = token // Replace with the actual token
+
+        // Call the downloadInvoice function
+        downloadInvoice(tripId: tripId, token: token) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    print("Invoice saved at: \(data)")
+
+                    
+                case .failure(let error):
+                    // Handle error
+                    print("Failed to download invoice: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+
+    
+    func createCustomDirectory() -> URL? {
         
+        let fileManager = FileManager.default
+        guard let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            print("Unable to access documents directory")
+            return nil
+        }
         
+        let customDirectoryURL = documentsURL.appendingPathComponent("Invoices")
+        if !fileManager.fileExists(atPath: customDirectoryURL.path) {
+            do {
+                try fileManager.createDirectory(at: customDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+                print("Custom directory created at: \(customDirectoryURL)")
+            } catch {
+                print("Failed to create custom directory: \(error.localizedDescription)")
+                return nil
+            }
+        }
+        return customDirectoryURL
+    }
+
+    // Function to save PDF to the custom directory
+    func savePDFToCustomDirectory(data: Data, filename: String) -> URL? {
+        guard let directoryURL = createCustomDirectory() else { return nil }
         
+        let fileURL = directoryURL.appendingPathComponent(filename)
+        do {
+            try data.write(to: fileURL)
+            print("PDF saved successfully at: \(fileURL)")
+            return fileURL
+        } catch {
+            print("Failed to save PDF: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
+    // Function to download invoice and save it
+//    func downloadInvoice(tripId: Int, token: String, completion: @escaping (Result<URL, Error>) -> Void) {
+//         let urlString = Config.Backend + "trips/invoice/\(1306)"
+//        guard let url = URL(string: urlString) else {
+//            print("Invalid URL")
+//            return
+//        }
+//        
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "GET"
+//        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//        
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                completion(.failure(error))
+//                return
+//            }
+//            
+//            guard let httpResponse = response as? HTTPURLResponse,
+//                  httpResponse.statusCode == 200,
+//                  let mimeType = httpResponse.mimeType, mimeType == "application/pdf",
+//                  let data = data else {
+//                print("Invalid response or data is not a PDF")
+//                return
+//            }
+//            
+//            // Save the PDF to the custom directory
+//            if let savedFileURL = self.savePDFToCustomDirectory(data: data, filename: "Invoice_\(tripId).pdf") {
+//                completion(.success(savedFileURL))
+//            } else {
+//                let saveError = NSError(domain: "FileSaveError", code: 500, userInfo: [NSLocalizedDescriptionKey: "Failed to save PDF to directory"])
+//                completion(.failure(saveError))
+//            }
+//        }
+//        
+//        task.resume()
+//    }
+   
+    
+    
+    func downloadInvoice(tripId: Int, token: String, completion: @escaping (Result<URL, Error>) -> Void) {
+        // Construct the URL for the API endpoint using the tripId
+        let urlString = Config.Backend + "trips/invoice/\(1306)"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        // Set the Authorization header with the token
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+        // Perform the network request
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            // Handle network error
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            // Check for valid response, status code, and content type
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200,
+                  let mimeType = httpResponse.mimeType, mimeType == "application/pdf",
+                  let data = data else {
+                print("Invalid response or data is not a PDF")
+                return
+            }
+            
+            // Define the folder path where you want to save the PDF
+            let fileManager = FileManager.default
+            let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let folderPath = documentsDirectory.appendingPathComponent("Invoices")
+            
+            // Create the folder if it doesn't exist
+            if !fileManager.fileExists(atPath: folderPath.path) {
+                do {
+                    try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    print("Error creating folder: \(error)")
+                    completion(.failure(error))
+                    return
+                }
+            }
+
+            // Define the file path for the PDF
+            let fileURL = folderPath.appendingPathComponent("invoice_\(tripId).pdf")
+            
+            // Save the PDF data to the file
+            do {
+                try data.write(to: fileURL)
+                print("PDF saved successfully at: \(fileURL.path)")
+                completion(.success(fileURL))
+            } catch {
+                print("Error saving PDF: \(error)")
+                completion(.failure(error))
+            }
+        }
+        
+        task.resume()  // Start the task
     }
     
+
+
+
     
+    
+    
+    
+    
+    
+    
+    
+    
+// func downloadInvoice(tripId: Int, token: String, completion: @escaping (Result<Data, Error>) -> Void) {
+//    // Construct the URL for the API endpoint using the tripId
+//    let urlString = Config.Backend + "trips/invoice/\(1306)"
+//    guard let url = URL(string: urlString) else {
+//        print("Invalid URL")
+//        return
+//    }
+//
+//    var request = URLRequest(url: url)
+//    request.httpMethod = "GET"
+//    
+//    // Set the Authorization header with the token
+//    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//
+//    // Perform the network request
+//    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//        // Handle network error
+//        if let error = error {
+//            completion(.failure(error))
+//            return
+//        }
+//
+//        // Check for valid response, status code, and content type
+//        guard let httpResponse = response as? HTTPURLResponse,
+//              httpResponse.statusCode == 200,
+//              let mimeType = httpResponse.mimeType, mimeType == "application/pdf",
+//              let data = data else {
+//            print("Invalid response or data is not a PDF")
+//            return
+//        }
+//        
+//        // Return the downloaded file data in the completion block
+//        completion(.success(data))
+//    }
+//    
+//    task.resume()  // Start the task
+//}
+
     func getPreferredAgency(riderId: Int, token: String, completion: @escaping (Result<[PreferredAgency], Error>) -> Void) {
         // Construct the URL
         let urlString = Config.Backend  + "trips/invoice/" + "\(riderId)"
@@ -82,6 +288,9 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
         
         task.resume()  // Start the task
     }
+    
+    
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         background.layer.borderColor = UIColor.darkGray.cgColor
@@ -93,11 +302,48 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
                 menuicon.addGestureRecognizer(tapGesture)
         
         
+        
     }
     @objc private func menuiconTapped() {
            showMenu()
        }
        
+    
+    
+//    if travel.status?.rawValue ?? "" == "Pending Review" {
+//
+//        let vc = FavoriteAddressDialogViewController(nibName: "FavoriteAddressDialogViewController", bundle: nil)
+//        vc.preferredContentSize = CGSize(width: 1000,height: 400)
+//        let dialog = UIAlertController(title: NSLocalizedString("Favorite Address", comment: "Favorites Add Dialog Title"), message: "", preferredStyle: .alert)
+//        dialog.setValue(vc, forKey: "contentViewController")
+//        dialog.addAction(UIAlertAction(title: NSLocalizedString("Done", comment: ""), style: .default) { action in
+//            if let title = vc.textTitle.text, title.isEmpty {
+//                SPAlert.present(title: NSLocalizedString("Title is required", comment: ""), preset: .exclamation)
+//                return
+//            }
+//            let address = Address()
+//            address.title = vc.textTitle.text
+//            address.address = vc.textAddress.text
+//            address.location = vc.map.camera.centerCoordinate
+//            UpsertAddress(address: address).execute() { result in
+//                switch result {
+//                case .success(_):
+//                    self.refreshList(self)
+//                    
+//                case .failure(let error):
+//                    error.showAlert()
+//                }
+//            }
+//        })
+//        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        self.present(dialog, animated: true)
+//
+//
+//
+//    }
+    
+    
+    
       private func showMenu() {
            guard let viewController = UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.rootViewController else {
                return
@@ -105,7 +351,6 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
            
            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
            
-          
           
           let hideAction = UIAlertAction(title: "Hide", style: .destructive) { _ in
                 // Show confirmation alert

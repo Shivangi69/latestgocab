@@ -58,10 +58,10 @@ class BTTableViewCell: UITableViewCell {
 //        self.updatePrice()
         textTitle.text = service.title
 
-        pplcount.text = service.seatingCapacity != nil ? "₹\(service.seatingCapacity!)" : ""
+//        pplcount.text = service.seatingCapacity != nil ? "₹\(service.seatingCapacity!)" : ""
         actualcost.text = service.baseFare != nil ? "₹ \(service.baseFare!)" : ""
         
-        
+        print(service.seatingCapacity)
 //        discountcost.text = String(service.seatingCapacity)
 
 

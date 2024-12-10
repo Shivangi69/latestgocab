@@ -18,6 +18,7 @@ public final class Driver: Codable, SenderType {
         }
     }
     
+    
     // MARK: Properties
     public var id: Int?
     public var firstName: String?

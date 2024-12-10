@@ -207,6 +207,8 @@ class CountryCodeVC: UIViewController {
     }
     func sentOTP(){
         let phoneNumber = (countryCode ?? "") +  (self.phonenumber.text ?? "")
+        UserDefaults.standard.setValue(phoneNumber, forKey: "phoneNumber")
+
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
             if let error = error {
                 ProgressHUD.dismiss()

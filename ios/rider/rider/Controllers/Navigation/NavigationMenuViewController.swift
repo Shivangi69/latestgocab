@@ -111,8 +111,6 @@ class NavigationMenuViewController : MenuViewController {
             
         }
         menuContainerViewController.contentViewControllers[0].performSegue(withIdentifier: "showCoupons", sender: nil)
-        print(menuContainerViewController.contentViewControllers)
-
         menuContainerViewController.hideSideMenu()
     }
     
@@ -176,32 +174,27 @@ class NavigationMenuViewController : MenuViewController {
 //            }
 //        }
 //    }
+    
+    
     @IBAction func onExitClicked(_ sender: UIButton) {
         // Clear user defaults
         if let bundle = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: bundle)
             UserDefaults.standard.synchronize()
         }
-
         // Hide the side menu
         menuContainerViewController?.hideSideMenu()
-
         // Get a reference to the app's window
         guard let window = UIApplication.shared.keyWindow else {
             return
         }
-
         // Instantiate the splash view controller
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let splashViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
-
         // Reset the root view controller of the window to the splash view controller
         let navigationController = UINavigationController(rootViewController: splashViewController)
-
         window.rootViewController = navigationController
-
 //        window.rootViewController = splashViewController
-
         // Add a transition animation (optional)
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }

@@ -205,7 +205,6 @@ public extension Notification.Name {
     static let serviceFinished = Notification.Name("serviceFinished")
     static let messageReceived = Notification.Name("messageReceived")
     static let supportMessageReceived = Notification.Name("supportMessageReceived")
-
     static let driverInfoChanged = Notification.Name("driverInfoChanged")
     static let cancelTravel = Notification.Name("cancelTravel")
     static let paid = Notification.Name("paid")

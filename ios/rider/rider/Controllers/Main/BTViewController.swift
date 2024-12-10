@@ -114,13 +114,14 @@ class BTViewController: UIViewController, UITableViewDataSource, UITableViewDele
             cell.actualcost.text = ""
         }
 
-        print(service , " serviceprint%%%")
+//        print(service , " serviceprint%%%")
         if let offdic = service.cost {
             cell.discountcost.text = "₹ \(String(format: "%.2f", offdic))"
         } else {
             cell.discountcost.text = ""
         }
-        
+        print(service.seatingCapacity)
+
 
         if let pltcnt = service.seatingCapacity {
             cell.discountcost.text = String(pltcnt)

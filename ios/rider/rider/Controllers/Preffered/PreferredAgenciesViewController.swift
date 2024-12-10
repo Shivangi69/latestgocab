@@ -18,7 +18,7 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
     var rider: Rider!
     let selectedLabel = UILabel()
     let noOfselectedlabel = UILabel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -50,12 +50,10 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         setupAddAgencyButton()
         if selectedAgencies.isEmpty {
             setupSkiButton()
-            
         }
 //        else  {
 //            setupDoneButton()
 //        }
-        
         
         setupDoneButton()
        
@@ -243,8 +241,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         
         task.resume()  // Start the task
     }
-
-    
     
     // Setup empty state view
     
