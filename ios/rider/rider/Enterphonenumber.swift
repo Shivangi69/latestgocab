@@ -13,20 +13,13 @@ class Enterphonenumber: UIViewController {
     @IBOutlet weak var VerifySource: ColoredButton!
     @IBOutlet weak var whatsappButton: UIButton!
     @IBOutlet weak var smsButton: UIButton!
-    
-    
-    
-    
-// MARK: - CodeAI Output
-    // *** PLEASE SUBSCRIBE TO GAIN CodeAI ACCESS! ***
-/// To subscribe, open CodeAI MacOS app and tap SUBSCRIBE
-    
-    
     private var selectedOption: String?
+    
     @IBAction func verifyAction(_ sender: Any) {
         if   selectedOption == "SMS"{
             makePostRequestforverify()
         }
+        
         else{
             self.view.showToast(message: "WhatsApp OTP not available right now. Please Choose SMS")
         }
@@ -37,74 +30,126 @@ class Enterphonenumber: UIViewController {
         // Update selection based on which button is tapped
         updateSelection(selectedButton: sender)
     }
-    func sentOTP(){
+    
+    func sentOTP() {
         ProgressHUD.animate("Loading")
         let phoneNumber = mobileTextStr
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                ProgressHUD.dismiss()
+        
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { [weak self] verificationID, error in
+            guard let self = self else {
                 return
-            }
-            self.verificationID = verificationID
-            print("Verification code sent to \(phoneNumber)")
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OtpVerification") as? OtpVerification {
-                vc.verificationID =  self.verificationID ?? ""
-                vc.PhoneNumber = phoneNumber
-                vc.From = "Registration"
-                self.navigationController!.pushViewController(vc, animated: true)
-                ProgressHUD.dismiss()
-
             }
             
-        }
-    }
-    
-    
-    
-    func makePostRequestforverify() {
-        let url = URL(string: Config.Backend + "rider")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let phoneNumber = mobileTextStr.replacingOccurrences(of: "+", with: "")
-        
-        let parameters: [String: Any] = [
-            "mobileNumber": phoneNumber,
-            "eula": EulaTextStr,
-            "communication_preference" : "sms"
-        ]
-        print(parameters)
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else { return }
-        request.httpBody = httpBody
-
-        let session = URLSession.shared
-        session.dataTask(with: request) { data, response, error in
+            ProgressHUD.dismiss()
+            
             if let error = error {
                 print("Error: \(error.localizedDescription)")
+                print("Error details: \(error)")
                 return
             }
-
-            guard let data = data else {
-                print("No data received")
+              
+            guard let verificationID = verificationID else {
+                print("Verification ID is nil.")
                 return
             }
-
-            do {
-                let jsonResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
-                print("Response JSON: \(jsonResponse)")
-
-                if let success = jsonResponse.success, success {
-                    // Store the user data in the UserManager
-                    self.sentOTP()
-                    // Handle the token if needed
-                   
-                }
-            } catch let jsonError {
-                print("JSON error: \(jsonError.localizedDescription)")
+            
+            self.verificationID = verificationID
+            print("Verification code sent to \(phoneNumber)")
+            
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OtpVerification") as? OtpVerification  {
+                vc.verificationID = verificationID
+                vc.PhoneNumber = phoneNumber
+                vc.From = "Registration"
+                self.navigationController?.pushViewController(vc, animated: true)
+            
             }
-        }.resume()
+        }
     }
+
+    
+    
+
+//    func sentOTP(){
+//        ProgressHUD.animate("Loading")
+//        let phoneNumber = mobileTextStr
+//        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
+//            if let error = error {
+//                print("Error: \(error.localizedDescription)")
+//                ProgressHUD.dismiss()
+//                return
+//            }
+//            self.verificationID = verificationID
+//            print("Verification code sent to \(phoneNumber)")
+//            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OtpVerification") as? OtpVerification {
+//                vc.verificationID =  self.verificationID ?? ""
+//                vc.PhoneNumber = phoneNumber
+//                vc.From = "Registration"
+//                self.navigationController!.pushViewController(vc, animated: true)
+//                ProgressHUD.dismiss()
+//
+//            }
+//            
+//        }
+//    }
+    func makePostRequestforverify() {
+           let url = URL(string: Config.Backend + "rider")!
+           var request = URLRequest(url: url)
+           request.httpMethod = "POST"
+           request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+           let phoneNumber = mobileTextStr.replacingOccurrences(of: "+", with: "")
+//        let token = UserDefaultsConfig.jwtToken ?? ""
+
+           let parameters: [String: Any] = [
+               "mobileNumber": phoneNumber,
+               "eula": EulaTextStr,
+               "communication_preference" : "sms"
+           ]
+           print(parameters)
+           guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else { return }
+           request.httpBody = httpBody
+
+           let session = URLSession.shared
+           session.dataTask(with: request) { data, response, error in
+               if let error = error {
+                   print("Error: \(error.localizedDescription)")
+                   return
+               }
+               
+               if let httpResponse = response as? HTTPURLResponse {
+                   print("HTTP Response Code: \(httpResponse.statusCode)")
+               }
+
+               guard let data = data else {
+                   print("No data received")
+                   return
+               }
+
+               if let responseString = String(data: data, encoding: .utf8) {
+                   print("Raw Response: \(responseString)")
+               }
+
+               do {
+                   let jsonResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
+                   print("Parsed Response: \(jsonResponse)")
+
+                   if let success = jsonResponse.success, success {
+                       DispatchQueue.main.async {
+                           
+                           self.sentOTP()
+                         
+                           print("succestt")
+                           
+                           
+                       }
+                   } else {
+                       print("Login failed: Success was nil or false")
+                   }
+               } catch let jsonError {
+                   print("JSON Parsing Error: \(jsonError.localizedDescription)")
+               }
+           }.resume()
+       }
+
     
     override func viewDidLoad() {
         whatsappButton.setTitle("", for: .normal)

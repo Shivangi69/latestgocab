@@ -15,6 +15,7 @@ import FirebaseAuthUI
 import BraintreeDropIn
 import GooglePlaces
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate,MessagingDelegate {
     static var info : [String:Any] {
@@ -150,29 +151,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
 
-                if UserDefaults.standard.string(forKey: "Firsttyme") != nil {
-                    // Replace `MainViewController` with your main app view controller
-                    // or SplashViewController if that is the main screen
-                    
-                    let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
-                    let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as UIViewController
-
-                    navigationController.viewControllers = [rootViewController]
-                    self.window?.rootViewController = navigationController
-                } else {
-                    
+        if UserDefaults.standard.string(forKey: "Firsttyme") != nil {
+            // Replace `MainViewController` with your main app view controller
+            // or SplashViewController if that is the main screen
+            
+            let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+            let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as UIViewController
+            
+            navigationController.viewControllers = [rootViewController]
+            self.window?.rootViewController = navigationController
+            
+        }
+        else {
+            
                     if UserDefaults.standard.string(forKey: "VeryFirsttyme") != nil {
                         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
                         let rootViewController:UIViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as UIViewController
-
+                        
                         navigationController.viewControllers = [rootViewController]
                         self.window?.rootViewController = navigationController
-
-                      
-                    }else{
                         
+                        
+                    }
+            
+                    else {
                         
                         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         let navigationController:UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
@@ -181,8 +185,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         navigationController.viewControllers = [rootViewController]
                         self.window?.rootViewController = navigationController
                         
-                        
-                                            }
+                    }
                     
                 }
 
@@ -200,7 +203,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
         let blue = CGFloat(rgbValue & 0xFF)/256.0
-
+        
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
@@ -215,11 +218,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             userInfo: tokenDict)
         print("Firebase registration token: \(fcmToken ?? "")")
         UserDefaults.standard.set(fcmToken, forKey: "devicetoken")
-      //  UserDefaults.standard.set(fcmToken, forKey: "devicetoken")
+        //  UserDefaults.standard.set(fcmToken, forKey: "devicetoken")
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-   
+        
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -292,13 +295,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
-
-    
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-     FUIAuth.defaultAuthUI()?.auth?.setAPNSToken(deviceToken, type: AuthAPNSTokenType.unknown)
-
+        FUIAuth.defaultAuthUI()?.auth?.setAPNSToken(deviceToken, type: AuthAPNSTokenType.unknown)
+        
         let firebaseAuth = Auth.auth()
         
         firebaseAuth.setAPNSToken(deviceToken, type: AuthAPNSTokenType.unknown)
@@ -316,8 +317,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("Registration succeeded!")
         print("Token: ", token)
         
-       // UserDefaults.standard.set(token, forKey: "devicetoken")
-           
+        // UserDefaults.standard.set(token, forKey: "devicetoken")
+        
         
     }
     func applicationDidBecomeActive(_ application: UIApplication) {

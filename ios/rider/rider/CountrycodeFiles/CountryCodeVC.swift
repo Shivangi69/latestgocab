@@ -51,7 +51,7 @@ class CountryCodeVC: UIViewController {
         self.navigationItem.backBarButtonItem?.title = ""
         self.navigationItem.backButtonTitle = ""
 
-        phonenumber.text = "7011635591"
+        phonenumber.text = ""
         phonenumber.keyboardType = .phonePad
         codetext.sizeToFit()
         //codetext.isEnabled = false // Makes the text field non-editable

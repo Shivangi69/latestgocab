@@ -74,6 +74,26 @@ class DriverNavigationMenuViewController : MenuViewController {
         self.present(dialog, animated: true)
     }
     
+    
+    
+    
+    @IBAction func agencydetails(_ sender: Any) {
+        guard let menuContainerViewController = self.menuContainerViewController else {
+            return
+        }
+        
+        if let vc = Bundle.main.loadNibNamed("AgencydetailsViewController", owner: self, options: nil)?.first as? AgencydetailsViewController {
+        (menuContainerViewController.contentViewControllers[0] as! UINavigationController).pushViewController(vc, animated: true)
+            menuContainerViewController.hideSideMenu()
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
     @IBAction func onStatisticsTouched(_ sender: Any) {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return

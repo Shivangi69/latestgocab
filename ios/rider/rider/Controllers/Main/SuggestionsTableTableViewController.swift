@@ -36,9 +36,6 @@ extension SuggestionsTableTableViewController {
 
         return cell
     }
-   
-    
-    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let c = self.callback else {

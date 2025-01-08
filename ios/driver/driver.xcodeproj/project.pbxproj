@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		08DD47D12C22F1BB00DF87DF /* notification .mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 08DD47D02C22F1BB00DF87DF /* notification .mp3 */; };
+		18401FB82D097719009E5537 /* AgencydetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18401FB72D097719009E5537 /* AgencydetailsViewController.swift */; };
+		18DA005B2D229EC80067382F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DA005A2D229EC80067382F /* GoogleService-Info.plist */; };
 		4C215E98238C06CC0013D720 /* LocationUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C215E97238C06CC0013D720 /* LocationUpdate.swift */; };
 		4C3E189D23AE12A20073FB05 /* WalletInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E189C23AE12A20073FB05 /* WalletInfo.swift */; };
 		4C3EDFA021AEB22000DECC01 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3EDF9F21AEB22000DECC01 /* WalletViewController.swift */; };
@@ -122,7 +124,6 @@
 		844455902BF760030070FC6B /* ride_cancel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8444558B2BF760030070FC6B /* ride_cancel.mp3 */; };
 		846DFCA32BFDBAB000E4BF05 /* CustomSliderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DFCA22BFDBAAF00E4BF05 /* CustomSliderButton.swift */; };
 		84882DC12BFF1D9300178689 /* CustomSliderbutton2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84882DC02BFF1D9300178689 /* CustomSliderbutton2.swift */; };
-		84C1D8582C22C89C00279A46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D8572C22C89C00279A46 /* GoogleService-Info.plist */; };
 		84D61F622BFCC7B10098485E /* MTSlideToOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D61F612BFCC7B10098485E /* MTSlideToOpenView.swift */; };
 		84D61F662BFCD26C0098485E /* MMSlidingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D61F652BFCD26C0098485E /* MMSlidingButton.swift */; };
 /* End PBXBuildFile section */
@@ -140,6 +141,8 @@
 /* Begin PBXFileReference section */
 		032FFEB4F8FA8B2195FA9D9B /* Pods-driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-driver.debug.xcconfig"; path = "Target Support Files/Pods-driver/Pods-driver.debug.xcconfig"; sourceTree = "<group>"; };
 		08DD47D02C22F1BB00DF87DF /* notification .mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "notification .mp3"; sourceTree = "<group>"; };
+		18401FB72D097719009E5537 /* AgencydetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencydetailsViewController.swift; sourceTree = "<group>"; };
+		18DA005A2D229EC80067382F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4C215E97238C06CC0013D720 /* LocationUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUpdate.swift; sourceTree = "<group>"; };
 		4C3E189C23AE12A20073FB05 /* WalletInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletInfo.swift; path = ../../../../common/Networking/WebSocket/WalletInfo.swift; sourceTree = "<group>"; };
 		4C3EDF9F21AEB22000DECC01 /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
@@ -255,7 +258,6 @@
 		8444558B2BF760030070FC6B /* ride_cancel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ride_cancel.mp3; sourceTree = "<group>"; };
 		846DFCA22BFDBAAF00E4BF05 /* CustomSliderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSliderButton.swift; sourceTree = "<group>"; };
 		84882DC02BFF1D9300178689 /* CustomSliderbutton2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSliderbutton2.swift; sourceTree = "<group>"; };
-		84C1D8572C22C89C00279A46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84D61F612BFCC7B10098485E /* MTSlideToOpenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTSlideToOpenView.swift; sourceTree = "<group>"; };
 		84D61F652BFCD26C0098485E /* MMSlidingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -493,6 +495,7 @@
 			children = (
 				627B16F721A9D49500FF0953 /* driver.entitlements */,
 				62B6FDB61F71059900F66611 /* Driver */,
+				18DA005A2D229EC80067382F /* GoogleService-Info.plist */,
 				4C85D351243611E6005722D8 /* DriverShotsUITests */,
 				62B6FDB51F71059900F66611 /* Products */,
 				99D1CC458A18865C3CBDF704 /* Frameworks */,
@@ -512,7 +515,6 @@
 		62B6FDB61F71059900F66611 /* Driver */ = {
 			isa = PBXGroup;
 			children = (
-				84C1D8572C22C89C00279A46 /* GoogleService-Info.plist */,
 				4C6AB3E023BD1A9700FAF6FE /* cash.json */,
 				4CB050FE23A6622B0028DF0E /* Components */,
 				62A08DFF1F73E9BE003A4F1A /* Models */,
@@ -551,6 +553,7 @@
 				62B6FE021F715DCF00F66611 /* Travel */,
 				62B6FE011F715DC400F66611 /* About */,
 				62B6FDFE1F715D2900F66611 /* Splash */,
+				18401FB72D097719009E5537 /* AgencydetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -748,7 +751,7 @@
 			mainGroup = 62B6FDAB1F71059900F66611;
 			packageReferences = (
 				4C481A20258229370051E415 /* XCRemoteSwiftPackageReference "SPAlert" */,
-				4C481A4C25826D100051E415 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				4C481A4C25826D100051E415 /* XCRemoteSwiftPackageReference "socket" */,
 				4C481A7E2582717F0051E415 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				4C481A88258271CF0051E415 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				4C74D44F25835F08009831B6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
@@ -780,6 +783,7 @@
 				4C826C5B245982D700471DFC /* Localizable.strings in Resources */,
 				843227A92C3BF1EA000A0DE3 /* TripHistoryCollectionViewCell.xib in Resources */,
 				62398B301F72C11400327E77 /* RequestCard.xib in Resources */,
+				18DA005B2D229EC80067382F /* GoogleService-Info.plist in Resources */,
 				62A08DFE1F73CDED003A4F1A /* background.jpg in Resources */,
 				844455902BF760030070FC6B /* ride_cancel.mp3 in Resources */,
 				62B6FDBD1F71059900F66611 /* Main.storyboard in Resources */,
@@ -787,7 +791,6 @@
 				08DD47D12C22F1BB00DF87DF /* notification .mp3 in Resources */,
 				843EAB512BFCA3620085A8E5 /* Launch Screen.storyboard in Resources */,
 				8444558C2BF760030070FC6B /* ride_finished.mp3 in Resources */,
-				84C1D8582C22C89C00279A46 /* GoogleService-Info.plist in Resources */,
 				4C6AB3DF23BD149E00FAF6FE /* WaitingForPayment.xib in Resources */,
 				8444558E2BF760030070FC6B /* ride_start.mp3 in Resources */,
 				4C6AB3E123BD1A9700FAF6FE /* cash.json in Resources */,
@@ -993,6 +996,7 @@
 				4CB0513923A662830028DF0E /* GetTravels.swift in Sources */,
 				4CB050F623A661EA0028DF0E /* Car.swift in Sources */,
 				622ABA9F1F7CFC890044B69A /* DriverTravelViewController.swift in Sources */,
+				18401FB82D097719009E5537 /* AgencydetailsViewController.swift in Sources */,
 				4CB0514423A6629D0028DF0E /* NetworkDispatcher.swift in Sources */,
 				84D61F622BFCC7B10098485E /* MTSlideToOpenView.swift in Sources */,
 				846DFCA32BFDBAB000E4BF05 /* CustomSliderButton.swift in Sources */,
@@ -1276,7 +1280,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = VZNDPQUZYP;
+				DEVELOPMENT_TEAM = CV7UDY796Q;
 				INFOPLIST_FILE = driver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1284,7 +1288,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gocab.drivers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gocab.drivers.new;
 				PRODUCT_NAME = "Go Cabs Driver";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1304,7 +1308,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
-				DEVELOPMENT_TEAM = VZNDPQUZYP;
+				DEVELOPMENT_TEAM = CV7UDY796Q;
 				INFOPLIST_FILE = driver/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1312,7 +1316,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gocab.drivers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gocab.drivers.new;
 				PRODUCT_NAME = "Go Cabs Driver";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1364,7 +1368,7 @@
 				minimumVersion = 2.1.4;
 			};
 		};
-		4C481A4C25826D100051E415 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		4C481A4C25826D100051E415 /* XCRemoteSwiftPackageReference "socket" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
 			requirement = {
@@ -1406,7 +1410,7 @@
 		};
 		4C481A4D25826D100051E415 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C481A4C25826D100051E415 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			package = 4C481A4C25826D100051E415 /* XCRemoteSwiftPackageReference "socket" */;
 			productName = SocketIO;
 		};
 		4C481A7F2582717F0051E415 /* Lottie */ = {

@@ -24,7 +24,7 @@ public struct ServerError: Error, Codable {
     }
     
     public func showAlert() {
-        SPAlert.present(title: "Error", message: getMessage(), preset: .error)
+        SPAlert.present(title: "Error", message: getMessage(), preset: .message)
     }
 }
 

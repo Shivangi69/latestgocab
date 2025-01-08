@@ -17,6 +17,7 @@ struct PreferredAgencyResponse: Codable {
 
 struct AgencyData: Codable {
     let preferredAgencies: [PreferredAgency]
+    
 }
 
 struct PreferredAgency: Codable {

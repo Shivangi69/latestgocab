@@ -177,6 +177,14 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
 //
 //        return cell
 //    }
+    
+    func showFeedbackPopup() {
+         let feedbackVC = FeedbackPopupViewController()
+         feedbackVC.modalPresentationStyle = .overCurrentContext
+         feedbackVC.modalTransitionStyle = .crossDissolve
+         present(feedbackVC, animated: true, completion: nil)
+     }
+    
     func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double, completion: @escaping (String?) -> Void) {
         let locc = CLLocationCoordinate2D(latitude: pdblLatitude, longitude: pdblLongitude)
 
@@ -187,7 +195,8 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
             if let error = error {
                 print("reverse geocode failed: \(error.localizedDescription)")
                 completion(nil)
-            } else {
+            }
+            else {
                 if let places = response?.results(), let place = places.first {
                     if let lines = place.lines {
                         addressString = lines.first
@@ -201,19 +210,19 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
             }
         }
     }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = self.collectionView?.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? TripHistoryCollectionViewCell else {
             fatalError("The dequeued cell is not an instance of TripHistoryTableCell.")
         }
 
         let travel = travels[indexPath.row]
-//        let waypoints = travels.waypoints
+//      let waypoints = travels.waypoints
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
         cell.pickupLabel.text = travel.addresses[0]
-        
         
         if let startTimestamp = travel.startTimestamp {
             cell.startTimeLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(startTimestamp / 1000)))
@@ -229,34 +238,58 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
         
         let distanceFormatter = MKDistanceFormatter()
         distanceFormatter.unitStyle = .abbreviated
-        distanceFormatter.units = .metric // Set units to metric
+        distanceFormatter.units = .metric
+        // Set units to metric
 
         let distanceInMeters = Double(travel.distanceReal ?? 0)
         let formattedDistance = distanceFormatter.string(fromDistance: distanceInMeters)
-
         //print("Formatted Distance: \(formattedDistance)")
-        
         cell.cartype.text = travel.service?.title
         cell.distance.text = "(" + formattedDistance + ")"
-        cell.tripStatusvalue.text = travel.status!.rawValue.splitBefore(separator: { $0.isUppercase }).map { String($0) }.joined(separator: " ")
-
-     
         
-        if travel.status?.rawValue ?? "" == "Finished" { // Assuming `.finish` is an enum case
-            cell.tripStatusvalue.textColor = UIColor.green // Set to green for finished status
-        } else {
-            cell.tripStatusvalue.textColor = UIColor.red // Set to red for all other statuses
-        }
+        
+        //       Assuming cell.tripStatusButton is your UIButton
+        //       cell.tripStatusvalue.setTitle(travel.status!.rawValue.splitBefore(separator: {  $0.isUppercase }).map { String($0) }.joined(separator: " "), for: .normal)
+        
+        //        cell.tripStatusvalue = { [weak self] in
+        //        Create the button that needs to be returned
+        //        let button = UIButton()
+        //
+        //        Your code for presenting the feedback view controller
+        //        let feedbackVC = FeedbackPopupViewController()
+        //        feedbackVC.modalPresentationStyle = .overCurrentContext
+        //        feedbackVC.modalTransitionStyle = .crossDissolve
+        //        self?.present(feedbackVC, animated: true, completion: nil)
+        //
+        //            return button
+        //        }
+        
+        
+//        if travel.status?.rawValue ?? "" == "Finished" {
+//            cell.tripStatusvalue.setTitleColor(UIColor.green, for: .normal)
+//         }
+//        
+//        else {
+//              cell.tripStatusvalue.setTitleColor(UIColor.green, for: .normal)
+//           }
+//                
+        
+//        cell.tripStatusvalue.text = travel.status!.rawValue.splitBefore(separator: { $0.isUppercase }).map { String($0) }.joined(separator: " ")
+//
+//        if travel.status?.rawValue ?? "" == "Finished" { // Assuming `.finish` is an enum case
+//            cell.tripStatusvalue.textColor = UIColor.green // Set to green for finished status
+//        } else {
+//            cell.tripStatusvalue.textColor = UIColor.red // Set to red for all other statuses
+//        }
+        
+        
         let localeLanguage = Locale.current.languageCode ?? "en"
         let pointsQuery = travel.points.enumerated().map { (index, point) in
             return "markers=color:red|label:\(index + 1)|\(point.latitude),\(point.longitude)"
         }.joined(separator: "&")
 
-        var mapUrl = "https://maps.googleapis.com/maps/api/staticmap?size=500x400&language=\(localeLanguage)&\(pointsQuery )&key=AIzaSyCW_G5rejKDXuhXYN8sITHhPRdX9_zbK5A"
+        var mapUrl = "https://maps.googleapis.com/maps/api/staticmap?size=500x400&language=\(localeLanguage)&\(pointsQuery)&key=AIzaSyCW_G5rejKDXuhXYN8sITHhPRdX9_zbK5A"
 
-          
-        
-         
         if let waypoints = travel.waypoints {
             let polylinePath = waypoints.map { "\($0.latitude),\($0.longitude)" }.joined(separator: "|")
             print(polylinePath)
@@ -268,19 +301,17 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
                         print("Address: \(address)")
                         // Update your UI or perform other actions with the address
                         cell.destinationLabel.text = address
-                    } else {
+                    }
+                    else {
                         print("Failed to get address")
                     }
                 }
             }
-            else {
-                
-                cell.destinationLabel.text = travel.addresses[0]
-                
-            }
             
+            else {
+                cell.destinationLabel.text = travel.addresses[0]
+            }
         }
-        
         else {
             print("No waypoints available")
         }
@@ -393,5 +424,125 @@ extension Sequence {
         }
         result.append(AnySequence(subSequence))
         return result
+    }
+}
+
+
+
+
+class FeedbackPopupViewController: UIViewController {
+
+    // MARK: - UI Elements
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Your Feedback Matters!"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let textView: UITextView = {
+        let textView = UITextView()
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.cornerRadius = 8
+        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.text = "Write your review here..."
+        textView.textColor = .lightGray
+        return textView
+    }()
+    
+    private let starStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 8
+        return stackView
+    }()
+    
+    private let cancelButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("CANCEL", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        return button
+    }()
+    
+    private let okButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("OK", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
+    }()
+    
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+    }
+
+    private func setupView() {
+        view.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        view.layer.cornerRadius = 16
+
+        // Add Subviews
+        [titleLabel, textView, starStackView, cancelButton, okButton].forEach {
+            view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+
+        // Configure Star Ratings
+        for _ in 1...5 {
+            let starButton = UIButton()
+            starButton.setImage(UIImage(systemName: "star"), for: .normal)
+            starButton.setImage(UIImage(systemName: "star.fill"), for: .selected)
+            starButton.tintColor = .systemYellow
+            starStackView.addArrangedSubview(starButton)
+            starButton.addTarget(self, action: #selector(starTapped(_:)), for: .touchUpInside)
+        }
+
+        // Constraints
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+
+            textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            textView.heightAnchor.constraint(equalToConstant: 100),
+
+            starStackView.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 16),
+            starStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            cancelButton.topAnchor.constraint(equalTo: starStackView.bottomAnchor, constant: 16),
+            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+
+            okButton.topAnchor.constraint(equalTo: starStackView.bottomAnchor, constant: 16),
+            okButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            okButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16)
+        ])
+
+        // Button Actions
+        cancelButton.addTarget(self, action: #selector(cancelTapped), for: .touchUpInside)
+        okButton.addTarget(self, action: #selector(okTapped), for: .touchUpInside)
+    }
+
+    // MARK: - Actions
+    @objc private func starTapped(_ sender: UIButton) {
+        guard let stackView = sender.superview as? UIStackView else { return }
+        for (index, button) in stackView.arrangedSubviews.enumerated() {
+            guard let starButton = button as? UIButton else { continue }
+            starButton.isSelected = index <= stackView.arrangedSubviews.firstIndex(of: sender)!
+        }
+    }
+
+    @objc private func cancelTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+
+    @objc private func okTapped() {
+        // Handle OK Action (e.g., send feedback)
+        dismiss(animated: true, completion: nil)
     }
 }

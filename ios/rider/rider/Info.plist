@@ -44,16 +44,7 @@
 				<string>com.innomalist.taxi.rider.payments</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>Firebase</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>app-1-1014769814307-ios-052cccbf865b097253da96</string>
-			</array>
-		</dict>
+		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
@@ -61,6 +52,12 @@
 	<string>No</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
+	<key>GOOGLE_APP_ID</key>
+	<string></string>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>Intent</string>
+	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>telprompt</string>
@@ -68,10 +65,15 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 	<key>MaximumDestinations</key>
 	<integer>2</integer>
 	<key>NSAppTransportSecurity</key>
-	<dict/>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Access to you camera is required to capture a photo for profile picture.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

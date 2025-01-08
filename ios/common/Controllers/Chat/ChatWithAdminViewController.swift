@@ -24,6 +24,7 @@ class ChatWithAdminViewController: MessagesViewController {
         self.messagesCollectionView.scrollToLastItem(animated: true)
     }
 
+    
     var socket: SocketIOClient!
 //AdminAdminChatMessage
     var messages: [AdminChatMessage] = []
@@ -225,9 +226,7 @@ extension ChatWithAdminViewController: InputBarAccessoryViewDelegate {
                                                          sentBy: .Rider, // Assuming the sender is Rider
                                                          state: "sent")
                     
-                    
-                    
-                                   // Insert the new message into the list
+                    // Insert the new message into the list
                     self.insertMessage(newMessage)
                     self.messagesCollectionView.scrollToLastItem(animated: true)
                     self.messageInputBar.inputTextView.text = ""
@@ -282,8 +281,6 @@ extension ChatWithAdminViewController: MessagesDisplayDelegate, MessagesLayoutDe
         }
           // return isFromCurrentSender(message: message) ? .blue : .lightGray // Change colors as needed
        }
-
-      
 
        func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
            

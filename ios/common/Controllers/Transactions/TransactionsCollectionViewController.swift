@@ -29,9 +29,7 @@ class TransactionsCollectionViewController: UICollectionViewController, UICollec
                 
             case .failure(let error):
                 error.showAlert()
-                
             }
-            
         }
     }
     

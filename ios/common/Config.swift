@@ -7,14 +7,13 @@
 //
 
 import Foundation
-
+ 
 class Config {
     
-   // static var Backend: String = "https://api.go-cabs.com/"
- //
+// static var Backend: String = "https://api.go-cabs.com/"
 //    static var Backend: String = "https://api-stage.go-cabs.com/"
-    //https://api-dev.go-cabs.com/
-    static var Backend: String = "https://api-dev.go-cabs.com/"
+//    https://api-dev.go-cabs.com/
+  static var Backend: String = "https://api-dev.go-cabs.com/"
 
     static var Version: String {
         get {

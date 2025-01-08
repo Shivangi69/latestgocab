@@ -55,6 +55,23 @@ class NavigationMenuViewController : MenuViewController {
     }
     
     
+    
+    @IBAction func Goassistance(_ sender: Any) {
+        guard let menuContainerViewController = self.menuContainerViewController else {
+            return
+        }
+        let chatVC = ChatWithAdminViewController()
+        chatVC.sender = Admin() // Pass any required data
+        if let navigationController = menuContainerViewController.contentViewControllers.first as? UINavigationController {
+            navigationController.pushViewController(chatVC, animated: true)
+        } else {
+            print("Error: Unable to find navigation controller in contentViewControllers.")
+        }
+
+        // Hide the side menu
+        menuContainerViewController.hideSideMenu()
+    }
+
     @IBAction func PrefferedAggenc(_ sender: Any) {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return

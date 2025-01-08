@@ -48,11 +48,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>FireBase</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>app-1-1014769814307-ios-bc4f526b8e9488f653da96</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

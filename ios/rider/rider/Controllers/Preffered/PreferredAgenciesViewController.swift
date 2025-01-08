@@ -72,21 +72,22 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
             width: view.frame.width - 100,
             height: 50
         )
+        
         let attributedString = NSAttributedString(string: " Skip ", attributes: [
             .underlineStyle: NSUnderlineStyle.single.rawValue
+            
         ])
         Skipbutton.setAttributedTitle(attributedString, for: .normal)
         Skipbutton.setTitleColor(.black, for: .normal)
-
-
+ 
         view.addSubview(Skipbutton)
-        
         messageLabel.frame = CGRect(
             x: 20,
             y: Skipbutton.frame.maxY + 20, // Positioned below the Skip button with some spacing
             width: view.frame.width - 40,
             height: 60
         )
+        
         messageLabel.text = "Pick 3 preferred agencies. Drivers from your selected agencies will be contacted first in the defined order and then from the rest."
         messageLabel.textAlignment = .center
         messageLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -95,8 +96,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         messageLabel.lineBreakMode = .byWordWrapping
         view.addSubview(messageLabel)
     }
-
-
     
     func setupDoneButton() {
         doneButton.frame = CGRect(x: 50, y: view.frame.height - 80, width: view.frame.width - 100, height: 50)
@@ -115,6 +114,7 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
                         self.navigationController!.pushViewController(vc, animated: true)
                 }
     }
+    
     @objc func reorderAgencies() {
         // Construct the reordered list with indices
         var reorderedAgencies: [ReorderingRequest.AgencyPreference] = []
@@ -127,8 +127,6 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         // Prepare the request data
         let riderId = user.id ?? 0
         let reorderingRequest = ReorderingRequest(agency_preferences: reorderedAgencies, riderId: riderId)
-        
-        
         // Call the API
         reorderPreferredAgencies(reorderingRequest: reorderingRequest, token: token)
     }

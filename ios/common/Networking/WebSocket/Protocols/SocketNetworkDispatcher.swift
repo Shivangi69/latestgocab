@@ -99,6 +99,8 @@ public struct SocketNetworkDispatcher: NetworkDispatcher {
             }
             
         }
+        
+        
         // Driver Events
         socket!.on("requestReceived") { data, ack in
             let travel = try! Request(from: data[0] as Any)

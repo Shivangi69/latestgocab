@@ -7,7 +7,7 @@
 
 import UIKit
 import MobileCoreServices
-
+import SPAlert
 
 class TripHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var pickupLabel: UILabel!
@@ -18,8 +18,7 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var driverImage: UIImageView!
     @IBOutlet weak var carNumber: UILabel!
     @IBOutlet weak var menuicon: UIImageView!
-    @IBOutlet weak var tripStatusvalue: UILabel!
-  
+    @IBOutlet weak var tripStatusvalue: UIButton!
     @IBOutlet weak var cartype: UILabel!
     @IBOutlet weak var AgencyName: UILabel!
     @IBOutlet weak var driverName: UILabel!
@@ -32,29 +31,45 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
     var deleteAction: (() -> Void)?
     let user = try! Rider(from: UserDefaultsConfig.user!)
     let token = UserDefaultsConfig.jwtToken ?? ""
-   
-
     @IBAction func GetInvoiceAction(_ sender: Any) {
         let tripId = 12345 // Replace with the actual trip ID you want to download the invoice for
         let token = token // Replace with the actual token
 
-        // Call the downloadInvoice function
         downloadInvoice(tripId: tripId, token: token) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     print("Invoice saved at: \(data)")
-
-                    
+//                    self.showAlert(title: "Download Successful", message: "Your invoice has been saved successfully.")
+                    SPAlert.present(title: NSLocalizedString(NSLocalizedString("Download Successfully", comment: ""), comment: ""), preset: .like)
                 case .failure(let error):
                     // Handle error
                     print("Failed to download invoice: \(error.localizedDescription)")
+                    SPAlert.present(title: NSLocalizedString(NSLocalizedString("Unable to Download", comment: ""), comment: ""), preset: .dislike)
                 }
             }
         }
     }
 
     
+//    @IBAction func feedbackButtonTapped(_ sender: UIButton) {
+//        // Initialize the feedback view controller
+//        let feedbackVC = FeedbackPopupViewController()
+//
+//        // Set the modal presentation style to 'overCurrentContext' for a pop-up style
+//        feedbackVC.modalPresentationStyle = .overCurrentContext
+//        feedbackVC.modalTransitionStyle = .crossDissolve
+//
+//        // Present the feedback view controller modally
+//        present(feedbackVC, animated: true, completion: nil)
+//    }
+
+
+
+//    @objc private func cancelTapped() {
+//        dismiss(animated: true, completion: nil)
+//    }
+
     func createCustomDirectory() -> URL? {
         
         let fileManager = FileManager.default
@@ -72,65 +87,27 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
                 print("Failed to create custom directory: \(error.localizedDescription)")
                 return nil
             }
+            
         }
         return customDirectoryURL
     }
 
+    
     // Function to save PDF to the custom directory
-    func savePDFToCustomDirectory(data: Data, filename: String) -> URL? {
-        guard let directoryURL = createCustomDirectory() else { return nil }
-        
-        let fileURL = directoryURL.appendingPathComponent(filename)
-        do {
-            try data.write(to: fileURL)
-            print("PDF saved successfully at: \(fileURL)")
-            return fileURL
-        } catch {
-            print("Failed to save PDF: \(error.localizedDescription)")
-            return nil
+        func savePDFToCustomDirectory(data: Data, filename: String) -> URL? {
+            guard let directoryURL = createCustomDirectory() else { return nil }
+            
+            let fileURL = directoryURL.appendingPathComponent(filename)
+            do {
+                try data.write(to: fileURL)
+                print("PDF saved successfully at: \(fileURL)")
+                return fileURL
+            } catch {
+                print("Failed to save PDF: \(error.localizedDescription)")
+                return nil
+            }
         }
-    }
 
-    // Function to download invoice and save it
-//    func downloadInvoice(tripId: Int, token: String, completion: @escaping (Result<URL, Error>) -> Void) {
-//         let urlString = Config.Backend + "trips/invoice/\(1306)"
-//        guard let url = URL(string: urlString) else {
-//            print("Invalid URL")
-//            return
-//        }
-//        
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-//        
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//            
-//            guard let httpResponse = response as? HTTPURLResponse,
-//                  httpResponse.statusCode == 200,
-//                  let mimeType = httpResponse.mimeType, mimeType == "application/pdf",
-//                  let data = data else {
-//                print("Invalid response or data is not a PDF")
-//                return
-//            }
-//            
-//            // Save the PDF to the custom directory
-//            if let savedFileURL = self.savePDFToCustomDirectory(data: data, filename: "Invoice_\(tripId).pdf") {
-//                completion(.success(savedFileURL))
-//            } else {
-//                let saveError = NSError(domain: "FileSaveError", code: 500, userInfo: [NSLocalizedDescriptionKey: "Failed to save PDF to directory"])
-//                completion(.failure(saveError))
-//            }
-//        }
-//        
-//        task.resume()
-//    }
-   
-    
-    
     func downloadInvoice(tripId: Int, token: String, completion: @escaping (Result<URL, Error>) -> Void) {
         // Construct the URL for the API endpoint using the tripId
         let urlString = Config.Backend + "trips/invoice/\(1306)"
@@ -194,16 +171,6 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
         
         task.resume()  // Start the task
     }
-    
-
-
-
-    
-    
-    
-    
-    
-    
     
     
     
@@ -304,10 +271,11 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
         
         
     }
+    
     @objc private func menuiconTapped() {
            showMenu()
        }
-       
+    
     
     
 //    if travel.status?.rawValue ?? "" == "Pending Review" {
@@ -337,9 +305,6 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
 //        })
 //        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 //        self.present(dialog, animated: true)
-//
-//
-//
 //    }
     
     
@@ -373,7 +338,6 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
                 viewController.present(confirmationAlert, animated: true, completion: nil)
             }
             alertController.addAction(hideAction)
-            
           
            let complainAction = UIAlertAction(title: "Complain", style: .default) { _ in
                self.complainAction?()
@@ -406,3 +370,5 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
 
     
 }
+
+

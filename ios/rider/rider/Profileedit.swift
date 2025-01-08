@@ -13,7 +13,6 @@ import Photos
 import Kingfisher
 
 class Profileedit: UIViewController,UITextFieldDelegate {
-
   
     @IBOutlet weak var verifyButtonICON: UIImageView!
     @IBOutlet weak var Name: MDCOutlinedTextField!
@@ -39,6 +38,7 @@ class Profileedit: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var EmailLabel: UILabel!
     @IBAction func editProfile(_ sender: Any) {
     }
+    
     @IBAction func EditImageation(_ sender: Any) {
         let actionSheet = UIAlertController(title: "Profile Picture", message: "Choose an option", preferredStyle: .actionSheet)
         
@@ -49,6 +49,7 @@ class Profileedit: UIViewController,UITextFieldDelegate {
             self.openCamera()
         }))
         
+    
         // Gallery option
         actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
             self.DOCORPROFILE = "PROFILE"
@@ -98,6 +99,7 @@ class Profileedit: UIViewController,UITextFieldDelegate {
             }
         }))
         
+        
         // Camera option
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             self.DOCORPROFILE = "DOC"
@@ -135,28 +137,31 @@ class Profileedit: UIViewController,UITextFieldDelegate {
     }
     @IBAction func RequestActivationGO(_ sender: Any) {
         uploadProfileData()
+        
     }
     @IBAction func cancelButton(_ sender: Any) {
     }
     @IBAction func verifyButton(_ sender: Any) {
-        
         guard let email = Email.text, !email.isEmpty else {
                    // Show alert if email is empty
                    return
                }
-               sendEmailVerification(email: email)
+        sendEmailVerification(email: email)
     }
-    
-    
 
     func uploadProfileData() {
-        guard let profileImage = profileImage.image else { return }
+        guard let profileImage = profileImage.image else {
+            return
+        }
         
         // Convert the profile image to Data
         let profileImageData = profileImage.jpegData(compressionQuality: 0.8)
         
         // Prepare the request URL
-        guard let url = URL(string: Config.Backend + "rider") else { return }
+        guard let url = URL(string: Config.Backend + "rider") else
+        {
+            return
+        }
         
         // Create the request and set headers
         var request = URLRequest(url: url)
@@ -173,8 +178,9 @@ class Profileedit: UIViewController,UITextFieldDelegate {
         if self.DOCORPROFILE == "PROFILE", let imageData = profileImageData {
             body.append(convertFileData(fieldName: "profile", fileName: "profile.jpg", mimeType: "image/jpeg", fileData: imageData, using: boundary))
         }
-        
+    
         // Add document (if applicable) to the body
+        
         if self.DOCORPROFILE == "PDF" {
             if let docURL = URL(string: self.DocNAme) { // Assuming self.DocNAme is the file path
                 do {
@@ -187,7 +193,7 @@ class Profileedit: UIViewController,UITextFieldDelegate {
                 }
             }
         }
-        
+      
         // Add other fields (firstName, email)
         let firstNameData = self.Name.text ?? ""
         body.append(convertFormField(named: "firstName", value: firstNameData, using: boundary))
@@ -299,6 +305,7 @@ class Profileedit: UIViewController,UITextFieldDelegate {
         Email.text = (user.email ?? "")
 //        Uploadid.text = user.id
         
+        editProfileButton.setTitle("", for: .normal)
         if let riderImage = user.media?.address {
             let processor = DownsamplingImageProcessor(size: profileImage.intrinsicContentSize) |> RoundCornerImageProcessor(cornerRadius: profileImage.intrinsicContentSize.width / 2)
             let url = URL(string: Config.Backend + riderImage.replacingOccurrences(of: " ", with: "%20"))

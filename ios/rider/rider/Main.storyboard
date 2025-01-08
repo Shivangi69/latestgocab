@@ -14,7 +14,7 @@
         <!--Promotions-->
         <scene sceneID="v4M-0a-M3l">
             <objects>
-                <collectionViewController title="Promotions" id="atc-sE-38y" customClass="PromotionsCollectionViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="PromotionsCollectionViewController" title="Promotions" useStoryboardIdentifierAsRestorationIdentifier="YES" id="atc-sE-38y" customClass="PromotionsCollectionViewController" customModule="Go_Cabs_Rider" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6Cy-6j-DBa">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQr-t7-MTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511" y="-152"/>
+            <point key="canvasLocation" x="1474" y="-153"/>
         </scene>
         <!--Transactions-->
         <scene sceneID="Hru-1u-TkY">
@@ -930,7 +930,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M7g-zu-E2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" id="3Fo-Yx-gKc">
-                    <rect key="frame" x="0.0" y="0.0" width="290" height="61.666666666666664"/>
+                    <rect key="frame" x="0.0" y="-1" width="290" height="61.666666666666664"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <segments>
@@ -1970,7 +1970,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="onCancelRequestClicked:" destination="O2R-rO-LhR" eventType="touchUpInside" id="XWw-1v-Rg3"/>
                                                     <action selector="verifyAction:" destination="fIo-V2-cZy" eventType="touchUpInside" id="WU3-Ui-3LU"/>
                                                 </connections>
                                             </button>
@@ -2189,7 +2188,6 @@
                                                         <buttonConfiguration key="configuration" style="plain" image="admin_ad"/>
                                                         <connections>
                                                             <action selector="EditImageation:" destination="qaC-v2-wZd" eventType="touchUpInside" id="cxV-6E-ZC4"/>
-                                                            <action selector="editProfile:" destination="qaC-v2-wZd" eventType="touchUpInside" id="A8o-VH-Iy5"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -3424,7 +3422,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yW-aD-Yxv">
-                                                <rect key="frame" x="0.0" y="385" width="390" height="75"/>
+                                                <rect key="frame" x="0.0" y="385" width="390" height="20"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SXu-Q5-XI6">
                                                         <rect key="frame" x="0.0" y="0.0" width="390" height="0.66666666666666663"/>
@@ -3434,10 +3432,10 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                         </constraints>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HFe-eh-Fvu">
-                                                        <rect key="frame" x="0.0" y="5.6666666666666288" width="390" height="69.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="5.6666666666666297" width="390" height="14.333333333333336"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Support" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIT-tH-vAU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="390" height="69.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="390" height="14.333333333333334"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -3458,23 +3456,24 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUD-VW-sK7">
-                                                <rect key="frame" x="0.0" y="465" width="390" height="50"/>
+                                                <rect key="frame" x="0.0" y="410" width="390" height="50"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="About" translatesAutoresizingMaskIntoConstraints="NO" id="Cz7-Wi-Z7s">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" translatesAutoresizingMaskIntoConstraints="NO" id="Cz7-Wi-Z7s">
                                                         <rect key="frame" x="20" y="13" width="24" height="24"/>
+                                                        <color key="tintColor" name="black"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="24" id="3Yc-v2-eGW"/>
                                                             <constraint firstAttribute="height" constant="24" id="T0p-Od-v3H"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efs-jA-z6j">
-                                                        <rect key="frame" x="60" y="8" width="49" height="34"/>
+                                                        <rect key="frame" x="60" y="8" width="116" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <state key="normal" title="About">
+                                                        <state key="normal" title="Quick Support">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="onAboutClicked:" destination="eFh-ME-LCI" eventType="touchUpInside" id="xud-Ic-xFQ"/>
+                                                            <action selector="Goassistance:" destination="eFh-ME-LCI" eventType="touchUpInside" id="0K6-f5-6fO"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -3485,6 +3484,36 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                     <constraint firstAttribute="height" constant="50" id="9nj-Pv-2TW"/>
                                                     <constraint firstItem="efs-jA-z6j" firstAttribute="centerY" secondItem="DUD-VW-sK7" secondAttribute="centerY" id="Yzz-TC-PLp"/>
                                                     <constraint firstItem="Cz7-Wi-Z7s" firstAttribute="leading" secondItem="DUD-VW-sK7" secondAttribute="leading" constant="20" id="pBX-vL-HjX"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKT-YW-o1Q">
+                                                <rect key="frame" x="0.0" y="465" width="390" height="50"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="About" translatesAutoresizingMaskIntoConstraints="NO" id="iQq-kD-tXg">
+                                                        <rect key="frame" x="20" y="13" width="24" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="24" id="7Ar-sA-l5Q"/>
+                                                            <constraint firstAttribute="height" constant="24" id="7w3-Gc-R42"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYd-BZ-Zph">
+                                                        <rect key="frame" x="60" y="8" width="49" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <state key="normal" title="About">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="onAboutClicked:" destination="eFh-ME-LCI" eventType="touchUpInside" id="mrQ-TJ-zsl"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Sg5-ut-VmW"/>
+                                                    <constraint firstItem="aYd-BZ-Zph" firstAttribute="centerY" secondItem="dKT-YW-o1Q" secondAttribute="centerY" id="V65-s5-IE5"/>
+                                                    <constraint firstItem="iQq-kD-tXg" firstAttribute="leading" secondItem="dKT-YW-o1Q" secondAttribute="leading" constant="20" id="VEq-ea-A7N"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aYd-BZ-Zph" secondAttribute="trailing" constant="20" symbolic="YES" id="gvF-Dp-Zjh"/>
+                                                    <constraint firstItem="iQq-kD-tXg" firstAttribute="centerY" secondItem="dKT-YW-o1Q" secondAttribute="centerY" id="nLi-LI-AYb"/>
+                                                    <constraint firstItem="aYd-BZ-Zph" firstAttribute="leading" secondItem="iQq-kD-tXg" secondAttribute="trailing" constant="16" id="s23-cx-z7Y"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRu-Ij-bWh">
@@ -4624,34 +4653,33 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="weX-Sq-EsI">
-                                                        <rect key="frame" x="0.0" y="119.99999999999999" width="390" height="20.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="120" width="390" height="10.333333333333343"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resend code in  " textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXG-XG-ATO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="237" height="20.333333333333332"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="193.66666666666666" height="10.333333333333334"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.50588238240000005" green="0.51372551919999998" blue="0.50980395079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:30" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThX-gi-GIb">
-                                                                <rect key="frame" x="240" y="0.0" width="150" height="20.333333333333332"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="150" id="3iQ-Vf-vyK"/>
-                                                                </constraints>
+                                                                <rect key="frame" x="196.66666666666663" y="0.0" width="193.33333333333337" height="10.333333333333334"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.50588238240000005" green="0.51372551919999998" blue="0.50980395079999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="ThX-gi-GIb" secondAttribute="trailing" id="aB5-qj-dr9"/>
+                                                            <constraint firstItem="AXG-XG-ATO" firstAttribute="leading" secondItem="weX-Sq-EsI" secondAttribute="leading" constant="10" id="aPj-Iu-q7g"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ThX-gi-GIb" secondAttribute="trailing" constant="10" id="eEF-lE-CAQ"/>
+                                                            <constraint firstItem="ThX-gi-GIb" firstAttribute="leading" secondItem="AXG-XG-ATO" secondAttribute="trailing" constant="2.9999999999999716" id="qEb-h4-0ZT"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czM-Fq-GPF">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czM-Fq-GPF">
                                                         <rect key="frame" x="0.0" y="140.33333333333337" width="390" height="0.0"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Resend Code"/>
                                                         <connections>
-                                                            <action selector="resendCodePressed:" destination="EM2-os-SsJ" eventType="touchUpInside" id="JVN-kP-gUR"/>
+                                                            <action selector="resendCodePressed:" destination="EM2-os-SsJ" eventType="touchUpInside" id="asE-3F-idY"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -4659,11 +4687,14 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                                     <constraint firstAttribute="trailing" secondItem="weX-Sq-EsI" secondAttribute="trailing" id="Ljb-X6-brg"/>
                                                     <constraint firstItem="weX-Sq-EsI" firstAttribute="leading" secondItem="kgP-G3-SG1" secondAttribute="leading" id="ceT-FM-yI5"/>
                                                     <constraint firstItem="weX-Sq-EsI" firstAttribute="top" secondItem="9Gq-9w-3jp" secondAttribute="bottom" constant="9.9999999999999858" id="dxs-xY-evs"/>
+                                                    <constraint firstItem="czM-Fq-GPF" firstAttribute="leading" secondItem="kgP-G3-SG1" secondAttribute="leading" id="sab-KV-G05"/>
+                                                    <constraint firstAttribute="trailing" secondItem="czM-Fq-GPF" secondAttribute="trailing" id="ufi-O0-enQ"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="211.5" id="NhT-h2-sf5"/>
+                                            <constraint firstItem="kgP-G3-SG1" firstAttribute="top" secondItem="6Qf-UX-Qql" secondAttribute="bottom" constant="30.000000000000014" id="hny-x9-tN4"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -4692,6 +4723,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                         <outlet property="otpTextFieldView" destination="BRs-Bc-fDF" id="PgX-w0-3QY"/>
                         <outlet property="resendButton" destination="czM-Fq-GPF" id="sVn-nC-0Xh"/>
                         <outlet property="timerLabel" destination="ThX-gi-GIb" id="rnS-4O-hM2"/>
+                        <outlet property="uistack" destination="weX-Sq-EsI" id="YL5-Dn-VhS"/>
                         <segue destination="Qxb-Tn-bnO" kind="show" identifier="segueHost" id="FvW-lt-OYB"/>
                     </connections>
                 </viewController>
@@ -5363,17 +5395,20 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
         <image name="menu" width="22" height="22"/>
         <image name="message" width="96" height="96"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="plus.circle" catalog="system" width="128" height="123"/>
+        <image name="plus.circle" catalog="system" width="32" height="32"/>
         <image name="preferred Drivers" width="128" height="118"/>
         <image name="sms 1" width="25" height="25"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="unnamed (1)" width="300" height="295"/>
         <image name="whatsapp 1" width="25" height="25"/>
         <namedColor name="ThemeYellow">
-            <color red="0.99607843137254903" green="0.8901960784313725" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99599999189376831" green="0.88999998569488525" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="avatarViewBackground">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="black">
+            <color red="0.026000000536441803" green="0.026000000536441803" blue="0.026000000536441803" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="collectionViewBackground">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

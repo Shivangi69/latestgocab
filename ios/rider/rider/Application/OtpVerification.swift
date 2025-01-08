@@ -16,10 +16,11 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
     
     @IBOutlet var timerLabel: UILabel!
     @IBOutlet var resendButton: UIButton!
-    
-    let countrycodevc =   CountryCodeVC()
+    @IBOutlet var uistack: UIStackView!
+
+    let countrycodevc =  CountryCodeVC()
     var timer: Timer?
-       var totalTime = 3 // 1:59 in seconds
+       var totalTime = 119 // 1:59 in seconds
        
     @IBOutlet var label: UILabel!
     @IBOutlet var hidelabel: UILabel!
@@ -36,20 +37,17 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
         // Retrieve the saved phone number from UserDefaults
         if let savedPhoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") {
             self.label.text = savedPhoneNumber
-            
         }
-
-        
         
         self.title = "Otp verification".uppercased()
         setupOtpView()  // Make sure this line is present
         setupGestureRecognizer() // To dismiss keyboard when tapping outside
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-
         setupResendCode()
-              startTimer()
+        startTimer()
     }
+    
     deinit {
            NotificationCenter.default.removeObserver(self)
        }
@@ -80,18 +78,23 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
     }
 
     func setupResendCode() {
-          resendButton.isEnabled = false
-          resendButton.alpha = 0.5 // Dim the button to indicate it's disabled
+        resendButton.isEnabled = false
+        resendButton.alpha = 1.0
+        
       }
       
       func startTimer() {
-          timerLabel.text = "Resend code in " + timeFormatted(totalTime)
+          timerLabel.text =  timeFormatted(totalTime)
           timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+          resendButton.isHidden = true
+
+          
       }
       
     func stopTimer() {
         timer?.invalidate()
         timer = nil
+        
     }
 
     @objc func updateTimer() {
@@ -105,18 +108,16 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
         }
     }
 
-
-      
+    
     func enableResendCode() {
         resendButton.isEnabled = true
-        resendButton.alpha = 1.0 // Reset button appearance
-        timerLabel.text = "Resend code"
-        timerLabel.textColor = .blue
-        hidelabel.isHidden = true
+//        resendButton.alpha = 1.0 // Reset button appearance
         timerLabel.textAlignment = .center
+
+        hidelabel.isHidden = true
+        resendButton.isHidden = false
         
     }
-
       
       func timeFormatted(_ totalSeconds: Int) -> String {
           let minutes = totalSeconds / 60
@@ -124,26 +125,22 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
           return String(format: "%d:%02d", minutes, seconds)
       }
       
+    
     @IBAction func resendCodePressed(_ sender: Any) {
         print("Resend code tapped")
-
         // Reset timer to 1:59
         totalTime = 119
-        setupResendCode() // Setup resend button to be disabled initially
-        startTimer() // Start the countdown timer
-
-        // Fetch auth token from UserDefaults (or use a default token if not found)
+        setupResendCode()
+        startTimer()
         let token = UserDefaults.standard.string(forKey: "authToken") ?? "defaultToken"
         makePostRequestforverify(token: token) // Make post request to verify the token
-        
         sentOTP()
+        timerLabel.textAlignment = .center
         hidelabel.isHidden = false
         timerLabel.isHidden = false
         resendButton.isHidden = true
-     
-        
-    }
 
+    }
 
        func setupGestureRecognizer() {
            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -161,10 +158,10 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
             }
         }
 
-        // Reset view when keyboard disappears
-        @objc func keyboardWillHide(notification: NSNotification) {
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
             self.view.frame.origin.y = 0 // Reset the view position
-        }
+    }
         
     func verify(){
         
@@ -191,13 +188,10 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                     print("User signed in successfully",authResult ?? "")
                     
                     self.view.showToast(message: "Welcome to Gocab!")
-                    // Handle successful sign-in, navigate to the next screen
                     
                     self.makePostRequestforverify(token: token)
                     self.stopTimer()
                     // Temporarily hide the navigation bar when pushing MainViewController
-                   
-             
                 }
             })
             
@@ -256,7 +250,6 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let phoneNumber = PhoneNumber.replacingOccurrences(of: "+", with: "")
 
-        
         let parameters: [String: Any] = [
             "mobileNumber": phoneNumber,
             "firebaseToken": token
@@ -276,7 +269,6 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                 print("No data received")
                 return
             }
-
             do {
                 let jsonResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
                 print("Response JSON: \(jsonResponse)")
@@ -303,14 +295,14 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                         }
                       
                     }
-                    else{
+                    else {
                         
                         
                         if let user = jsonResponse.data?.user {
                             UserManager.shared.currentUser = user
                             print("User details saved in UserManagersss.")
                           
-                            UserDefaultsConfig.user = try jsonResponse.data?.user.asDictionary()
+                            UserDefaultsConfig.user = try jsonResponse.data?.user?.asDictionary()
                         }
                         // Handle the token if needed
                         if let token = jsonResponse.token {
@@ -322,7 +314,6 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                             UserDefaults.standard.set("yes", forKey: "Firsttyme")
                             self.connectSocket(token:token)
                         }
-                        
                         
                        // self.connectSocket(token:token)
                     }

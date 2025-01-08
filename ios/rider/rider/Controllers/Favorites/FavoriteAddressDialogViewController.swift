@@ -541,7 +541,7 @@ class FavoriteAddressDialogViewController: UIViewController,PlacesPickerDelegate
                                                           UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.addressComponents.rawValue) | UInt(GMSPlaceField.coordinate.rawValue)  | UInt(GMSPlaceField.formattedAddress.rawValue) |  UInt(GMSPlaceField.defaultFields.rawValue))!
                 autocompleteController.placeFields = fields
 
-                present(autocompleteController, animated: true, completion: nil)
+            present(autocompleteController, animated: true, completion: nil)
            
         }
     }
@@ -572,3 +572,5 @@ class FavoriteAddressDialogViewController: UIViewController,PlacesPickerDelegate
         super.didReceiveMemoryWarning()
     }
 }
+
+

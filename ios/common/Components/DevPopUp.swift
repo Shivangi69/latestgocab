@@ -24,7 +24,6 @@ class DevPopUp: UIViewController {
         let bgView = UIView.init(frame: self.view.bounds)
         bgView.backgroundColor=UIColor.clear
         self.view.addSubview(bgView);
-        
         TouchInBackground = true
         contentView = _view
         controller = onController

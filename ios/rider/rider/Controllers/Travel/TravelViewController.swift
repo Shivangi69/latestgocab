@@ -528,7 +528,6 @@ class TravelViewController: UIViewController, CouponsViewDelegate, MKMapViewDele
                    let assignedVehicle = driver["assignedVehicle"] as? [String: Any],
                    let agency = driver["agency"] as? [String: Any],
                     let driverMedia = driver["driverMedia"] as? [[String: Any]] {
-
                 
                     print("No data received",data)
 

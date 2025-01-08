@@ -52,6 +52,7 @@
 		08DD47D32C24041500DF87DF /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DD47D22C24041500DF87DF /* CustomUIView.swift */; };
 		08E0118E2C66127000E76609 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0118D2C66127000E76609 /* CustomTextField.swift */; };
 		183EACF12CF5ACD000C119CC /* PaymentmethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183EACF02CF5ACD000C119CC /* PaymentmethodViewController.swift */; };
+		18DA00592D229DC10067382F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DA00582D229DC10067382F /* GoogleService-Info.plist */; };
 		4C215E9C238D17950013D720 /* AddCoupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C215E9B238D17950013D720 /* AddCoupon.swift */; };
 		4C215E9E238D1BA70013D720 /* GetCoupons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C215E9D238D1BA70013D720 /* GetCoupons.swift */; };
 		4C215EA0238D1BEC0013D720 /* ApplyCoupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C215E9F238D1BEC0013D720 /* ApplyCoupon.swift */; };
@@ -198,7 +199,6 @@
 		848ABF672C94070600BBF1B9 /* ChatWithAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848ABF662C94070600BBF1B9 /* ChatWithAdminViewController.swift */; };
 		8491F8352CA423D600E8DDF8 /* PreferredAgenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8491F8342CA423D600E8DDF8 /* PreferredAgenciesViewController.swift */; };
 		8491F8372CA4241B00E8DDF8 /* SearchAgencyPopupDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8491F8362CA4241B00E8DDF8 /* SearchAgencyPopupDelegate.swift */; };
-		84C1D8562C22C86400279A46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84C1D8552C22C86400279A46 /* GoogleService-Info.plist */; };
 		84D61F602BFCC79B0098485E /* MTSlideToOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D61F5F2BFCC79B0098485E /* MTSlideToOpenView.swift */; };
 		84DAFBDC2C9024AE00006541 /* DevPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DAFBDB2C9024AD00006541 /* DevPopUp.swift */; };
 		84FCA3692C91836A0012A1D4 /* AssistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FCA3682C91836A0012A1D4 /* AssistanceViewController.swift */; };
@@ -260,6 +260,7 @@
 		08DD47D22C24041500DF87DF /* CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
 		08E0118D2C66127000E76609 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		183EACF02CF5ACD000C119CC /* PaymentmethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentmethodViewController.swift; sourceTree = "<group>"; };
+		18DA00582D229DC10067382F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4C215E9B238D17950013D720 /* AddCoupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoupon.swift; sourceTree = "<group>"; };
 		4C215E9D238D1BA70013D720 /* GetCoupons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoupons.swift; sourceTree = "<group>"; };
 		4C215E9F238D1BEC0013D720 /* ApplyCoupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyCoupon.swift; sourceTree = "<group>"; };
@@ -407,7 +408,6 @@
 		848ABF662C94070600BBF1B9 /* ChatWithAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWithAdminViewController.swift; sourceTree = "<group>"; };
 		8491F8342CA423D600E8DDF8 /* PreferredAgenciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferredAgenciesViewController.swift; sourceTree = "<group>"; };
 		8491F8362CA4241B00E8DDF8 /* SearchAgencyPopupDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAgencyPopupDelegate.swift; sourceTree = "<group>"; };
-		84C1D8552C22C86400279A46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84D61F5F2BFCC79B0098485E /* MTSlideToOpenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTSlideToOpenView.swift; sourceTree = "<group>"; };
 		84DAFBDB2C9024AD00006541 /* DevPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevPopUp.swift; sourceTree = "<group>"; };
 		84FCA3682C91836A0012A1D4 /* AssistanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistanceViewController.swift; sourceTree = "<group>"; };
@@ -869,7 +869,6 @@
 			isa = PBXGroup;
 			children = (
 				0810F5DA2CBFBB4F00A24820 /* FittedSheets */,
-				84C1D8552C22C86400279A46 /* GoogleService-Info.plist */,
 				4CB5FC4323A79FA400F2D5BC /* Components */,
 				62F4D8BF20154900000933DA /* Models */,
 				622BBD351F32236D00E14667 /* Networking */,
@@ -885,6 +884,7 @@
 				4C73EF0421DA70AD00DA1037 /* Assets.xcassets */,
 				62B6FD9C1F70F70A00F66611 /* Info.plist */,
 				844455932BF7601C0070FC6B /* new_ride.mp3 */,
+				18DA00582D229DC10067382F /* GoogleService-Info.plist */,
 				08DD47CE2C22EA8400DF87DF /* notification.mp3 */,
 				844455912BF7601B0070FC6B /* ride_cancel.mp3 */,
 				844455922BF7601C0070FC6B /* ride_finished.mp3 */,
@@ -1088,12 +1088,12 @@
 				4CE9844F21A824CB00900570 /* PromotionsCollectionViewCell.xib in Resources */,
 				62B6FDA11F70F8FD00F66611 /* background.jpg in Resources */,
 				0862C8632CA6C7BC00A167E2 /* BTTableViewCell.xib in Resources */,
-				84C1D8562C22C86400279A46 /* GoogleService-Info.plist in Resources */,
 				844455992BF7601E0070FC6B /* ride_start.mp3 in Resources */,
 				08AD4BFD2C75C13600F89CA7 /* CountryCodes.json in Resources */,
 				844455972BF7601E0070FC6B /* ride_finished.mp3 in Resources */,
 				8444559C2BF76ED70070FC6B /* driver_arrived.mp3 in Resources */,
 				62D714D2209C4F5D0043ABFB /* FavoriteAddressDialogViewController.xib in Resources */,
+				18DA00592D229DC10067382F /* GoogleService-Info.plist in Resources */,
 				844455962BF7601E0070FC6B /* ride_cancel.mp3 in Resources */,
 				0810F6072CBFC1EE00A24820 /* BTTTTTTTViewController.xib in Resources */,
 				081991652C63562F00838929 /* Main.storyboard in Resources */,
@@ -1592,17 +1592,17 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1.1.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = VZNDPQUZYP;
+				DEVELOPMENT_TEAM = CV7UDY796Q;
 				INFOPLIST_FILE = rider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gocab.rider;
+				MARKETING_VERSION = 1.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gocab.rider.new;
 				PRODUCT_NAME = "Go Cabs Rider";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1685,17 +1685,17 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1.1.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = VZNDPQUZYP;
+				DEVELOPMENT_TEAM = CV7UDY796Q;
 				INFOPLIST_FILE = rider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gocab.rider;
+				MARKETING_VERSION = 1.1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gocab.rider.new;
 				PRODUCT_NAME = "Go Cabs Rider";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

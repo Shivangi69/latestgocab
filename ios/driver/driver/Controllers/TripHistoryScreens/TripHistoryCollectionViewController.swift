@@ -204,12 +204,10 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
         distanceFormatter.unitStyle = .abbreviated
         distanceFormatter.units = .metric // Set units to metric
 
-      
         let distanceInMeters = Double(travel.distanceReal ?? 0)
         let formattedDistance = distanceFormatter.string(fromDistance: distanceInMeters)
 
         //print("Formatted Distance: \(formattedDistance)")
-        
         cell.cartype.text = ""//travel.service?.title
         cell.distance.text = "(" + formattedDistance + ")"
         cell.tripStatusvalue.text = travel.status!.rawValue.splitBefore(separator: { $0.isUppercase }).map { String($0) }.joined(separator: " ")
@@ -220,19 +218,22 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
         }.joined(separator: "&")
 
         var mapUrl = "https://maps.googleapis.com/maps/api/staticmap?size=500x400&language=\(localeLanguage)&\(pointsQuery )&key=AIzaSyCW_G5rejKDXuhXYN8sITHhPRdX9_zbK5A"
-
         
         if let waypoints = travel.waypoints {
-            let polylinePath = waypoints.map { "\($0.latitude),\($0.longitude)" }.joined(separator: "|")
+            
+            let polylinePath = waypoints.map {"\($0.latitude),\($0.longitude)"}.joined(separator: "|")
             print(polylinePath)
             mapUrl += "&path=weight:10|color:0x000000|\(polylinePath)"
 
-        } else {
+        }
+        
+        else {
             print("No waypoints available")
         }
 
 //        let polylinePath = travel.waypoints.map { "\($0.latitude),\($0.longitude)" }.joined(separator: "|")
 
+        
         if let log = travel.log, !log.isEmpty {
             mapUrl += "&path=weight:3|color:orange|enc:\(log)"
         }
@@ -246,7 +247,6 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
                 //print("Invalid mediaUrl: \(encodedMapUrl)")
             }
         }
-
 
         let driverMedia = travel.driver?.driverMedia?.first(where: { $0.mediaType == "profile" })?.url ?? ""
         let str = Config.Backend + driverMedia
@@ -263,7 +263,8 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
             if let mediaUrl = URL(string: encodedDriverMedia) {
                // //print("mediaUrl: \(mediaUrl)")
                 cell.driverImage.kf.setImage(with: mediaUrl, placeholder: UIImage(named: "profile"))
-            } else {
+            }
+            else {
                 ////print("Invalid mediaUrl: \(encodedDriverMedia)")
             }
         }

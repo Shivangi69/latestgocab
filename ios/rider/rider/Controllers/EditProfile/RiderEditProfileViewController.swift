@@ -119,75 +119,107 @@ import MaterialComponents
 class RiderEditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     var downloading = false
     var rider: Rider!
-
     let menuview = MenuViewController()
-    // UI Elements
     let scrollView = UIScrollView()
     let contentView = UIView()
     let profileImageView = UIImageView()
     let emailTextField = MDCOutlinedTextField()
-
     let mobileNumberLabel = MDCOutlinedTextField()
     let firstNameTextField = MDCOutlinedTextField()
     let lastNameTextField = MDCOutlinedTextField()
     let genderNameTextField = MDCOutlinedTextField()
-
     let addressTextField = MDCOutlinedTextField()
     let saveButton = UIButton(type: .system)
     let logoutButton = UIButton(type: .system)
-    let deleteAccountButton = UIButton(type: .system)
+ let deleteAccountButton = UIButton(type: .system)
 
-    let genderSegmentedControl = UISegmentedControl(items: ["Male", "Female", "Unspecified"])
+  //  let genderSegmentedControl = UISegmentedControl(items: ["Male", "Female", "Unspecified"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+            tapGesture.cancelsTouchesInView = false
+            view.addGestureRecognizer(tapGesture)
 
         rider = try! Rider(from: UserDefaultsConfig.user!)
-
         setupUI()
         layoutUI()
         populateData()
+     
+        
+        
     }
 
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    
     func setupUI() {
         view.backgroundColor = .white
         title = "Your Account"
 
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = 50
         profileImageView.layer.masksToBounds = true
         profileImageView.isUserInteractionEnabled = true
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectProfileImage)))
         contentView.addSubview(profileImageView)
-
         
+            
         mobileNumberLabel.label.text = NSLocalizedString("Mobile Number", comment: "Profile Mobile Number field title")
+
         mobileNumberLabel.placeholder = "Enter your mobile number"
         mobileNumberLabel.leadingView = UIImageView(image: UIImage(systemName: "phone")?.withTintColor(.systemFill))
         mobileNumberLabel.tintColor = .gray // Ensure icon color is always gray
-
+        mobileNumberLabel.isEnabled = false // Disable the field
+       // mobileNumberLabel.trailingView = UIImageView(image: UIImage(named: "icons8-verified-96"))
         mobileNumberLabel.leadingViewMode = .always
         mobileNumberLabel.setOutlineColor(.gray, for: .normal)
-        mobileNumberLabel.setNormalLabelColor(.gray, for: .normal)
+//       mobileNumberLabel.setNormalLabelColor(.gray, for: .normal)
         mobileNumberLabel.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(mobileNumberLabel)
+        
+        if let verifiedImage = UIImage(named: "icons8-verified-96") {
+            let imageView = UIImageView(image: verifiedImage)
+            imageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20) // Set the desired size
+            imageView.contentMode = .scaleAspectFit // Ensure the image scales properly
+            
+            mobileNumberLabel.trailingView = imageView // Set as trailing view
+            mobileNumberLabel.trailingViewMode = .always // Ensure the view is always visible
+        } else {
+            print("Error: 'icons8-verified-96' image not found or could not be loaded.")
+        }
 
         emailTextField.label.text = NSLocalizedString("E-Mail", comment: "Profile Email field title")
         emailTextField.placeholder = "Enter your email"
         emailTextField.leadingView = UIImageView(image: UIImage(systemName: "envelope"))
+        emailTextField.tintColor = .gray // Ensure icon color is always gray
+        emailTextField.trailingView = UIImageView(image: UIImage(named: "icons8-verified-96"))
+
         emailTextField.leadingViewMode = .always
         emailTextField.sizeToFit()
+        emailTextField.isEnabled = false // Disable the field
 
         // Styling
         emailTextField.tintColor = .gray
-
         emailTextField.setOutlineColor(.gray, for: .normal)
         emailTextField.setNormalLabelColor(.gray, for: .normal)
         emailTextField.font = UIFont.systemFont(ofSize: 14)
-
+        
+        if let verifiedImage = UIImage(named: "icons8-verified-96") {
+            let imageView = UIImageView(image: verifiedImage)
+            imageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20) // Set the desired size
+            imageView.contentMode = .scaleAspectFit // Ensure the image scales properly
+            
+            emailTextField.trailingView = imageView // Set as trailing view
+            emailTextField.trailingViewMode = .always // Ensure the view is always visible
+        }
+        else {
+            print("Error: 'icons8-verified-96' image not found or could not be loaded.")
+        }
         contentView.addSubview(emailTextField)
 
         // Configure First Name TextField
@@ -238,7 +270,7 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         // Gender Segmented Control
 //        genderSegmentedControl.selectedSegmentIndex = 0
 //        contentView.addSubview(genderSegmentedControl)
-
+        
         genderNameTextField.label.text = NSLocalizedString("Gender", comment: "Profile Gender field")
         genderNameTextField.tintColor = .gray // Ensure icon color is always gray
         genderNameTextField.placeholder = "Enter Gender"
@@ -249,138 +281,179 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         genderNameTextField.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(genderNameTextField)
         logoutButton.setTitle(NSLocalizedString("Logout", comment: "Logout button title"), for: .normal)
+        
         logoutButton.setTitleColor(.blue, for: .normal)
         logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         logoutButton.addTarget(self, action: #selector(resetAppAndNavigateToSplash), for: .touchUpInside)
-
-
+        
         deleteAccountButton.setTitle(NSLocalizedString("Delete My Account", comment: "Delete my account button title"), for: .normal)
         deleteAccountButton.setTitleColor(.red, for: .normal)
         deleteAccountButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-//    deleteAccountButton.addTarget(self, action: #selector(deleteAccountButtonTapped), for: .touchUpInside)
-
-        // Adding the buttons to the content view
+      
+        deleteAccountButton.addTarget(self, action: #selector(deleteAccountButtonTapped), for: .touchUpInside)
+        
         contentView.addSubview(logoutButton)
         contentView.addSubview(deleteAccountButton)
-//
+
 //        saveButton.setTitle(NSLocalizedString("Save", comment: "Save button title"), for: .normal)
-//        saveButton.addTarget(self, action: #selector(onSaveProfileClicked), for: .touchUpInside)
 //        contentView.addSubview(saveButton)
+        
+        
+        saveButton.setTitle(NSLocalizedString("Save", comment: "Save button title"), for: .normal)
+        saveButton.backgroundColor = UIColor.systemYellow
+//        saveButton.layer.borderColor = UIColor.black.cgColor
+//        saveButton.layer.borderWidth = 2.0
+        saveButton.titleLabel?.textColor = .black
+        saveButton.layer.cornerRadius = 10.0
+        saveButton.clipsToBounds = true
+        saveButton.addTarget(self, action: #selector(onSaveProfileClicked), for: .touchUpInside)
+        
+        contentView.addSubview(saveButton)
     }
+    
+    
+    @objc func deleteAccountButtonTapped() {
+        let alert = UIAlertController(
+            title: "Delete Account",
+            message: "Are you sure you want to delete your account?",
+            preferredStyle: .alert
+        )
+
+        // Add "Cancel" action
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        // Add "Delete" action
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            // Replace these with actual values
+            let riderId = 123 // Example rider ID
+            let token = "your-auth-token" // Example token
+
+            Task {
+                do {
+                    let result = try await deleteaccount(riderId: riderId, token: token)
+                    print("Account deleted successfully: \(result)")
+                    // Handle success (e.g., show a confirmation alert or navigate back)
+                } catch {
+                  
+                    print("Failed to delete account: \(error.localizedDescription)")
+                    // Handle the error (e.g., show an error alert)
+                }
+            }
+        }))
+        
+        // Present the alert
+        if let viewController = UIApplication.shared.keyWindow?.rootViewController {
+            viewController.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     @objc func resetAppAndNavigateToSplash() {
         print("Logout button tapped")
         
-        // Clear user defaults
         if let bundle = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: bundle)
             UserDefaults.standard.synchronize()
         }
 
-        // Hide the side menu (if applicable)
         menuview.menuContainerViewController?.hideSideMenu()
-
-        // Get the active window
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first else {
             return
         }
 
-        // Instantiate the splash view controller
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let splashViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
-
-        // Reset the root view controller
+      
         let navigationController = UINavigationController(rootViewController: splashViewController)
         window.rootViewController = navigationController
 
-        // Add a transition animation (optional)
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: nil) { _ in
             window.makeKeyAndVisible()
         }
     }
-
-
+    
+    
+    
+    
     func layoutUI() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-           contentView.translatesAutoresizingMaskIntoConstraints = false
-           profileImageView.translatesAutoresizingMaskIntoConstraints = false
-           mobileNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-           emailTextField.translatesAutoresizingMaskIntoConstraints = false
-           firstNameTextField.translatesAutoresizingMaskIntoConstraints = false
-           lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
-          genderNameTextField.translatesAutoresizingMaskIntoConstraints = false
-           addressTextField.translatesAutoresizingMaskIntoConstraints = false
-//           saveButton.translatesAutoresizingMaskIntoConstraints = false
+        // Disable autoresizing masks
+        [scrollView, contentView, profileImageView, mobileNumberLabel, emailTextField,
+         firstNameTextField, lastNameTextField, genderNameTextField, addressTextField,
+         saveButton, logoutButton, deleteAccountButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
 
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        deleteAccountButton.translatesAutoresizingMaskIntoConstraints = false
-
+        // Name stack view setup
         let nameStackView = UIStackView(arrangedSubviews: [firstNameTextField, lastNameTextField])
-        
-         nameStackView.axis = .horizontal
-         nameStackView.spacing = 10
-         nameStackView.distribution = .fillEqually
-         nameStackView.translatesAutoresizingMaskIntoConstraints = false
-         contentView.addSubview(nameStackView)
+        nameStackView.axis = .horizontal
+        nameStackView.spacing = 10
+        nameStackView.distribution = .fillEqually
+        nameStackView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(nameStackView)
+
         NSLayoutConstraint.activate([
+            // ScrollView constraints
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
+            // ContentView constraints
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 
+            // Profile Image
             profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             profileImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
             profileImageView.heightAnchor.constraint(equalToConstant: 100),
 
-            
-            
+            // Mobile Number
             mobileNumberLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 20),
             mobileNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             mobileNumberLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            
+
+            // Email TextField
             emailTextField.topAnchor.constraint(equalTo: mobileNumberLabel.bottomAnchor, constant: 20),
             emailTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             emailTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
-            // Horizontal Name StackView
+            // Name Stack View
             nameStackView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
             nameStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             nameStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
 
-//            firstNameTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
-//            firstNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-//            firstNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-//
-//            lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 20),
-//            lastNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-//            lastNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-
+            // Gender Name TextField
             genderNameTextField.topAnchor.constraint(equalTo: nameStackView.bottomAnchor, constant: 20),
             genderNameTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             genderNameTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+
+            // Address TextField
             addressTextField.topAnchor.constraint(equalTo: genderNameTextField.bottomAnchor, constant: 20),
             addressTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             addressTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-          
+
+            // Logout Button
             logoutButton.topAnchor.constraint(equalTo: addressTextField.bottomAnchor, constant: 20),
             logoutButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-       
-               
+            logoutButton.heightAnchor.constraint(equalToConstant: 20),
+
+            // Delete Account Button
             deleteAccountButton.topAnchor.constraint(equalTo: logoutButton.bottomAnchor, constant: 15),
             deleteAccountButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-         
-               
-            
-//            saveButton.topAnchor.constraint(equalTo: addressTextField.bottomAnchor, constant: 20),
-//            saveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-//            saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            deleteAccountButton.heightAnchor.constraint(equalToConstant: 20),
+
+            // Save Button
+            saveButton.topAnchor.constraint(equalTo: deleteAccountButton.bottomAnchor, constant: 20),
+            saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            saveButton.heightAnchor.constraint(equalToConstant: 50),
+
+            // ContentView bottom constraint
+            contentView.bottomAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 30)
         ])
     }
 
@@ -393,18 +466,22 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         }
         
         if let mobileNumber = rider.mobileNumber {
-            mobileNumberLabel.text = String(mobileNumber) // For standard UILabel or MDCOutlinedTextField
+            mobileNumberLabel.text = String(mobileNumber)
+
+            // For standard UILabel or MDCOutlinedTextField
         }
         
         emailTextField.text = rider.email
         firstNameTextField.text = rider.firstName
         lastNameTextField.text = rider.lastName
         genderNameTextField.text = rider.gender
-
-        if let gender = rider.gender?.capitalizingFirstLetter() {
-            genderSegmentedControl.selectedSegmentIndex = ["Male", "Female", "Unspecified"].firstIndex(of: gender) ?? 0
-        }
         addressTextField.text = rider.address
+
+//        if let gender = rider.gender?.capitalizingFirstLetter() {
+//            genderSegmentedControl.selectedSegmentIndex = ["Male", "Female", "Unspecified"].firstIndex(of: gender) ?? 0
+//        }
+        
+        
     }
 
     @objc func selectProfileImage() {
@@ -418,7 +495,8 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         rider.email = emailTextField.text
         rider.firstName = firstNameTextField.text
         rider.lastName = lastNameTextField.text
-        rider.gender = ["male", "female", "unspecified"][genderSegmentedControl.selectedSegmentIndex]
+//        rider.gender = ["male", "female", "unspecified"][genderSegmentedControl.selectedSegmentIndex]
+        rider.gender = genderNameTextField.text
         rider.address = addressTextField.text
 
         UpdateProfile(user: self.rider).execute() { result in
@@ -457,6 +535,11 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+   
+
+    
+    
+    
 }
 
 //import UIKit
@@ -681,11 +764,70 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
 //    @objc func logoutButtonTapped() {
 //
 //    }
-//
-//
-//    @objc func deleteAccountButtonTapped() {
-//
-//    }
+
+
+
+
+func deleteAccountButtonTapped() {
+    let alert = UIAlertController(
+        title: "Delete Account",
+        message: "Are you sure you want to delete your account?",
+        preferredStyle: .alert
+    )
+
+    // Add "Cancel" action
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    
+    // Add "Delete" action
+    alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+        // Replace these with actual values
+        let riderId = 123 // Example rider ID
+        let token = "your-auth-token" // Example token
+
+        Task {
+            do {
+                let result = try await deleteaccount(riderId: riderId, token: token)
+                print("Account deleted successfully: \(result)")
+                // Handle success (e.g., show a confirmation alert or navigate back)
+            } catch {
+                print("Failed to delete account: \(error.localizedDescription)")
+                // Handle the error (e.g., show an error alert)
+            }
+        }
+    }))
+    
+    // Present the alert
+    if let viewController = UIApplication.shared.keyWindow?.rootViewController {
+        viewController.present(alert, animated: true, completion: nil)
+    }
+}
+
+func deleteaccount( riderId: Int, token: String) async throws -> DeletePrefResult {
+    // Construct the URL
+    let urlString =  Config.Backend  + "rider/\(riderId)"
+    guard let url = URL(string: urlString) else {
+        throw URLError(.badURL)
+    }
+
+    // Create a URLRequest
+    var request = URLRequest(url: url)
+    request.httpMethod = "DELETE"
+    
+    // Set the Authorization header
+    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+    // Perform the API request using async/await
+    let (data, response) = try await URLSession.shared.data(for: request)
+    
+    // Check for a valid response
+    guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        throw URLError(.badServerResponse)
+    }
+
+    // Parse the JSON response
+    let deleteResult = try JSONDecoder().decode(DeletePrefResult.self, from: data)
+    return deleteResult
+}
 //
 //    // UIImagePickerControllerDelegate Methods
 //    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

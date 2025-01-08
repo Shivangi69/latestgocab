@@ -10,7 +10,6 @@ import SPAlert
 import Firebase
 //import FirebaseUI
 import FirebaseAuthUI
-
 import FirebaseCore
 import FirebaseAuthUI
 import FirebaseMessaging
@@ -31,6 +30,8 @@ class SplashViewController: UIViewController {
             self.loginState()
         }
     }
+
+    
     
     func loginState() {
         indicatorLoading.isHidden = true
@@ -71,17 +72,17 @@ class SplashViewController: UIViewController {
         }
     }
     
+
     func connectSocket(token:String) {
         Messaging.messaging().token() { fcmId, error in
             SocketNetworkDispatcher.instance.connect(namespace: .Driver, token: token, notificationId: fcmId ?? "") { result in
                 switch result {
                 case .success(_):
                     self.performSegue(withIdentifier: "segueShowHost", sender: nil)
-                    
-                case .failure(let error):
+                    case .failure(let error):
                     self.loginState()
                     self.connectionError(error: error)
-                    
+                
                 }
             }
         }
