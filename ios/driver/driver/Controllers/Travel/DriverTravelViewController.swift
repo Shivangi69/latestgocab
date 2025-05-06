@@ -19,7 +19,9 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
                 UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url)
             }
-        } else if identifier == "Start" {
+        }
+        
+        else if identifier == "Start" {
             LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             Start().execute() { result in
                 LoadingOverlay.shared.hideOverlayView()
@@ -33,6 +35,7 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
                 }
             }
         }
+        
     else if identifier == "Arrived" {
         LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
         Arrived().execute() { result in
@@ -198,7 +201,7 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.distanceFilter = 50
-        locationManager.allowsBackgroundLocationUpdates = true
+            //     locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.activityType = .automotiveNavigation
         locationManager.requestAlwaysAuthorization()
@@ -301,9 +304,7 @@ class DriverTravelViewController: UIViewController, CLLocationManagerDelegate, M
             finishTravel(finishService: f)
             playNotificationSound(soundname: "ride_finished")
         }
-        
-        
-        
+                
         else if identifier == "Cancel" {
             LoadingOverlay.shared.showOverlay(view: self.navigationController?.view)
             Cancel().execute() { result in

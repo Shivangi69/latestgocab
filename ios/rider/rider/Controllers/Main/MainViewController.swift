@@ -1,7 +1,6 @@
 //
 //  MainViewController.swift
 //  Rider
-//
 //  Copyright © 2019 minimalistic apps. All rights reserved.
 //
 
@@ -11,7 +10,6 @@ import Contacts
 import GooglePlaces
 import PlacesPicker
 import GooglePlacesPicker
-
 import GoogleMaps
 import BottomSheet
 import BottomSheetUtils
@@ -25,7 +23,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         print("Place name: \(place)")
         print("Place address: \(place.formattedAddress ?? "")")
-//        print("Place attributions: \(place.addressComponents)")
+//      print("Place attributions: \(place.addressComponents)")
         
         let ann = MKPointAnnotation()
         ann.coordinate = place.coordinate
@@ -57,6 +55,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
           self.AddmoreDesButton.isEnabled = true
           self.AddmoreDesButton.isEnabled = true
         }
+        
 //        if pointsAnnotations.count >= 2 {
 //            map.removeAnnotations(pointsAnnotations)
 //            let waypoints = pointsAnnotations.map { $0.coordinate }
@@ -65,6 +64,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
 //            map.showAnnotations(pointsAnnotations, animated: true)
 //
 //        }
+        
         self.map.setCenter(place.coordinate, animated: true)
 
         dismiss(animated: true, completion: nil)
@@ -184,6 +184,31 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
 //    }
 
     
+    
+    
+//    @IBAction func Goassistance(_ sender: Any) {
+////        guard let menuContainerViewController = self.menuContainerViewController else {
+////            return
+////        }
+////        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AssistanceViewController") as? AssistanceViewController {
+////            (menuContainerViewController.contentViewControllers[0] as! UINavigationController).pushViewController(vc, animated: true)
+////            menuContainerViewController.hideSideMenu()
+////        }
+////        
+//        let chatVC = ChatWithAdminViewController()
+//        chatVC.sender = Admin()
+//        print(Admin())// Pass any required data
+//        self.navigationController!.pushViewController(chatVC, animated: true)
+//
+//        
+//        //        if let navigationController = menuContainerViewController.contentViewControllers.first as? UINavigationController {
+////            navigationController.pushViewController(chatVC, animated: true)
+////        }
+////        else {
+////            print("Error: Unable to find navigation controller in contentViewControllers.")
+////        }
+////        menuContainerViewController.hideSideMenu()
+//    }
     @objc func handleCallDoneNotification(_ notification: Notification) {
 //        pointsAnnotations.removeAll()
 //        drawRoute(waypoints: [])
@@ -608,7 +633,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
     }
     
     @IBAction func onMenuClicked(_ sender: UIBarButtonItem) {
-        if(pointsAnnotations.count == 0 ||  leftBarButton.image  ==  UIImage(named: "menu") ) {
+        if(pointsAnnotations.count == 1 ||  leftBarButton.image  ==  UIImage(named: "menu") ) {
             NotificationCenter.default.post(name: .menuClicked, object: nil)
             return
         }
@@ -795,10 +820,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, ServiceRe
         UserDefaults.standard.set(locs.first?.add, forKey: "LOCA")
         print("Loca2",locs.last?.add ?? "")
         UserDefaults.standard.set(locs.last?.add, forKey: "LOCB")
-        guard let couponcode =  UserDefaults.standard.string(forKey:  "couponcode") else {
-            return
-            
-        }
+       
+        let couponcode =  UserDefaults.standard.string(forKey:  "couponcode") ?? ""
+        
 
         let feedbackGenerator = UISelectionFeedbackGenerator()
         feedbackGenerator.selectionChanged()

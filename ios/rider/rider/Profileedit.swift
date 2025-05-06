@@ -98,27 +98,23 @@ class Profileedit: UIViewController,UITextFieldDelegate {
                 // Fallback on earlier versions
             }
         }))
-        
-        
         // Camera option
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             self.DOCORPROFILE = "DOC"
             self.openCamera()
         }))
-        
         // Gallery option
         actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
             self.DOCORPROFILE = "DOC"
 
             self.openGallery()
         }))
-        
         // Cancel option
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         // Present the action sheet
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
     @available(iOS 14.0, *)
     func openDocumentPicker() {
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf, .jpeg, .png,.text], asCopy: true)
@@ -142,8 +138,7 @@ class Profileedit: UIViewController,UITextFieldDelegate {
     @IBAction func cancelButton(_ sender: Any) {
     }
     @IBAction func verifyButton(_ sender: Any) {
-        guard let email = Email.text, !email.isEmpty else {
-                   // Show alert if email is empty
+    guard let email = Email.text, !email.isEmpty else {
                    return
                }
         sendEmailVerification(email: email)
@@ -358,8 +353,6 @@ class Profileedit: UIViewController,UITextFieldDelegate {
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else { return }
         request.httpBody = httpBody
 
-        
-        
 //            do {
 //                let jsonData = try JSONEncoder().encode(emailVerifyRequest)
 //                request.httpBody = jsonData
@@ -368,6 +361,7 @@ class Profileedit: UIViewController,UITextFieldDelegate {
 //                return
 //            }
             
+        
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     print("Error: \(error.localizedDescription)")
@@ -378,7 +372,6 @@ class Profileedit: UIViewController,UITextFieldDelegate {
                     print("No data received")
                     return
                 }
-                
                 do
 //                {
 //                    let jsonResponse = try JSONDecoder().decode(RiderSignupResponse.self, from: data)
@@ -447,12 +440,14 @@ class Profileedit: UIViewController,UITextFieldDelegate {
             
         }
         }
-    var isEmailVerified = false
+     var isEmailVerified = false
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             textField.resignFirstResponder() // This will dismiss the keyboard
             return true
         }
-        func verifyEmailOTP(email: String, otp: String) {
+    
+func verifyEmailOTP(email: String, otp: String) {
             let emailOTPVerifyRequest = EmailOTPVerifyRequest(email: email, enteredOtp: otp)
             let url = URL(string: Config.Backend + "rider/verify/email")!
             var request = URLRequest(url: url)
@@ -503,7 +498,7 @@ class Profileedit: UIViewController,UITextFieldDelegate {
                                 self.msgbox.dismiss(value: true)
                                 self.varifiedEmail = email
                             }
-                        }else{
+                        } else{
                          
                            
                         }
@@ -545,6 +540,7 @@ extension Profileedit: OTPFieldViewDelegate {
         verificationCode = otpString
     }
 }
+
 extension Profileedit: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if DOCORPROFILE == "PROFILE"{
@@ -553,9 +549,9 @@ extension Profileedit: UIImagePickerControllerDelegate, UINavigationControllerDe
             } else if let originalImage = info[.originalImage] as? UIImage {
                 profileImage.image = originalImage
             }
-            
         }
-        else{
+        
+        else {
             if let editedImage = info[.editedImage] as? UIImage {
                 IDIMAGE = editedImage
             } else if let originalImage = info[.originalImage] as? UIImage {

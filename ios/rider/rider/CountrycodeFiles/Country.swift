@@ -4,18 +4,17 @@
 //
 //  Created by Created by WeblineIndia  on 01/07/20.
 //  Copyright © 2020 WeblineIndia . All rights reserved.
-//
+
 
 import Foundation
 open class Country: NSObject {
-
     open var countryCode: String
     open var phoneExtension: String
     open var isMain: Bool
     open var flag : String
     public static var emptyCountry: Country { return Country(countryCode: "", phoneExtension: "", isMain: true,flag: "") }
     
- //init method for country code phone extension and flag
+ // init method for country code phone extension and flag
     public init(countryCode: String, phoneExtension: String, isMain: Bool, flag: String) {
         self.countryCode = countryCode
         self.phoneExtension = phoneExtension
@@ -23,7 +22,8 @@ open class Country: NSObject {
         self.flag = flag
     }
 
-//Method used to find current country of the user
+    
+// Method used to find current country of the user
     public static var currentCountry: Country {
 
         let localIdentifier = Locale.current.identifier //returns identifier of your telephones country/region settings

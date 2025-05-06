@@ -44,6 +44,7 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
         setupGestureRecognizer() // To dismiss keyboard when tapping outside
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         setupResendCode()
         startTimer()
     }
@@ -276,7 +277,7 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                 if let success = jsonResponse.success, success {
                     // Store the user data in the UserManager
                     
-                    if (jsonResponse.data?.user?.status == "pending approval" ){
+                    if (jsonResponse.data?.user?.status == "Disabled" ){
                         if let token = jsonResponse.token {
                             print("Token received: \(token)")
                             // You can save the token if needed
@@ -287,6 +288,7 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
 
                             if let user = jsonResponse.data?.user {
                                 UserManager.shared.currentUser = user
+                                
                                 print("User details saved in UserManagerrrr.")
                               
                                 UserDefaultsConfig.user = try jsonResponse.data?.user.asDictionary()
@@ -296,7 +298,6 @@ class OtpVerification: UIViewController , UITextFieldDelegate{
                       
                     }
                     else {
-                        
                         
                         if let user = jsonResponse.data?.user {
                             UserManager.shared.currentUser = user

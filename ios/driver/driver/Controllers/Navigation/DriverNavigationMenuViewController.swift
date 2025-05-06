@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import SPAlert
+import SocketIO
 
 class DriverNavigationMenuViewController : MenuViewController {
     let kCellReuseIdentifier = "MenuCell"
@@ -29,6 +30,7 @@ class DriverNavigationMenuViewController : MenuViewController {
         imageUser.layer.borderColor = UIColor.white.cgColor
         imageUser.layer.borderWidth = 3.0
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         let driver = try! Driver(from: UserDefaultsConfig.user!)
@@ -75,24 +77,30 @@ class DriverNavigationMenuViewController : MenuViewController {
     }
     
     
+//    @IBAction func agencydetails(_ sender: UIButton) {
+//        guard let menuContainerViewController = self.menuContainerViewController else {
+//            return
+//        }
+//        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Agencydetails View Controller") as? AgencydetailsViewController {
+//            (menuContainerViewController.contentViewControllers[0] as! UINavigationController).pushViewController(vc, animated: true)
+//            menuContainerViewController.hideSideMenu()
+//        }
+//    }
     
-    
-    @IBAction func agencydetails(_ sender: Any) {
+    @IBAction func agencydetails(_ sender: UIButton) {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return
         }
-        
-        if let vc = Bundle.main.loadNibNamed("AgencydetailsViewController", owner: self, options: nil)?.first as? AgencydetailsViewController {
-        (menuContainerViewController.contentViewControllers[0] as! UINavigationController).pushViewController(vc, animated: true)
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Agency") as? AgencydetailsViewController {
+            (menuContainerViewController.contentViewControllers[0] as! UINavigationController).pushViewController(vc, animated: true)
             menuContainerViewController.hideSideMenu()
         }
-        
     }
     
     
-    
-    
-    
+    @IBAction func deletebutton(_ sender: UIButton) {
+        showAgencyPopup()
+    }
     
     @IBAction func onStatisticsTouched(_ sender: Any) {
         guard let menuContainerViewController = self.menuContainerViewController else {
@@ -143,6 +151,23 @@ class DriverNavigationMenuViewController : MenuViewController {
         menuContainerViewController.hideSideMenu()
     }
     
+    
+//    
+//    @IBAction func agencydetails(_ sender: Any) {
+//        guard let menuContainerViewController = self.menuContainerViewController else {
+//            return
+//        }
+//        
+//        if let vc = Bundle.main.loadNibNamed("AgencydetailsViewController", owner: self, options: nil)?.first as? AgencydetailsViewController {
+//        (menuContainerViewController.contentViewControllers[0] as! UINavigationController).pushViewController(vc, animated: true)
+//            menuContainerViewController.hideSideMenu()
+//        }
+//        
+//    }
+    
+  
+    
+    
     @IBAction func onExitClicked(_ sender: UIButton) {
 //        guard let menuContainerViewController = self.menuContainerViewController else {
 //            return
@@ -177,4 +202,46 @@ class DriverNavigationMenuViewController : MenuViewController {
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
         
     }
+    
+    
+    func showAgencyPopup() {
+        
+        let alert = UIAlertController(title: "Agency Info", message: "This is your agency popup. Triggered from button or socket.", preferredStyle: .alert)
+        
+        // OK Button ke liye handler diya gaya hai
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.saveDriverRow(id: 126, agencyId: "27")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    // OK button press hone par ye function chalega
+  
+    
+    public func saveDriverRow(id: Int, agencyId: String) {
+        let params: [Any] = [
+            "saveRow",
+            [
+                "table": "Driver",
+                "row": [
+                    "id": id,
+                    "status": "blocked",
+                    "agencyId": agencyId
+                ]
+            ]
+        ]
+        
+        SocketNetworkDispatcher.instance.dispatchnew(event: "saveRow", params: params) { result in
+            switch result {
+            case .success(let response):
+                print("Driver row saved successfully: \(response)")
+            //    completion(.success(response as! String)) // Return response
+            case .failure(let error):
+                print("Error saving driver row: \(error.localizedDescription)")
+              //  completion(.failure(error)) // Return error
+            }
+        }
+    }
+    
 }

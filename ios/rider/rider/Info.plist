@@ -28,10 +28,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>Firebase </string>
+			<string>Firebaselive</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>app-1-1014769814307-ios-052cccbf865b097253da96</string>
+				<string>app-1-400448589719-ios-0a9db2256d75c2fe29fed2</string>
 			</array>
 		</dict>
 		<dict>
@@ -44,7 +44,16 @@
 				<string>com.innomalist.taxi.rider.payments</string>
 			</array>
 		</dict>
-		<dict/>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Firebase</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>app-1-400448589719:ios:0a9db2256d75c2fe29fed2</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>

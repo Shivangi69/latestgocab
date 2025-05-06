@@ -4,7 +4,6 @@
 //
 //  Created by Manly Man on 11/23/19.
 //  Copyright © 2019 Innomalist. All rights reserved.
-//
 
 import Foundation
 
@@ -27,6 +26,8 @@ public class SupportGetMessage: SocketRequest {
         self.params = [riderId]
     }
 }
+
+
  
 //public class SupportGetMessage: SocketRequest {
 //    public typealias ResponseType = ChatMessage

@@ -1,10 +1,6 @@
 //
 //  ChatWithAdminViewController.swift
 //  rider
-//
-//  Created by Admin on 13/09/24.
-//  Copyright © 2024 minimal. All rights reserved.
-//
 
 import UIKit
 import MessageKit
@@ -24,7 +20,6 @@ class ChatWithAdminViewController: MessagesViewController {
         self.messagesCollectionView.scrollToLastItem(animated: true)
     }
 
-    
     var socket: SocketIOClient!
 //AdminAdminChatMessage
     var messages: [AdminChatMessage] = []
@@ -41,35 +36,25 @@ class ChatWithAdminViewController: MessagesViewController {
                 switch result {
                 case .success(_):
 
-                    print("")
-//                    UserDefaults.standard.set("yes", forKey: "Firsttyme")
-//
-//
-//                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
-//
-//                        self.navigationController!.pushViewController(vc, animated: true)
-//                    }
-//
-//                    self.performSegue(withIdentifier: "segueHost", sender: nil)
-//
-
-                    SupportGetMessage(riderId: 60).execute() { result in
+                    
+                    let user = try! Rider(from: UserDefaultsConfig.user!)
+                    let token = UserDefaultsConfig.jwtToken ?? ""
+                    
+                    let riderId = user.id ?? 0
+                    
+                    SupportGetMessage(riderId: riderId).execute() { result in
                         switch result {
                         case .success(let response):
-
                             self.messages = response
                             print("self.messages",self.messages)
                             self.messagesCollectionView.reloadData()
                             self.messagesCollectionView.scrollToLastItem(animated: true)
-
                             break;
 
                         case .failure(let error):
                             error.showAlert()
                         }
-
                     }
-
 
                 case .failure(let error):
                     switch error {
@@ -84,9 +69,6 @@ class ChatWithAdminViewController: MessagesViewController {
 
                     default:
                         SPAlert.present(title: "Error", message: error.rawValue, preset: .error)
-//                        self.indicatorLoading.isHidden = true
-//                        self.textLoading.isHidden = true
-//                        self.buttonLogin.isHidden = false
                     }
                 }
             }
@@ -117,7 +99,6 @@ class ChatWithAdminViewController: MessagesViewController {
         }
 
         connectSocket(token: UserDefaultsConfig.jwtTokenNew ?? "")
-
 
 //        let GetMessage = SupportGetMessage()
 //        GetMessage.send()
@@ -293,7 +274,6 @@ extension ChatWithAdminViewController: MessagesDisplayDelegate, MessagesLayoutDe
            }else{
                let tail: MessageStyle.TailCorner = .bottomLeft
                return .bubbleTail(tail, .curved)            }
-           // You can customize this further if needed
        }
 
 }

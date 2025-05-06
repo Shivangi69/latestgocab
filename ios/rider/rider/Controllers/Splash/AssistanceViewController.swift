@@ -1,10 +1,5 @@
-//
 //  AssistanceViewController.swift
 //  rider
-//
-//  Created by Admin on 11/09/24.
-//  Copyright © 2024 minimal. All rights reserved.
-//
 
 import UIKit
 import Kingfisher
@@ -19,7 +14,7 @@ class AssistanceViewController: UIViewController {
         profileimg.layer.masksToBounds = true
         
         navigationController?.setNavigationBarHidden(false, animated: false)
-
+        
         self.title = "Need Assistance".uppercased()
         if let riderImage = user.media?.address {
             let processor = DownsamplingImageProcessor(size: profileimg.intrinsicContentSize) |> RoundCornerImageProcessor(cornerRadius: profileimg.intrinsicContentSize.width / 2)
@@ -48,6 +43,7 @@ class AssistanceViewController: UIViewController {
     @IBOutlet weak var profileimg: UIImageView!
     
     @IBOutlet weak var phonenumlbl: UILabel!
+    
     @IBAction func GoChat(_ sender: Any) {
         let vc = ChatWithAdminViewController()
         vc.sender = Admin()
@@ -57,15 +53,6 @@ class AssistanceViewController: UIViewController {
        navigationController?.popViewController(animated: true)
     }
     
-    /*
-    
-     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		08DD47D12C22F1BB00DF87DF /* notification .mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 08DD47D02C22F1BB00DF87DF /* notification .mp3 */; };
 		18401FB82D097719009E5537 /* AgencydetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18401FB72D097719009E5537 /* AgencydetailsViewController.swift */; };
+		18C5B9E92D7AF0EC0028E864 /* GoogleService-Info2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18C5B9E82D7AF0EC0028E864 /* GoogleService-Info2.plist */; };
 		18DA005B2D229EC80067382F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18DA005A2D229EC80067382F /* GoogleService-Info.plist */; };
 		4C215E98238C06CC0013D720 /* LocationUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C215E97238C06CC0013D720 /* LocationUpdate.swift */; };
 		4C3E189D23AE12A20073FB05 /* WalletInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E189C23AE12A20073FB05 /* WalletInfo.swift */; };
@@ -142,6 +143,7 @@
 		032FFEB4F8FA8B2195FA9D9B /* Pods-driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-driver.debug.xcconfig"; path = "Target Support Files/Pods-driver/Pods-driver.debug.xcconfig"; sourceTree = "<group>"; };
 		08DD47D02C22F1BB00DF87DF /* notification .mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "notification .mp3"; sourceTree = "<group>"; };
 		18401FB72D097719009E5537 /* AgencydetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgencydetailsViewController.swift; sourceTree = "<group>"; };
+		18C5B9E82D7AF0EC0028E864 /* GoogleService-Info2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info2.plist"; sourceTree = "<group>"; };
 		18DA005A2D229EC80067382F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4C215E97238C06CC0013D720 /* LocationUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUpdate.swift; sourceTree = "<group>"; };
 		4C3E189C23AE12A20073FB05 /* WalletInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletInfo.swift; path = ../../../../common/Networking/WebSocket/WalletInfo.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				627B16F721A9D49500FF0953 /* driver.entitlements */,
 				62B6FDB61F71059900F66611 /* Driver */,
 				18DA005A2D229EC80067382F /* GoogleService-Info.plist */,
+				18C5B9E82D7AF0EC0028E864 /* GoogleService-Info2.plist */,
 				4C85D351243611E6005722D8 /* DriverShotsUITests */,
 				62B6FDB51F71059900F66611 /* Products */,
 				99D1CC458A18865C3CBDF704 /* Frameworks */,
@@ -782,6 +785,7 @@
 				8444558D2BF760030070FC6B /* new_ride.mp3 in Resources */,
 				4C826C5B245982D700471DFC /* Localizable.strings in Resources */,
 				843227A92C3BF1EA000A0DE3 /* TripHistoryCollectionViewCell.xib in Resources */,
+				18C5B9E92D7AF0EC0028E864 /* GoogleService-Info2.plist in Resources */,
 				62398B301F72C11400327E77 /* RequestCard.xib in Resources */,
 				18DA005B2D229EC80067382F /* GoogleService-Info.plist in Resources */,
 				62A08DFE1F73CDED003A4F1A /* background.jpg in Resources */,

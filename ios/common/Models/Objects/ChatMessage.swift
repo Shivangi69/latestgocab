@@ -22,7 +22,7 @@ public class ChatMessage: Codable, MessageType {
         } else {
             return Request.shared.rider!
         }
-        }
+      }
     }
     
     public var messageId: String { get {
@@ -32,13 +32,15 @@ public class ChatMessage: Codable, MessageType {
     
     public var sentDate: Date { get {
         return Date(timeIntervalSince1970: sentAt! / 1000)
-        }}
+    }
+}
     
     public var kind: MessageKind { get {
         return MessageKind.text(self.content!)
         }
     }
 }
+
 public enum ClientType: String, Codable {
     case Driver = "d"
     case Rider = "r"
@@ -99,9 +101,12 @@ public class AdminChatMessage: Codable ,MessageType{
         return Date(timeIntervalSince1970: (sentAt ?? 0) / 1000) // Safe unwrapping of sentAt
     }
 
+    
     public var kind: MessageKind {
         return MessageKind.text(self.content ?? "") // Default to empty string if content is nil
     }
+    
+    
     public var sender: SenderType {
             if self.sentBy == .Driver {
                 guard let driver = Request.shared.driver else {
@@ -110,7 +115,8 @@ public class AdminChatMessage: Codable ,MessageType{
                     return DefaultSender() // Provide a default sender
                 }
                 return driver
-            } else {
+            }
+            else {
                 guard let rider = Request.shared.rider else {
                     // Handle the nil case appropriately
                    // print("Warning: Rider is nil")

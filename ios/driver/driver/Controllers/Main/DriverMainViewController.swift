@@ -69,7 +69,9 @@ class DriverMainViewController: UIViewController, CLLocationManagerDelegate {
                 self.requestsList.reloadData()
                 
             case .failure(_):
-                self.buttonStatus.isOn = false
+                
+                self.buttonStatus.isOn = true
+                
             }
         }
     }
@@ -97,8 +99,8 @@ class DriverMainViewController: UIViewController, CLLocationManagerDelegate {
                 self.requestsList.reloadData()
             }
         }
-        
     }
+    
     
     @IBAction func onMenuClicked(_ sender: Any) {
         NotificationCenter.default.post(name: .menuClicked, object: nil)

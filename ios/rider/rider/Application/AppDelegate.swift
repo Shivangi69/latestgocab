@@ -2,8 +2,7 @@
 //  AppDelegate.swift
 //  Rider
 //
-//  Copyright © 2018 minimalistic apps. All rights reserved.
-//
+
 
 import UIKit
 import Stripe
@@ -15,9 +14,8 @@ import FirebaseAuthUI
 import BraintreeDropIn
 import GooglePlaces
 
-
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate,MessagingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     static var info : [String:Any] {
         get {
             let path = Bundle.main.path(forResource: "Info", ofType: "plist")!
@@ -265,6 +263,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return
         }
         
+        
         if let presented = self.window?.rootViewController?.presentedViewController {
             LoadingOverlay.shared.showOverlay(view: presented.view)
         } else {
@@ -280,7 +279,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
             
             print("FCM Token: \(fcmToken ?? "")")
-            
+           
             SocketNetworkDispatcher.instance.connect(namespace: .Rider, token: jwt, notificationId: fcmToken ?? "") { result in
                 LoadingOverlay.shared.hideOverlayView()
                 switch result {

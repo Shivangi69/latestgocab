@@ -12,7 +12,8 @@ class PaymentmethodViewController: UIViewController {
     // Outlets for the buttons (connect these from the storyboard)
     @IBOutlet weak var onlineButton: UIButton!
     @IBOutlet weak var cashButton: UIButton!
-    
+    var rider: Rider!
+
     var selectedPaymentMethod: String?
     
     override func viewDidLoad() {
@@ -21,20 +22,28 @@ class PaymentmethodViewController: UIViewController {
         cashButton.setTitle("", for: .normal)
         setupUI()
         
-        // Set default selection to "Online"
-        selectPaymentMethod("Online")
+        if let userdata = UserDefaults.standard.dictionary(forKey: "Userdata") {
+            let email = userdata["email"] as? String
+            print("User Email: \(email ?? "No Email Found")")
+        } else {
+            print("No user data found in UserDefaults.")
+        }
+
+//        if let currentUser = UserManager.shared.currentUser?.email {
+//              print("Current User: \(user)")
+//          } else {
+//              print("No user data available in UserManager.")
+//          }
+        
+        
+//           selectPaymentMethod(user)
+
+        
     }
     
     // Setup initial UI
     func setupUI() {
-        // Set default styles for buttons
-        //          onlineButton.layer.borderColor = UIColor.lightGray.cgColor
-        //          cashButton.layer.borderColor = UIColor.lightGray.cgColor
-        //          onlineButton.layer.borderWidth = 1
-        //          cashButton.layer.borderWidth = 1
-        //          onlineButton.layer.cornerRadius = 8
-        //          cashButton.layer.cornerRadius = 8
-        
+      
         onlineButton.setImage(UIImage(named: "RadioOnB"), for: .normal)
         cashButton.setImage(UIImage(named: "RadioOffB"), for: .normal)
         
@@ -72,5 +81,6 @@ class PaymentmethodViewController: UIViewController {
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
                         self.navigationController!.pushViewController(vc, animated: true)
                 }
+        
     }
 }

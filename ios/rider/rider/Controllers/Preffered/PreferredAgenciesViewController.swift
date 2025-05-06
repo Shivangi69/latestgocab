@@ -110,9 +110,7 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
 //        doneButton.layer.cornerRadius = 10
         doneButton.addTarget(self, action: #selector(reorderAgencies), for: .touchUpInside)
         view.addSubview(doneButton)
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
-                        self.navigationController!.pushViewController(vc, animated: true)
-                }
+       
     }
     
     @objc func reorderAgencies() {
@@ -124,11 +122,15 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         let user = try! Rider(from: UserDefaultsConfig.user!)
         let token = UserDefaultsConfig.jwtToken ?? ""
         
-        // Prepare the request data
         let riderId = user.id ?? 0
         let reorderingRequest = ReorderingRequest(agency_preferences: reorderedAgencies, riderId: riderId)
-        // Call the API
         reorderPreferredAgencies(reorderingRequest: reorderingRequest, token: token)
+        
+        
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
+                        self.navigationController!.pushViewController(vc, animated: true)
+                }
+        
     }
 
     func reorderPreferredAgencies(reorderingRequest: ReorderingRequest, token: String) {
@@ -382,9 +384,9 @@ class PreferredAgenciesViewController: UIViewController, UITableViewDelegate, UI
         
         let user = try! Rider(from: UserDefaultsConfig.user!)
         let token = UserDefaultsConfig.jwtToken ?? ""
-        
-        
         let riderId = user.id ?? 0
+        
+        
         Task {
             do {
                 // Call the delete API
@@ -522,7 +524,6 @@ extension PreferredAgenciesViewController: SearchAgencyPopupDelegate {
         if !selectedAgencies.contains(agency) && selectedAgencies.count < 3 {
             selectedAgencies.append(agency)
             selectedAgenciesID.append(agencyId)
-
             updateUI()
         }
     }

@@ -1,9 +1,7 @@
 //
 //  NavigationMenuViewController.swift
 //  Rider
-//
 //  Copyright © 2018 minimalistic apps. All rights reserved.
-//
 
 import UIKit
 import Kingfisher
@@ -11,17 +9,15 @@ import Kingfisher
 class NavigationMenuViewController : MenuViewController {
     let kCellReuseIdentifier = "MenuCell"
     let menuItems = ["Main"]
-    
+     
     @IBOutlet weak var imageUser: UIImageView!
-    
     @IBOutlet weak var labelName: UILabel!
-    
     @IBOutlet weak var labelCredit: UILabel!
     
     override var prefersStatusBarHidden: Bool {
         return false
     }
- 
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,20 +51,22 @@ class NavigationMenuViewController : MenuViewController {
     }
     
     
-    
     @IBAction func Goassistance(_ sender: Any) {
         guard let menuContainerViewController = self.menuContainerViewController else {
             return
         }
+
         let chatVC = ChatWithAdminViewController()
-        chatVC.sender = Admin() // Pass any required data
+        chatVC.sender = Admin()
+        print(Admin())// Pass any required data
         if let navigationController = menuContainerViewController.contentViewControllers.first as? UINavigationController {
-            navigationController.pushViewController(chatVC, animated: true)
-        } else {
+            DispatchQueue.main.async {
+                navigationController.pushViewController(chatVC, animated: true)
+            }
+        }
+        else {
             print("Error: Unable to find navigation controller in contentViewControllers.")
         }
-
-        // Hide the side menu
         menuContainerViewController.hideSideMenu()
     }
 

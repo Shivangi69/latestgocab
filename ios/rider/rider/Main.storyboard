@@ -1382,7 +1382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXS-rZ-pk3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5589.2307692307686" y="1286.0189573459716"/>
+            <point key="canvasLocation" x="5675" y="1285"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="Quo-Ne-W2I">
@@ -1544,7 +1544,7 @@
                     <buttonConfiguration key="configuration" style="plain" title="Button"/>
                 </button>
             </objects>
-            <point key="canvasLocation" x="6442" y="1286"/>
+            <point key="canvasLocation" x="6442" y="1285"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="ctR-xa-XEf">
@@ -1572,7 +1572,7 @@
                     <buttonConfiguration key="configuration" style="plain" title="Button"/>
                 </button>
             </objects>
-            <point key="canvasLocation" x="4912.3076923076924" y="1286.0189573459716"/>
+            <point key="canvasLocation" x="4911" y="1285"/>
         </scene>
         <!--Navigator View Controller-->
         <scene sceneID="Upp-Sg-Sy0">
@@ -2526,7 +2526,7 @@ Cg
                     <viewLayoutGuide key="safeArea" id="C5O-9W-b2K"/>
                 </stackView>
             </objects>
-            <point key="canvasLocation" x="8420" y="2057.345971563981"/>
+            <point key="canvasLocation" x="8174" y="2084"/>
         </scene>
         <!--Welcome Screen-->
         <scene sceneID="JS2-MG-ZRs">
@@ -3095,7 +3095,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                     <viewLayoutGuide key="frameLayoutGuide" id="bTE-YV-7b3"/>
                 </scrollView>
             </objects>
-            <point key="canvasLocation" x="11776.923076923076" y="2938.1516587677725"/>
+            <point key="canvasLocation" x="8174" y="2758"/>
         </scene>
         <!--Navigation Menu View Controller-->
         <scene sceneID="PCR-TL-0Nj">
@@ -3458,7 +3458,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUD-VW-sK7">
                                                 <rect key="frame" x="0.0" y="410" width="390" height="50"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message" translatesAutoresizingMaskIntoConstraints="NO" id="Cz7-Wi-Z7s">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vector111" translatesAutoresizingMaskIntoConstraints="NO" id="Cz7-Wi-Z7s">
                                                         <rect key="frame" x="20" y="13" width="24" height="24"/>
                                                         <color key="tintColor" name="black"/>
                                                         <constraints>
@@ -3586,7 +3586,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXb-po-Orv" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816.9230769230769" y="540.99526066350711"/>
+            <point key="canvasLocation" x="1914" y="541"/>
         </scene>
         <!--Host View Controller-->
         <scene sceneID="klT-W3-Jv2">
@@ -4584,7 +4584,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
             </objects>
-            <point key="canvasLocation" x="3469.2307692307691" y="1195.0236966824643"/>
+            <point key="canvasLocation" x="3642" y="1983"/>
         </scene>
         <!--Otp Verification-->
         <scene sceneID="Hn1-B1-BeQ">
@@ -4729,7 +4729,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZC-la-ctf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6301.538461538461" y="2759.0047393364925"/>
+            <point key="canvasLocation" x="6405" y="2758"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="l4a-xz-5Bg">
@@ -5003,7 +5003,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZG-vN-Ryq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5229" y="1942"/>
+            <point key="canvasLocation" x="6363" y="2084"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AKj-1Z-HYs">
@@ -5057,7 +5057,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGL-g7-OVW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10850.76923076923" y="2938.1516587677725"/>
+            <point key="canvasLocation" x="7388" y="2758"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tZ9-15-U6W">
@@ -5118,7 +5118,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WbF-Lw-j5x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2591" y="1195"/>
+            <point key="canvasLocation" x="2818" y="1983"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7d1-7n-Llh">
@@ -5369,6 +5369,7 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
         <image name="Trip History" width="128" height="150"/>
         <image name="Vector" width="16" height="16"/>
         <image name="Vector 1" width="23" height="18"/>
+        <image name="Vector111" width="18" height="18"/>
         <image name="Wallet'" width="128" height="121"/>
         <image name="add" width="22" height="22"/>
         <image name="admin" width="130" height="130"/>
@@ -5395,14 +5396,14 @@ To find nearby taxis, calculate fares, and ensure accurate rides.</string>
         <image name="menu" width="22" height="22"/>
         <image name="message" width="96" height="96"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="plus.circle" catalog="system" width="32" height="32"/>
+        <image name="plus.circle" catalog="system" width="128" height="123"/>
         <image name="preferred Drivers" width="128" height="118"/>
         <image name="sms 1" width="25" height="25"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="unnamed (1)" width="300" height="295"/>
         <image name="whatsapp 1" width="25" height="25"/>
         <namedColor name="ThemeYellow">
-            <color red="0.99599999189376831" green="0.88999998569488525" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99607843137254903" green="0.8901960784313725" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="avatarViewBackground">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

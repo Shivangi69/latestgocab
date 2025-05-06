@@ -33,6 +33,7 @@ struct UserResponse: Codable {
     let isMobileNumberVerified: Bool?
     let isEmailVerified: Bool?
     let media: UserMedia?
+    let paymentPreference: String?
 }
 
 // Model for DataClass

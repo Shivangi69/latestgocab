@@ -110,6 +110,7 @@ import Kingfisher
 //        }
 //    }
 //}
+
 import UIKit
 import SPAlert
 import Kingfisher
@@ -131,7 +132,7 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
     let addressTextField = MDCOutlinedTextField()
     let saveButton = UIButton(type: .system)
     let logoutButton = UIButton(type: .system)
- let deleteAccountButton = UIButton(type: .system)
+    let deleteAccountButton = UIButton(type: .system)
 
   //  let genderSegmentedControl = UISegmentedControl(items: ["Male", "Female", "Unspecified"])
     
@@ -145,15 +146,12 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         setupUI()
         layoutUI()
         populateData()
-     
-        
         
     }
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
     
     func setupUI() {
         view.backgroundColor = .white
@@ -165,20 +163,19 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         profileImageView.layer.cornerRadius = 50
         profileImageView.layer.masksToBounds = true
         profileImageView.isUserInteractionEnabled = true
+        profileImageView.frame = CGRect(x: (view.frame.width - 100) / 2, y: 20, width: 100, height: 100)
+        profileImageView.image = UIImage(named: "Edit Profile") // Replace with your image name
+
         profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectProfileImage)))
         contentView.addSubview(profileImageView)
-        
-            
+                    
         mobileNumberLabel.label.text = NSLocalizedString("Mobile Number", comment: "Profile Mobile Number field title")
-
         mobileNumberLabel.placeholder = "Enter your mobile number"
         mobileNumberLabel.leadingView = UIImageView(image: UIImage(systemName: "phone")?.withTintColor(.systemFill))
         mobileNumberLabel.tintColor = .gray // Ensure icon color is always gray
         mobileNumberLabel.isEnabled = false // Disable the field
-       // mobileNumberLabel.trailingView = UIImageView(image: UIImage(named: "icons8-verified-96"))
         mobileNumberLabel.leadingViewMode = .always
         mobileNumberLabel.setOutlineColor(.gray, for: .normal)
-//       mobileNumberLabel.setNormalLabelColor(.gray, for: .normal)
         mobileNumberLabel.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(mobileNumberLabel)
         
@@ -201,9 +198,7 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
 
         emailTextField.leadingViewMode = .always
         emailTextField.sizeToFit()
-        emailTextField.isEnabled = false // Disable the field
-
-        // Styling
+        emailTextField.isEnabled = false
         emailTextField.tintColor = .gray
         emailTextField.setOutlineColor(.gray, for: .normal)
         emailTextField.setNormalLabelColor(.gray, for: .normal)
@@ -249,28 +244,11 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         addressTextField.leadingView = UIImageView(image: UIImage(systemName: "house"))
         addressTextField.leadingViewMode = .always
         addressTextField.setOutlineColor(.gray, for: .normal)
-        addressTextField.tintColor = .gray // Ensure icon color is always gray
-
+        addressTextField.tintColor = .gray
         addressTextField.setNormalLabelColor(.gray, for: .normal)
         addressTextField.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(addressTextField)
-        
-        
-        
-//        // First Name TextField
-//        firstNameTextField.placeholder = NSLocalizedString("First Name", comment: "Profile First Name Field")
-//        firstNameTextField.borderStyle = .roundedRect
-//        contentView.addSubview(firstNameTextField)
 
-//        // Last Name TextField
-//        lastNameTextField.placeholder = NSLocalizedString("Last Name", comment: "Profile Last Name field")
-//        lastNameTextField.borderStyle = .roundedRect
-//        contentView.addSubview(lastNameTextField)
-
-        // Gender Segmented Control
-//        genderSegmentedControl.selectedSegmentIndex = 0
-//        contentView.addSubview(genderSegmentedControl)
-        
         genderNameTextField.label.text = NSLocalizedString("Gender", comment: "Profile Gender field")
         genderNameTextField.tintColor = .gray // Ensure icon color is always gray
         genderNameTextField.placeholder = "Enter Gender"
@@ -280,8 +258,8 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         genderNameTextField.setNormalLabelColor(.gray, for: .normal)
         genderNameTextField.font = UIFont.systemFont(ofSize: 14)
         contentView.addSubview(genderNameTextField)
-        logoutButton.setTitle(NSLocalizedString("Logout", comment: "Logout button title"), for: .normal)
         
+        logoutButton.setTitle(NSLocalizedString("Logout", comment: "Logout button title"), for: .normal)
         logoutButton.setTitleColor(.blue, for: .normal)
         logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         logoutButton.addTarget(self, action: #selector(resetAppAndNavigateToSplash), for: .touchUpInside)
@@ -289,64 +267,69 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         deleteAccountButton.setTitle(NSLocalizedString("Delete My Account", comment: "Delete my account button title"), for: .normal)
         deleteAccountButton.setTitleColor(.red, for: .normal)
         deleteAccountButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-      
         deleteAccountButton.addTarget(self, action: #selector(deleteAccountButtonTapped), for: .touchUpInside)
-        
         contentView.addSubview(logoutButton)
         contentView.addSubview(deleteAccountButton)
 
-//        saveButton.setTitle(NSLocalizedString("Save", comment: "Save button title"), for: .normal)
-//        contentView.addSubview(saveButton)
-        
-        
         saveButton.setTitle(NSLocalizedString("Save", comment: "Save button title"), for: .normal)
         saveButton.backgroundColor = UIColor.systemYellow
-//        saveButton.layer.borderColor = UIColor.black.cgColor
-//        saveButton.layer.borderWidth = 2.0
         saveButton.titleLabel?.textColor = .black
         saveButton.layer.cornerRadius = 10.0
         saveButton.clipsToBounds = true
         saveButton.addTarget(self, action: #selector(onSaveProfileClicked), for: .touchUpInside)
-        
         contentView.addSubview(saveButton)
     }
-    
-    
     @objc func deleteAccountButtonTapped() {
-        let alert = UIAlertController(
-            title: "Delete Account",
-            message: "Are you sure you want to delete your account?",
-            preferredStyle: .alert
-        )
-
-        // Add "Cancel" action
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        guard let userData = UserDefaultsConfig.user,
+              let token = UserDefaultsConfig.jwtToken else {
+            print("User or token is nil")
+            return
+        }
         
-        // Add "Delete" action
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-            // Replace these with actual values
-            let riderId = 123 // Example rider ID
-            let token = "your-auth-token" // Example token
-
-            Task {
-                do {
-                    let result = try await deleteaccount(riderId: riderId, token: token)
-                    print("Account deleted successfully: \(result)")
-                    // Handle success (e.g., show a confirmation alert or navigate back)
-                } catch {
-                  
-                    print("Failed to delete account: \(error.localizedDescription)")
-                    // Handle the error (e.g., show an error alert)
+        let user: Rider
+        do {
+            user = try Rider(from: userData)
+        } catch {
+            print("Failed to parse user data: \(error)")
+            return
+        }
+        
+        guard let riderId = user.id else {
+            print("Rider ID is nil")
+            return
+        }
+        
+        Task {
+            do {
+                print("Attempting to delete account...")
+                let result = try await deleteaccount(riderId: riderId, token: token)
+                print("Account deleted successfully: \(result)")
+                
+                // Clear user data
+                UserDefaultsConfig.user = nil
+                
+                // Hide side menu if needed
+                self.menuview.menuContainerViewController?.hideSideMenu()
+                
+                // Reset the app's root view controller
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                      let window = windowScene.windows.first else { return }
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let splashViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
+                let navigationController = UINavigationController(rootViewController: splashViewController)
+                window.rootViewController = navigationController
+                
+                UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: nil) { _ in
+                    window.makeKeyAndVisible()
                 }
+            } catch {
+                print("Failed to delete account: \(error)")
+                // Optional: Handle error case or show feedback to the user
             }
-        }))
-        
-        // Present the alert
-        if let viewController = UIApplication.shared.keyWindow?.rootViewController {
-            viewController.present(alert, animated: true, completion: nil)
         }
     }
-    
+
     @objc func resetAppAndNavigateToSplash() {
         print("Logout button tapped")
         
@@ -411,6 +394,9 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
             profileImageView.widthAnchor.constraint(equalToConstant: 100),
             profileImageView.heightAnchor.constraint(equalToConstant: 100),
 
+            
+            
+            
             // Mobile Number
             mobileNumberLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 20),
             mobileNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -467,7 +453,6 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
         
         if let mobileNumber = rider.mobileNumber {
             mobileNumberLabel.text = String(mobileNumber)
-
             // For standard UILabel or MDCOutlinedTextField
         }
         
@@ -498,7 +483,7 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
 //        rider.gender = ["male", "female", "unspecified"][genderSegmentedControl.selectedSegmentIndex]
         rider.gender = genderNameTextField.text
         rider.address = addressTextField.text
-
+     
         UpdateProfile(user: self.rider).execute() { result in
             switch result {
             case .success(_):
@@ -768,42 +753,10 @@ class RiderEditProfileViewController: UIViewController, UIImagePickerControllerD
 
 
 
-func deleteAccountButtonTapped() {
-    let alert = UIAlertController(
-        title: "Delete Account",
-        message: "Are you sure you want to delete your account?",
-        preferredStyle: .alert
-    )
-
-    // Add "Cancel" action
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    
-    // Add "Delete" action
-    alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-        // Replace these with actual values
-        let riderId = 123 // Example rider ID
-        let token = "your-auth-token" // Example token
-
-        Task {
-            do {
-                let result = try await deleteaccount(riderId: riderId, token: token)
-                print("Account deleted successfully: \(result)")
-                // Handle success (e.g., show a confirmation alert or navigate back)
-            } catch {
-                print("Failed to delete account: \(error.localizedDescription)")
-                // Handle the error (e.g., show an error alert)
-            }
-        }
-    }))
-    
-    // Present the alert
-    if let viewController = UIApplication.shared.keyWindow?.rootViewController {
-        viewController.present(alert, animated: true, completion: nil)
-    }
-}
 
 func deleteaccount( riderId: Int, token: String) async throws -> DeletePrefResult {
     // Construct the URL
+    
     let urlString =  Config.Backend  + "rider/\(riderId)"
     guard let url = URL(string: urlString) else {
         throw URLError(.badURL)
@@ -811,20 +764,19 @@ func deleteaccount( riderId: Int, token: String) async throws -> DeletePrefResul
 
     // Create a URLRequest
     var request = URLRequest(url: url)
+    
+    
+    print(request)
     request.httpMethod = "DELETE"
     
-    // Set the Authorization header
     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
-    // Perform the API request using async/await
     let (data, response) = try await URLSession.shared.data(for: request)
     
-    // Check for a valid response
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
         throw URLError(.badServerResponse)
     }
 
-    // Parse the JSON response
     let deleteResult = try JSONDecoder().decode(DeletePrefResult.self, from: data)
     return deleteResult
 }

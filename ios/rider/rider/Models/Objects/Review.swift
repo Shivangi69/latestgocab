@@ -10,7 +10,6 @@ import UIKit
 
 struct Review: Codable {
     var score: Int
-    
     var review: String?
 
 }

@@ -28,10 +28,10 @@
 			<key>CFBundleURLIconFile</key>
 			<string></string>
 			<key>CFBundleURLName</key>
-			<string>Firebase</string>
+			<string>Firebaselive</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>app-1-1014769814307-ios-bc4f526b8e9488f653da96</string>
+				<string>app-1-400448589719-ios-d5ea725604cacf5f29fed2</string>
 			</array>
 		</dict>
 		<dict>
@@ -48,13 +48,17 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string></string>
+			<string>Firebase</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>app-1-1014769814307-ios-bc4f526b8e9488f653da96</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
@@ -74,16 +78,16 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Access to camera is required to upload your profile picture/documentations. This informations are used by admin to verify your identity and profile picture might be also shown to rider whom you have accepted to take their ride.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>You can let app send your current location to be shared with user when app is in foreground or when it's on backgroud too.</string>
+	<string>We need your location to help users see where you are and assign you nearby rides, even when the app is running in the background.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>By granting access to location always app will be able to send your location to user even when app is not in foreground.</string>
+	<string>We need your location to help users see where you are and assign you nearby rides, even when the app is running in the background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>You can let location updates only when app is in foreground. Location updates won't be sent to user when app is not in foreground.</string>
+	<string>We need your location to help users see where you are and assign you nearby rides, even when the app is running in the background.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Access to photos is needed to upload your selected image.</string>
+	<string>We need access to your photos so you can upload your profile picture or any required documents easily from your phone.</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>location</string>
+		<string>We need your location to help users see where you are and assign you nearby rides, even when the app is running in the background.</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

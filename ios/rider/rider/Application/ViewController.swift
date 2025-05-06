@@ -23,16 +23,13 @@ class ViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         nextButton.titleLabel?.textColor =  UIColor.black
-
         nextButton.layer.cornerRadius = 10
         nextButton.layer.borderColor = UIColor.black.cgColor
         nextButton.layer.borderWidth = 1
         nextButton.titleLabel?.textColor =  UIColor.black
-
         setupUI()
     }
     
@@ -42,13 +39,16 @@ class ViewController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
     func GetStarted() {
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SplashViewController") as? SplashViewController {
 
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
     //MARK: - SetupUI
+    
     private func setupUI() {
         onboardingSlides = [
             OnboardingModel(title: "Your next ride is just a tap away",
@@ -94,7 +94,10 @@ class ViewController: UIViewController {
                 nextButton.widthAnchor.constraint(equalToConstant: 100),
                 nextButton.heightAnchor.constraint(equalToConstant: 50)
             ])
-        } else {
+            
+        }
+        
+        else {
             // Style the "Next" button for other pages
             nextButton.isHidden = false // Ensure button is visible
             nextButton.setTitle("Next", for: .normal)
@@ -103,14 +106,11 @@ class ViewController: UIViewController {
             nextButton.layer.borderColor = UIColor.black.cgColor // Black border
             nextButton.layer.borderWidth = 1
             nextButton.layer.cornerRadius = 10 // Slightly rounded corners
-            
-            // Show the skip button
             skipButton.isHidden = false
+            
         }
     }
 
-    
-    
     
     
 //    private func updateCurrentPage() {
@@ -152,12 +152,8 @@ class ViewController: UIViewController {
 //        }
 //    }
 
-
     
     
-    
-    
-//
 //    private func updateCurrentPage() {
 //        pageControl.currentPage = currentPage
 //        
@@ -236,7 +232,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
                       height: collectionView.frame.height)
     }
 }
-
 
 struct OnboardingModel {
     let title: String

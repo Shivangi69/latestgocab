@@ -1,10 +1,7 @@
-//
 //  CountriesViewController.swift
 //  CountryCode
-//
 //  Created by Created by WeblineIndia  on 01/07/20.
 //  Copyright © 2020 WeblineIndia . All rights reserved.
-//
 
 import UIKit
 import Foundation
@@ -24,7 +21,7 @@ public final class CountriesViewController: UIViewController, UISearchBarDelegat
         }
     }
 
-    /// Lazy var for table view
+    // Lazy var for table view
     // Table View is created programatically
     public fileprivate(set) lazy var tableView: UITableView = {
 

@@ -20,7 +20,6 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let nibCell = UINib(nibName: cellIdentifier, bundle: nil)
         collectionView?.register(nibCell, forCellWithReuseIdentifier: cellIdentifier)
         self.refreshList(self)
@@ -32,7 +31,6 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
             case .success(let response):
                 self.travels = response
                 self.collectionView?.reloadData()
-                
             case .failure(let error):
                 error.showAlert()
             }
@@ -274,13 +272,24 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
 //           }
 //                
         
-//        cell.tripStatusvalue.text = travel.status!.rawValue.splitBefore(separator: { $0.isUppercase }).map { String($0) }.joined(separator: " ")
-//
-//        if travel.status?.rawValue ?? "" == "Finished" { // Assuming `.finish` is an enum case
-//            cell.tripStatusvalue.textColor = UIColor.green // Set to green for finished status
-//        } else {
-//            cell.tripStatusvalue.textColor = UIColor.red // Set to red for all other statuses
-//        }
+        
+        cell.tripStatusLbl.text = travel.status!.rawValue.splitBefore(separator: { $0.isUppercase }).map { String($0) }.joined(separator: " ")
+
+        if travel.status?.rawValue ?? "" == "Finished" { // Assuming `.finish` is an enum case
+            cell.tripStatusLbl.textColor = UIColor.green // Set to green for finished status
+        }
+        
+        else if travel.status?.rawValue ?? "" == "PendingReview" { // Assuming `.finish` is an enum case
+            cell.tripStatusLbl.textColor = UIColor.red
+            cell.tripStatusLbl.isUserInteractionEnabled = true // Enable interaction
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelTapped))
+            cell.tripStatusLbl.addGestureRecognizer(tapGesture)
+            
+        }
+        
+        else {
+            cell.tripStatusLbl.textColor = UIColor.red // Set to red for all other statuses
+        }
         
         
         let localeLanguage = Locale.current.languageCode ?? "en"
@@ -379,8 +388,6 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
             dialog.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel))
             self.present(dialog, animated: true)
         }
-
-        // Set delete action
         cell.deleteAction = {
             // Handle delete action here, e.g., show confirmation, delete item
             HideHistoryItem(requestId: travel.id!).execute() { result in
@@ -395,6 +402,125 @@ class TripHistoryCollectionViewController: UICollectionViewController, UICollect
         }
         return cell
     }
+   
+    
+  @objc func labelTapped() {
+        // Create a dimmed background view
+        let dimmedBackground = UIView(frame: UIScreen.main.bounds)
+        dimmedBackground.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        dimmedBackground.tag = 100     // To identify and remove it later if needed
+        UIApplication.shared.keyWindow?.addSubview(dimmedBackground)
+        
+        // Create the custom modal view
+        let modalView = UIView(frame: CGRect(x: 20, y: UIScreen.main.bounds.height / 2 - 150, width: UIScreen.main.bounds.width - 40, height: 250))
+        modalView.backgroundColor = .white
+        modalView.layer.cornerRadius = 12
+        modalView.clipsToBounds = true
+        dimmedBackground.addSubview(modalView)
+        
+        // Title Label
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 10, width: modalView.frame.width, height: 30))
+        titleLabel.text = "Your Feedback Matters!"
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        modalView.addSubview(titleLabel)
+        
+        // Text Field for review input
+        let reviewTextField = UITextField(frame: CGRect(x: 10, y: 50, width: modalView.frame.width - 20, height: 40))
+        reviewTextField.placeholder = "Write your review here..."
+        reviewTextField.borderStyle = .roundedRect
+        reviewTextField.font = UIFont.systemFont(ofSize: 14)
+        modalView.addSubview(reviewTextField)
+        
+        // Character count label
+        let charCountLabel = UILabel(frame: CGRect(x: modalView.frame.width - 60, y: 95, width: 50, height: 20))
+        charCountLabel.text = "0/250"
+        charCountLabel.font = UIFont.systemFont(ofSize: 12)
+        charCountLabel.textAlignment = .right
+        charCountLabel.textColor = .gray
+        modalView.addSubview(charCountLabel)
+      
+        // Add text field editing listener
+        reviewTextField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
+        reviewTextField.tag = 101 // To track the text field for updating the char count dynamically
+
+        // Adjust spacing: Move the ratingLabel further down
+        let verticalSpacing: CGFloat = 20 // Adjust this value to increase or decrease spacing
+
+      
+      // Rating label
+      let ratingLabel = UILabel(frame: CGRect(x: 10, y: charCountLabel.frame.maxY + verticalSpacing, width: 50, height: 30))
+      ratingLabel.text = "Rate:"
+      ratingLabel.font = UIFont.systemFont(ofSize: 16)
+      modalView.addSubview(ratingLabel)
+
+      // Rating stars
+      let starsStackView = UIStackView(frame: CGRect(x: 60, y: ratingLabel.frame.origin.y, width: modalView.frame.width - 70, height: 30))
+      starsStackView.axis = .horizontal
+      starsStackView.distribution = .equalSpacing
+      starsStackView.alignment = .center
+      starsStackView.spacing = 8
+      for i in 0..<5 {
+          let starButton = UIButton(type: .system)
+          starButton.setImage(UIImage(systemName: "star"), for: .normal)
+          starButton.setImage(UIImage(systemName: "star.fill"), for: .selected)
+          starButton.tintColor = .systemYellow
+          starButton.tag = i + 1 // Set tag for identifying the selected star
+          starButton.addTarget(self, action: #selector(starTapped(_:)), for: .touchUpInside)
+          starsStackView.addArrangedSubview(starButton)
+      }
+      modalView.addSubview(starsStackView)
+
+        // Cancel Button
+        let cancelButton = UIButton(frame: CGRect(x: 10, y: modalView.frame.height - 50, width: modalView.frame.width / 2 - 15, height: 40))
+        cancelButton.setTitle("CANCEL", for: .normal)
+        cancelButton.setTitleColor(.systemRed, for: .normal)
+        cancelButton.layer.borderWidth = 1
+        cancelButton.layer.borderColor = UIColor.systemRed.cgColor
+        cancelButton.layer.cornerRadius = 8
+        cancelButton.addTarget(self, action: #selector(dismissCustomModal), for: .touchUpInside)
+        modalView.addSubview(cancelButton)
+        
+        // OK Button
+        let okButton = UIButton(frame: CGRect(x: modalView.frame.width / 2 + 5, y: modalView.frame.height - 50, width: modalView.frame.width / 2 - 15, height: 40))
+        okButton.setTitle("OK", for: .normal)
+        okButton.setTitleColor(.white, for: .normal)
+        okButton.backgroundColor = .systemGreen
+        okButton.layer.cornerRadius = 8
+        okButton.addTarget(self, action: #selector(okTapped), for: .touchUpInside)
+        modalView.addSubview(okButton)
+    }
+
+   
+    // MARK: - Actions
+
+    @objc func textFieldEditingChanged(_ textField: UITextField) {
+        if let text = textField.text, let charCountLabel = UIApplication.shared.keyWindow?.viewWithTag(100)?.viewWithTag(101) as? UILabel {
+            charCountLabel.text = "\(text.count)/250"
+        }
+    }
+
+    @objc func starTapped(_ sender: UIButton) {
+        // Highlight selected stars
+        for tag in 1...5 {
+            if let starButton = sender.superview?.viewWithTag(tag) as? UIButton {
+                starButton.isSelected = tag <= sender.tag
+            }
+        }
+    }
+
+    @objc func dismissCustomModal() {
+        if let dimmedBackground = UIApplication.shared.keyWindow?.viewWithTag(100) {
+            dimmedBackground.removeFromSuperview()
+        }
+    }
+
+    @objc func okTapped() {
+        // Dismiss the modal and handle submission logic
+        dismissCustomModal()
+        print("Feedback submitted!")
+    }
+
 
 
 }
@@ -426,9 +552,6 @@ extension Sequence {
         return result
     }
 }
-
-
-
 
 class FeedbackPopupViewController: UIViewController {
 

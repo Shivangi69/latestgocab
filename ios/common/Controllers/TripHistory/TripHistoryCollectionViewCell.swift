@@ -19,6 +19,7 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var carNumber: UILabel!
     @IBOutlet weak var menuicon: UIImageView!
     @IBOutlet weak var tripStatusvalue: UIButton!
+    @IBOutlet weak var tripStatusLbl: UILabel!
     @IBOutlet weak var cartype: UILabel!
     @IBOutlet weak var AgencyName: UILabel!
     @IBOutlet weak var driverName: UILabel!
@@ -93,7 +94,6 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
     }
 
     
-    // Function to save PDF to the custom directory
         func savePDFToCustomDirectory(data: Data, filename: String) -> URL? {
             guard let directoryURL = createCustomDirectory() else { return nil }
             
@@ -240,8 +240,6 @@ class TripHistoryCollectionViewCell: UICollectionViewCell {
                 print("Invalid response or no data")
                 return
             }
-            
-            
             
             do {
                 let preferredAgencyResponse = try JSONDecoder().decode(PreferredAgencyResponse.self, from: data)

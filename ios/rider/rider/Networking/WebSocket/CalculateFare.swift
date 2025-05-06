@@ -20,7 +20,6 @@ class CalculateFare: SocketRequest {
             ]
         }]
     }
-
 }
 
 struct CalculateFareResult: Codable {

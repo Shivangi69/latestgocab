@@ -20,9 +20,10 @@ class Enterphonenumber: UIViewController {
             makePostRequestforverify()
         }
         
-        else{
-            self.view.showToast(message: "WhatsApp OTP not available right now. Please Choose SMS")
+        else if   selectedOption == "WhatsApp"{
+            makePostRequestforverify()
         }
+       
     }
     
     var verificationID: String?
@@ -91,6 +92,10 @@ class Enterphonenumber: UIViewController {
 //            
 //        }
 //    }
+
+   
+    
+    
     func makePostRequestforverify() {
            let url = URL(string: Config.Backend + "rider")!
            var request = URLRequest(url: url)
@@ -177,10 +182,6 @@ class Enterphonenumber: UIViewController {
             selectedOption = "SMS"
             
             
-        } else if selectedButton == whatsappButton {
-            selectedOption = "WhatsApp"
-            self.view.showToast(message: "WhatsApp OTP not available right now. Please Choose SMS")
-
         }
         
         print("Selected option: \(selectedOption ?? "")")

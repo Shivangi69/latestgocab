@@ -13,8 +13,6 @@ import MapKit
 import SPAlert
 
 class BTTTTTTTViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, CouponsViewDelegate {
-    
-   
 @IBOutlet weak var custumeuiview: UIView!
 
 @IBOutlet weak var tableView: UITableView!
